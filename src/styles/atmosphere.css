@@ -1,0 +1,256 @@
+@keyframes pulse-online {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.75; }
+}
+
+@keyframes pulse-processing {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+@keyframes pulse-error {
+  0%, 100% { transform: translateX(0); opacity: 1; }
+  20% { transform: translateX(-3px); opacity: 0.7; }
+  40% { transform: translateX(3px); opacity: 0.7; }
+  60% { transform: translateX(-2px); }
+  80% { transform: translateX(2px); }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes shadow-breathe {
+  0%, 100% { box-shadow: inset 4px 4px 8px rgba(163,177,198,0.6), inset -4px -4px 8px rgba(255,255,255,0.9); }
+  50% { box-shadow: inset 4px 4px 9px rgba(163,177,198,0.62), inset -4px -4px 9px rgba(255,255,255,0.92); }
+}
+
+@keyframes led-pulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+@keyframes raised-breathe {
+  0%, 100% { box-shadow: 6px 6px 12px rgba(163,177,198,0.6), -6px -6px 12px rgba(255,255,255,0.9); }
+  50% { box-shadow: 6px 6px 13px rgba(163,177,198,0.62), -6px -6px 13px rgba(255,255,255,0.92); }
+}
+
+/* — Environmental breathing (atmospheric drift, 45s cycle) — */
+
+@keyframes env-breathe {
+  0%, 100% { background-size: 100% 100%; }
+  50% { background-size: 102% 102%; }
+}
+
+/* — Colon blink for machine-native clock — */
+
+@keyframes colon-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+/* — Slow breathing rhythm for SYNCING state — */
+
+@keyframes led-breathe {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.85; }
+}
+
+/* — Tiny instability for PROCESSING state — */
+
+@keyframes led-instability {
+  0%, 80%, 100% { opacity: 0.7; transform: scale(1); }
+  85% { opacity: 0.5; transform: scale(0.9); }
+  90% { opacity: 0.9; transform: scale(1.05); }
+}
+
+/* — Monitor luminance breathing (active powered feel) — */
+
+@keyframes display-screen-breathe {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(0.995); }
+}
+
+/* === OPERATIONAL INTELLIGENCE (PHASE 3E) === */
+
+@keyframes led-pulse-idle {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 0.8; }
+}
+
+.cursor-blink {
+  animation: blink-cursor var(--cursor-speed, 1s) step-end infinite;
+}
+
+.led-indicator {
+  animation: led-pulse var(--led-speed, 4s) ease-in-out infinite;
+}
+
+.colon-blink {
+  animation: colon-blink 1s step-end infinite;
+}
+
+/* — Idle state: calm environment — */
+
+:root[data-idle] {
+  --env-idle: 1;
+}
+
+:root[data-idle] .cursor-blink {
+  --cursor-speed: 2.5s;
+}
+
+:root[data-idle] .led-indicator {
+  --led-speed: 8s;
+  animation-name: led-pulse-idle;
+}
+
+:root[data-idle] .shadow-breathe-trigger {
+  animation-duration: 14s !important;
+}
+
+:root[data-idle] .raised-breathe-trigger {
+  animation-duration: 18s !important;
+}
+
+/* — Hover attention response — */
+
+body:has([data-section="modules"]:hover)::after {
+  opacity: calc(var(--env-depth, 0.3) + 0.1);
+  transition: opacity 350ms ease;
+}
+
+body:has([data-section="history"]:hover)::after {
+  opacity: calc(var(--env-depth, 0.6) + 0.15);
+  transition: opacity 350ms ease;
+}
+
+body:has([data-section="communication"]:hover)::after {
+  opacity: calc(var(--env-depth, 0.1) + 0.08);
+  transition: opacity 350ms ease;
+}
+
+body:has([data-section="matrix"]:hover)::after {
+  opacity: calc(var(--env-depth, 0.15) + 0.08);
+  transition: opacity 350ms ease;
+}
+
+/* — Terminal hover: cursor accelerates — */
+
+.surface-cavity:hover .cursor-blink {
+  --cursor-speed: 0.4s;
+}
+
+/* === ENVIRONMENTAL ATMOSPHERE SYSTEM (PHASE 3D) === */
+
+:root {
+  --env-depth: 0;
+  --env-tension: 0;
+  --env-idle: 0;
+}
+
+/* — Section-based atmosphere shifts — */
+
+:root[data-active-section="modules"] {
+  --env-depth: 0.3;
+}
+
+:root[data-active-section="matrix"] {
+  --env-depth: 0.15;
+}
+
+:root[data-active-section="history"] {
+  --env-depth: 0.6;
+}
+
+:root[data-active-section="communication"] {
+  --env-depth: 0.1;
+}
+
+/* — Surface tension when module is active — */
+
+:root[data-focused] {
+  --env-tension: 1;
+}
+
+/* — Deep inspection tension — */
+
+:root[data-inspection] {
+  --env-tension: 2;
+}
+
+@layer base {
+  body {
+    background-color: var(--typro-bg);
+    background-image:
+      radial-gradient(
+        800px circle at var(--cursor-x, 50%) var(--cursor-y, 50%),
+        rgba(255, 255, 255, 0.025) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        120% 80% at 15% 10%,
+        rgba(255, 255, 255, 0.008) 0%,
+        transparent 70%
+      );
+    color: var(--typro-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* — Primary vignette (multi-stop for natural room-light falloff) — */
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 50%,
+      rgba(0, 0, 0, calc(0.025 + var(--env-tension, 0) * 0.01)) 75%,
+      rgba(0, 0, 0, calc(0.04 + var(--env-tension, 0) * 0.015)) 100%
+    );
+    transition: background 500ms ease;
+  }
+
+  /* — Secondary atmosphere layer (operational depth, breathing) — */
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.008) 60%,
+      rgba(0, 0, 0, 0.015) 100%
+    );
+    opacity: var(--env-depth, 0);
+    transition: opacity 600ms ease;
+    animation: env-breathe 45s ease-in-out infinite;
+  }
+
+  ::selection {
+    background-color: rgba(9, 132, 227, 0.15);
+    color: var(--typro-text);
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 3px;
+  }
+}

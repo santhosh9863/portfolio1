@@ -1,0 +1,170 @@
+@layer components {
+  .btn-typro {
+    background-color: rgb(var(--typro-bg-rgb));
+    box-shadow:
+      6px 6px 12px rgba(var(--typro-shadow-dark-rgb), 0.6),
+      -6px -6px 12px rgba(var(--typro-shadow-light-rgb), 0.9);
+    transition: all 40ms ease-out;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn-typro:hover {
+    box-shadow:
+      7px 7px 14px rgba(var(--typro-shadow-dark-rgb), 0.65),
+      -7px -7px 14px rgba(var(--typro-shadow-light-rgb), 0.95);
+    transform: translateY(-0.8px) scale(1.002);
+  }
+
+  .btn-typro:active {
+    background-color: rgb(var(--typro-bg-secondary-rgb));
+    box-shadow:
+      inset 4px 4px 8px rgba(var(--typro-shadow-dark-rgb), 0.6),
+      inset -4px -4px 8px rgba(var(--typro-shadow-light-rgb), 0.9);
+    transform: scale(0.985);
+  }
+
+  .btn-typro:disabled {
+    box-shadow: none;
+    opacity: 0.3;
+    transform: none;
+  }
+
+  .btn-typro-sm {
+    background-color: rgb(var(--typro-bg-rgb));
+    box-shadow:
+      3px 3px 6px rgba(var(--typro-shadow-dark-rgb), 0.6),
+      -3px -3px 6px rgba(var(--typro-shadow-light-rgb), 0.9);
+    transition: all 40ms ease-out;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn-typro-sm:active {
+    background-color: rgb(var(--typro-bg-secondary-rgb));
+    box-shadow:
+      inset 2px 2px 4px rgba(var(--typro-shadow-dark-rgb), 0.6),
+      inset -2px -2px 4px rgba(var(--typro-shadow-light-rgb), 0.9);
+    transform: scale(0.985);
+  }
+
+  .btn-typro-sm:disabled {
+    box-shadow: none;
+    opacity: 0.3;
+    transform: none;
+  }
+
+  .well-typro {
+    background-color: rgb(var(--typro-bg-secondary-rgb));
+    box-shadow:
+      inset 4px 4px 8px rgba(var(--typro-shadow-dark-rgb), 0.6),
+      inset -3px -4px 8px rgba(var(--typro-shadow-light-rgb), 0.9);
+    border-radius: 12px;
+  }
+
+  .well-typro-pressed {
+    background-color: rgb(var(--typro-bg-secondary-rgb));
+    box-shadow:
+      inset 6px 6px 14px rgba(var(--typro-shadow-dark-rgb), 0.7),
+      inset -6px -6px 14px rgba(var(--typro-shadow-light-rgb), 0.95);
+    border-radius: 12px;
+    transform: scale(0.99);
+  }
+
+  .machine-reveal {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition:
+      grid-template-rows 400ms cubic-bezier(0.25, 0.1, 0.25, 1);
+    transition-delay: 40ms;
+  }
+
+  .machine-reveal--open {
+    grid-template-rows: 1fr;
+  }
+
+  .machine-reveal__inner {
+    overflow: hidden;
+  }
+
+  .machine-reveal__content {
+    opacity: 0;
+    filter: blur(2px);
+    transition:
+      opacity 200ms ease-in-out,
+      filter 200ms ease-in-out;
+    transition-delay: 120ms;
+  }
+
+  .machine-reveal--open .machine-reveal__content {
+    opacity: 1;
+    filter: blur(0px);
+  }
+
+  .well--focused {
+    box-shadow:
+      inset 5px 5px 10px rgba(var(--typro-shadow-dark-rgb), 0.63),
+      inset -5px -5px 10px rgba(var(--typro-shadow-light-rgb), 0.92);
+    transition: box-shadow 400ms ease-out;
+  }
+
+  .well--inspection {
+    box-shadow:
+      inset 6px 6px 12px rgba(var(--typro-shadow-dark-rgb), 0.65),
+      inset -4px -5px 12px rgba(var(--typro-shadow-light-rgb), 0.93);
+    transition: box-shadow 600ms ease-out;
+  }
+
+  .system-node {
+    background-color: rgb(var(--typro-bg-rgb));
+    box-shadow:
+      3px 3px 6px rgba(var(--typro-shadow-dark-rgb), 0.6),
+      -3px -3px 6px rgba(var(--typro-shadow-light-rgb), 0.9);
+    transition: all 40ms ease-out;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .system-node:hover {
+    box-shadow:
+      5px 5px 10px rgba(var(--typro-shadow-dark-rgb), 0.65),
+      -5px -5px 10px rgba(var(--typro-shadow-light-rgb), 0.95);
+    transform: translateY(-0.5px);
+  }
+
+  .system-node:active {
+    background-color: rgb(var(--typro-bg-secondary-rgb));
+    box-shadow:
+      inset 3px 3px 6px rgba(var(--typro-shadow-dark-rgb), 0.6),
+      inset -3px -3px 6px rgba(var(--typro-shadow-light-rgb), 0.9);
+    transform: scale(0.985);
+  }
+
+  .system-node--open {
+    background-color: rgb(var(--typro-bg-secondary-rgb));
+    box-shadow:
+      inset 3px 3px 6px rgba(var(--typro-shadow-dark-rgb), 0.6),
+      inset -3px -3px 6px rgba(var(--typro-shadow-light-rgb), 0.9);
+    transform: scale(0.985);
+  }
+
+  .depth-toggle {
+    transition: all 40ms ease-out;
+  }
+
+  .depth-toggle--raised {
+    background-color: rgb(var(--typro-bg-rgb));
+    box-shadow:
+      6px 6px 12px rgba(var(--typro-shadow-dark-rgb), 0.6),
+      -6px -6px 12px rgba(var(--typro-shadow-light-rgb), 0.9);
+  }
+
+  .depth-toggle--inset {
+    background-color: rgb(var(--typro-bg-secondary-rgb));
+    box-shadow:
+      inset 4px 4px 8px rgba(var(--typro-shadow-dark-rgb), 0.6),
+      inset -4px -4px 8px rgba(var(--typro-shadow-light-rgb), 0.9);
+  }
+}

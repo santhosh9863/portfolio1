@@ -1,0 +1,364 @@
+@layer components {
+  .module-cavity {
+    background-color: rgb(var(--typro-bg-rgb));
+    box-shadow:
+      inset 4px 4px 10px rgba(var(--typro-shadow-dark-rgb), 0.65),
+      inset -4px -4px 10px rgba(var(--typro-shadow-light-rgb), 0.95);
+    border-radius: 8px;
+  }
+
+  /* === MECHANICAL EXPANSION PHYSICS === */
+
+  .module-trigger--depressed {
+    background-color: rgb(var(--typro-bg-secondary-rgb));
+    box-shadow:
+      inset 4px 4px 8px rgba(var(--typro-shadow-dark-rgb), 0.6),
+      inset -4px -4px 8px rgba(var(--typro-shadow-light-rgb), 0.9);
+    transform: scale(0.985);
+  }
+
+  .module-trigger--softened {
+    background-color: rgb(var(--typro-bg-secondary-rgb));
+    box-shadow:
+      inset 3px 3px 6px rgba(var(--typro-shadow-dark-rgb), 0.55),
+      inset -3px -3px 6px rgba(var(--typro-shadow-light-rgb), 0.85);
+    transform: scale(0.99);
+  }
+
+  /* === CONTENT STAGGER SYSTEM === */
+
+  .module-content-section {
+    opacity: 0;
+    filter: blur(2px);
+    transition:
+      opacity 250ms ease-in-out,
+      filter 250ms ease-in-out;
+  }
+
+  .module-content-section--visible {
+    opacity: 1;
+    filter: blur(0px);
+  }
+
+  /* === ACTIVE MODULE FOCUS SYSTEM === */
+
+  .module-dimmed {
+    opacity: 0.55;
+    filter: grayscale(0.15);
+    transition:
+      opacity 350ms ease-in-out,
+      filter 350ms ease-in-out;
+  }
+
+  .module-dimmed .module-trigger--depressed,
+  .module-dimmed .module-trigger--softened {
+    box-shadow:
+      inset 2px 2px 4px rgba(var(--typro-shadow-dark-rgb), 0.4),
+      inset -2px -2px 4px rgba(var(--typro-shadow-light-rgb), 0.6);
+  }
+
+  /* === ENHANCED DISPLAY MONITOR (PHASE 3C) === */
+
+  .display-monitor {
+    position: relative;
+    background-color: rgb(var(--typro-bg-rgb));
+    border-radius: 12px;
+    box-shadow:
+      4px 4px 8px rgba(var(--typro-shadow-dark-rgb), 0.55),
+      -4px -4px 8px rgba(var(--typro-shadow-light-rgb), 0.85);
+    overflow: hidden;
+  }
+
+  .display-monitor__cavity {
+    margin: 12px;
+    background-color: #c8d0e0;
+    border-radius: 6px;
+    box-shadow:
+      inset 3px 3px 8px rgba(var(--typro-shadow-dark-rgb), 0.55),
+      inset -5px -5px 12px rgba(var(--typro-shadow-light-rgb), 0.85);
+    min-height: 100px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .display-monitor__screen {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 250ms ease-out;
+  }
+
+  /* — Activation states — */
+
+  .display-monitor--powering .display-monitor__screen {
+    opacity: 0.5;
+    filter: brightness(0.6);
+  }
+
+  .display-monitor--online .display-monitor__screen {
+    opacity: 1;
+    filter: brightness(1);
+    animation: display-screen-breathe 30s ease-in-out infinite;
+  }
+
+  .display-monitor__screen--transitioning {
+    opacity: 0.4 !important;
+    filter: brightness(0.5) !important;
+  }
+
+  /* — Hover interaction — */
+
+  .display-monitor--online:hover .display-monitor__screen {
+    filter: brightness(1.02);
+    transition: filter 200ms ease-out;
+  }
+
+  .display-monitor--online:hover .display-monitor__glass {
+    background: linear-gradient(
+      140deg,
+      rgba(255, 255, 255, 0.09) 0%,
+      rgba(255, 255, 255, 0.025) 28%,
+      transparent 48%,
+      transparent 72%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+    transition: background 300ms ease-out;
+  }
+
+  /* — Glass reflection — */
+
+  .display-monitor__glass {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.06) 0%,
+      rgba(255, 255, 255, 0.015) 30%,
+      transparent 50%,
+      transparent 70%,
+      rgba(255, 255, 255, 0.008) 100%
+    );
+    transition: background 400ms ease-out;
+  }
+
+  .display-monitor--online .display-monitor__glass {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.02) 30%,
+      transparent 50%,
+      transparent 70%,
+      rgba(255, 255, 255, 0.01) 100%
+    );
+  }
+
+  /* — Screen noise (subtle horizontal scanlines) — */
+
+  .display-monitor__noise {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.2;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      rgba(0, 0, 0, 0.004) 1px,
+      transparent 2px
+    );
+  }
+
+  /* — Terminal-display pulse — */
+
+  .display-monitor--pulse .display-monitor__screen {
+    filter: brightness(1.04) !important;
+    transition: filter 100ms ease-out !important;
+  }
+
+  .display-monitor--pulse .display-monitor__glow {
+    opacity: 0.6 !important;
+    transition: opacity 200ms ease-out !important;
+  }
+
+  /* — Operational glow — */
+
+  .display-monitor__glow {
+    position: absolute;
+    inset: -2px;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: 12px;
+    opacity: 0;
+    box-shadow: 0 0 24px rgba(9, 132, 227, 0.06);
+    transition: opacity 500ms ease-out;
+  }
+
+  .display-monitor--compact {
+    border-radius: 8px;
+  }
+
+  .display-monitor--compact .display-monitor__cavity {
+    margin: 8px;
+  }
+
+  .display-monitor--compact .display-monitor__screen {
+    min-height: 80px;
+  }
+
+  .display-monitor--online .display-monitor__glow {
+    opacity: 1;
+  }
+
+  /* — Status strip — */
+
+  .display-monitor__status {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 5px 14px 4px;
+    border-top: 1px solid rgba(0, 0, 0, 0.035);
+  }
+
+  .display-monitor__status-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .display-monitor__status-label {
+    font-family: var(--font-geist-mono);
+    font-size: 8px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.25);
+  }
+
+  .display-monitor__status-value {
+    font-family: var(--font-geist-mono);
+    font-size: 8px;
+    letter-spacing: 0.04em;
+    color: rgba(0, 0, 0, 0.45);
+  }
+
+  /* — Channel selectors (hardware source selectors) — */
+
+  .display-monitor__channels {
+    display: flex;
+    gap: 3px;
+    padding: 3px 12px 8px;
+  }
+
+  .display-channel {
+    flex: 1;
+    font-family: var(--font-geist-mono);
+    font-size: 8px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: rgb(var(--typro-bg-rgb));
+    box-shadow:
+      2px 2px 4px rgba(var(--typro-shadow-dark-rgb), 0.4),
+      -2px -2px 4px rgba(var(--typro-shadow-light-rgb), 0.7);
+    color: rgba(0, 0, 0, 0.3);
+    transition: all 40ms ease-out;
+    user-select: none;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .display-channel:hover {
+    box-shadow:
+      2px 2px 5px rgba(var(--typro-shadow-dark-rgb), 0.45),
+      -2px -2px 5px rgba(var(--typro-shadow-light-rgb), 0.75);
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+  .display-channel:active {
+    transform: scale(0.985);
+  }
+
+  .display-channel--active {
+    background-color: rgb(var(--typro-bg-secondary-rgb));
+    box-shadow:
+      inset 2px 2px 4px rgba(var(--typro-shadow-dark-rgb), 0.5),
+      inset -2px -2px 4px rgba(var(--typro-shadow-light-rgb), 0.8);
+    color: rgba(0, 0, 0, 0.55);
+  }
+
+  .display-channel--active:hover {
+    box-shadow:
+      inset 2px 2px 4px rgba(var(--typro-shadow-dark-rgb), 0.5),
+      inset -2px -2px 4px rgba(var(--typro-shadow-light-rgb), 0.8);
+    transform: none;
+  }
+
+  /* === SUBSYSTEM CHIP === */
+
+  .subsystem-chip {
+    background-color: rgb(var(--typro-bg-rgb));
+    box-shadow:
+      3px 3px 6px rgba(var(--typro-shadow-dark-rgb), 0.5),
+      -3px -3px 6px rgba(var(--typro-shadow-light-rgb), 0.8);
+    transition: all 40ms ease-out;
+    user-select: none;
+  }
+
+  .subsystem-chip:hover {
+    box-shadow:
+      4px 4px 8px rgba(var(--typro-shadow-dark-rgb), 0.55),
+      -4px -4px 8px rgba(var(--typro-shadow-light-rgb), 0.85);
+    transform: translateY(-0.5px);
+  }
+
+  .subsystem-chip:active {
+    background-color: rgb(var(--typro-bg-secondary-rgb));
+    box-shadow:
+      inset 2px 2px 4px rgba(var(--typro-shadow-dark-rgb), 0.5),
+      inset -2px -2px 4px rgba(var(--typro-shadow-light-rgb), 0.8);
+    transform: scale(0.985);
+  }
+
+  /* === INTERNAL MODULE TABS (HARDWARE MODE SELECTORS) === */
+
+  .module-tab {
+    background-color: rgb(var(--typro-bg-rgb));
+    box-shadow:
+      2px 2px 4px rgba(var(--typro-shadow-dark-rgb), 0.45),
+      -2px -2px 4px rgba(var(--typro-shadow-light-rgb), 0.75);
+    transition: all 40ms ease-out;
+    user-select: none;
+  }
+
+  .module-tab:hover {
+    box-shadow:
+      3px 3px 5px rgba(var(--typro-shadow-dark-rgb), 0.5),
+      -3px -3px 5px rgba(var(--typro-shadow-light-rgb), 0.8);
+    transform: translateY(-0.3px);
+  }
+
+  .module-tab:active {
+    transform: scale(0.985);
+  }
+
+  .module-tab--active {
+    background-color: rgb(var(--typro-bg-secondary-rgb));
+    box-shadow:
+      inset 2px 2px 4px rgba(var(--typro-shadow-dark-rgb), 0.5),
+      inset -2px -2px 4px rgba(var(--typro-shadow-light-rgb), 0.8);
+    color: rgb(var(--typro-text-rgb));
+  }
+
+  .module-tab--active:hover {
+    box-shadow:
+      inset 2px 2px 4px rgba(var(--typro-shadow-dark-rgb), 0.5),
+      inset -2px -2px 4px rgba(var(--typro-shadow-light-rgb), 0.8);
+    transform: none;
+  }
+}
