@@ -226,14 +226,14 @@ export function ModuleBay({
           <span className="shrink-0 text-mono-sm sm:text-body-sm font-black mobile-operational-text sm:tracking-widest text-foreground">
             {name}
           </span>
-          <span className="shrink-0 text-mono-sm text-muted">
-            STATUS: {status}
+          <span className="shrink-0 text-mono-sm text-muted opacity-60">
+            {status}
           </span>
-          <span className="hidden sm:inline text-mono-sm text-muted">
-            STACK: {stack}
+          <span className="hidden sm:inline text-mono-sm text-muted opacity-40">
+            {stack}
           </span>
-          <span className="hidden sm:inline text-mono-sm text-muted">
-            BUILD: {year}
+          <span className="hidden sm:inline text-mono-sm text-muted opacity-40">
+            {year}
           </span>
         </div>
         <span

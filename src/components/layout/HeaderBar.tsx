@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 
 interface HeaderBarProps {
   title: string;
-  version?: string;
   className?: string;
   statusRail?: React.ReactNode;
   children?: React.ReactNode;
@@ -12,7 +11,6 @@ interface HeaderBarProps {
 
 export function HeaderBar({
   title,
-  version,
   className,
   statusRail,
   children,
@@ -20,10 +18,9 @@ export function HeaderBar({
   return (
     <div className={cn("flex flex-col gap-2", className)}>
       <div className="flex items-center justify-between">
-        <span className="text-label text-muted">{title}</span>
+        <span className="text-body-sm font-semibold text-foreground">{title}</span>
         <div className="flex items-center gap-3">
           {children}
-          {version && <span className="text-mono-sm text-muted">{version}</span>}
         </div>
       </div>
       {statusRail && (

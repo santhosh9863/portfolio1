@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
 
-type Channel = "FLUTTER" | "FIREBASE" | "NEXTJS" | "DEPLOYMENT" | "GIT" | "UI" | "SYSTEM";
+type Channel = "frontend" | "backend" | "deploy" | "system";
 
 interface Entry {
   id: number;
@@ -19,84 +19,51 @@ interface TerminalCoreProps {
   activeSection?: string | null;
 }
 
-const CHANNELS: Channel[] = ["FLUTTER", "FIREBASE", "NEXTJS", "DEPLOYMENT", "GIT", "UI", "SYSTEM"];
+const CHANNELS: Channel[] = ["frontend", "backend", "deploy", "system"];
 
 const POOLS: Record<Channel, { text: string; ok: boolean }[]> = {
-  FLUTTER: [
-    { text: "responsive widget tree stabilized", ok: true },
-    { text: "cross-platform build verified", ok: true },
-    { text: "widget lifecycle optimized", ok: false },
-    { text: "hot reload ready", ok: true },
-    { text: "dart runtime initialized", ok: true },
-  ],
-  FIREBASE: [
-    { text: "realtime listener attached", ok: true },
-    { text: "firestore operational", ok: true },
-    { text: "authentication service active", ok: false },
-    { text: "collection sync verified", ok: true },
-    { text: "security rules validated", ok: false },
-  ],
-  NEXTJS: [
-    { text: "hydration completed successfully", ok: true },
-    { text: "edge network propagated", ok: false },
-    { text: "production build verified", ok: true },
+  frontend: [
+    { text: "build pipeline idle", ok: true },
+    { text: "responsive layout validated", ok: true },
+    { text: "component tree stable", ok: false },
     { text: "static assets optimized", ok: true },
-    { text: "api routes active", ok: false },
   ],
-  DEPLOYMENT: [
-    { text: "release artifact uploaded", ok: true },
-    { text: "apk build finalized", ok: false },
-    { text: "vercel deployment stable", ok: true },
-    { text: "cdn cache primed", ok: true },
-    { text: "pipeline configuration valid", ok: false },
+  backend: [
+    { text: "firestore connection active", ok: true },
+    { text: "authentication service ready", ok: true },
+    { text: "realtime listener attached", ok: false },
+    { text: "collection sync verified", ok: true },
   ],
-  GIT: [
-    { text: "main branch up-to-date", ok: true },
-    { text: "release tag pushed", ok: false },
-    { text: "worktree clean", ok: true },
-    { text: "remote origin reachable", ok: true },
-    { text: "dependency lock verified", ok: false },
+  deploy: [
+    { text: "production build completed", ok: true },
+    { text: "edge network propagated", ok: true },
+    { text: "cdn cache primed", ok: false },
+    { text: "release artifacts finalized", ok: true },
   ],
-  UI: [
-    { text: "neumorphic render system calibrated", ok: true },
-    { text: "depth pressure system stable", ok: false },
-    { text: "interaction timing refined", ok: true },
-    { text: "responsive layout stabilized", ok: true },
-    { text: "component scaling verified", ok: false },
-  ],
-  SYSTEM: [
-    { text: "all subsystems operational", ok: true },
-    { text: "runtime diagnostics stable", ok: true },
-    { text: "process tree healthy", ok: false },
-    { text: "disk usage nominal", ok: true },
+  system: [
+    { text: "all services operational", ok: true },
+    { text: "runtime diagnostics nominal", ok: true },
+    { text: "process tree healthy", ok: true },
     { text: "system clock synchronized", ok: true },
   ],
 };
 
 const CONTEXTUAL_LOGS: Record<string, { channel: Channel; text: string; ok: boolean }[]> = {
   profile: [
-    { channel: "SYSTEM", text: "system profile initialized", ok: true },
-    { channel: "FLUTTER", text: "user session active", ok: true },
+    { channel: "system", text: "profile loaded", ok: true },
   ],
   modules: [
-    { channel: "FLUTTER", text: "pulse system runtime initialized", ok: true },
-    { channel: "FIREBASE", text: "attendance engine synchronized", ok: true },
-    { channel: "NEXTJS", text: "web platform build verified", ok: true },
-    { channel: "UI", text: "typro render system calibrated", ok: false },
+    { channel: "frontend", text: "project modules initialized", ok: true },
+    { channel: "backend", text: "service status verified", ok: true },
   ],
   matrix: [
-    { channel: "SYSTEM", text: "technology matrix loaded", ok: true },
-    { channel: "NEXTJS", text: "frontend architecture verified", ok: true },
-    { channel: "GIT", text: "remote repositories reachable", ok: true },
+    { channel: "system", text: "technology map loaded", ok: true },
   ],
   history: [
-    { channel: "SYSTEM", text: "operational log buffer attached", ok: true },
-    { channel: "GIT", text: "worktree clean", ok: true },
-    { channel: "DEPLOYMENT", text: "release history indexed", ok: false },
+    { channel: "system", text: "activity log attached", ok: true },
   ],
   communication: [
-    { channel: "SYSTEM", text: "communication channels available", ok: true },
-    { channel: "GIT", text: "external links verified", ok: true },
+    { channel: "system", text: "connection channels available", ok: true },
   ],
 };
 
@@ -114,19 +81,16 @@ function timestamp(): string {
 }
 
 const BURST: { channel: Channel; text: string; ok: boolean }[] = [
-  { channel: "FLUTTER", text: "responsive widget tree stabilized", ok: true },
-  { channel: "FIREBASE", text: "realtime listener attached", ok: true },
-  { channel: "NEXTJS", text: "hydration completed successfully", ok: true },
-  { channel: "DEPLOYMENT", text: "vercel deployment stable", ok: true },
-  { channel: "FIREBASE", text: "firestore operational", ok: true },
-  { channel: "GIT", text: "main branch up-to-date", ok: true },
-  { channel: "SYSTEM", text: "all subsystems operational", ok: true },
-  { channel: "UI", text: "neumorphic render system calibrated", ok: false },
+  { channel: "frontend", text: "pulse frontend initialized", ok: true },
+  { channel: "backend", text: "firestore connection established", ok: true },
+  { channel: "deploy", text: "production build verified", ok: true },
+  { channel: "system", text: "all services operational", ok: true },
+  { channel: "frontend", text: "component architecture stable", ok: false },
 ];
 
 export function TerminalCore({ className, idle = false, activeSection }: TerminalCoreProps) {
   const [entries, setEntries] = useState<Entry[]>([]);
-  const [prompt, setPrompt] = useState("system@santhosh-os:~$ ");
+  const [prompt, setPrompt] = useState("~ $ ");
   const scrollRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
   const idRef = useRef(0);
@@ -135,7 +99,7 @@ export function TerminalCore({ className, idle = false, activeSection }: Termina
   const add = useCallback((channel: Channel, text: string, ok: boolean) => {
     setEntries((prev) => {
       const entry: Entry = { id: idRef.current++, time: timestamp(), channel, text, ok };
-      return [...prev.slice(-25), entry];
+      return [...prev.slice(-20), entry];
     });
   }, []);
 
@@ -146,16 +110,13 @@ export function TerminalCore({ className, idle = false, activeSection }: Termina
     const logs = CONTEXTUAL_LOGS[activeSection];
     if (!logs) return;
     const t = setTimeout(() => {
-      setPrompt("synchronizing...");
+      setPrompt("~ $ ");
       logs.forEach((log, i) => {
         setTimeout(() => {
           add(log.channel, log.text, log.ok);
-          if (i === logs.length - 1) {
-            setPrompt("system@santhosh-os:~$ ");
-          }
-        }, i * 600 + Math.random() * 500);
+        }, i * 400 + Math.random() * 300);
       });
-    }, 400);
+    }, 300);
     return () => clearTimeout(t);
   }, [activeSection, add]);
 
@@ -170,7 +131,7 @@ export function TerminalCore({ className, idle = false, activeSection }: Termina
         if (i >= BURST.length) { ambient(); return; }
         const e = BURST[i++];
         add(e.channel, e.text, e.ok);
-        timer = setTimeout(next, 500 + Math.random() * 500);
+        timer = setTimeout(next, 400 + Math.random() * 400);
       };
       next();
     };
@@ -181,20 +142,16 @@ export function TerminalCore({ className, idle = false, activeSection }: Termina
       if (!alive) return;
       const channel = pick(CHANNELS);
       const log = pick(POOLS[channel]);
-      setPrompt("synchronizing...");
       timer = setTimeout(() => {
         if (!alive) return;
         add(channel, log.text, log.ok);
-        setPrompt("system@santhosh-os:~$ ");
-        const longPause = Math.random() < 0.15;
-        const base = longPause ? 10000 : 2500;
-        const jitter = longPause ? 8000 : 4000;
-        const pause = (base + Math.random() * jitter) * idleFactor;
+        setPrompt("~ $ ");
+        const pause = (4000 + Math.random() * 4000) * idleFactor;
         timer = setTimeout(ambient, pause);
-      }, (600 + Math.random() * 500) * idleFactor);
+      }, (500 + Math.random() * 400) * idleFactor);
     };
 
-    const kick = setTimeout(burst, 600 * idleFactor);
+    const kick = setTimeout(burst, 400 * idleFactor);
 
     return () => { alive = false; clearTimeout(timer); clearTimeout(kick); };
   }, [add, idle]);
@@ -208,26 +165,18 @@ export function TerminalCore({ className, idle = false, activeSection }: Termina
   return (
     <div className={cn("surface-cavity flex flex-col", className)}>
       <div className="flex items-center justify-between border-b border-border px-4 py-2">
-        <span className="text-label text-muted">TERMINAL CORE</span>
-        <div className="hidden sm:flex items-center gap-4 text-mono-sm text-muted">
-          <span className="inline-flex items-center gap-1.5">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#00b894] shadow-[0_0_4px_rgba(0,184,148,0.35)] animate-[led-pulse_4s_ease-in-out_infinite]" />
-            CHANNEL ACTIVE
-          </span>
-          <span className="opacity-60">SESSION: CONNECTED</span>
-        </div>
-        <span className="sm:hidden inline-flex items-center gap-1.5 text-mono-sm text-muted">
+        <span className="text-mono-sm text-muted opacity-40">Terminal</span>
+        <span className="flex items-center gap-1.5 text-mono-sm text-muted opacity-30">
           <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#00b894] shadow-[0_0_4px_rgba(0,184,148,0.35)] animate-[led-pulse_4s_ease-in-out_infinite]" />
-          ACTIVE
+          listening
         </span>
       </div>
 
-      <div ref={scrollRef} className="flex min-h-[160px] sm:min-h-[240px] max-h-[200px] sm:max-h-[320px] flex-col gap-1 overflow-y-auto overflow-x-hidden px-4 py-3">
+      <div ref={scrollRef} className="flex min-h-[120px] sm:min-h-[160px] max-h-[160px] sm:max-h-[200px] flex-col gap-0.5 overflow-y-auto overflow-x-hidden px-4 py-2">
         {entries.map((e) => (
-          <div key={e.id} className="flex flex-wrap items-baseline gap-x-1.5 text-mono-sm leading-relaxed">
-            <span className="text-muted opacity-40">[{e.time}]</span>
-            <span className="text-muted opacity-50">[{e.channel}]</span>
-            <span className={e.ok ? "text-correct" : "text-foreground"}>
+          <div key={e.id} className="flex flex-wrap items-baseline gap-x-1.5 text-mono-sm leading-snug opacity-70">
+            <span className="text-muted opacity-30">[{e.time}]</span>
+            <span className={e.ok ? "text-correct opacity-50" : "text-foreground opacity-50"}>
               {e.text}
             </span>
           </div>
@@ -235,9 +184,9 @@ export function TerminalCore({ className, idle = false, activeSection }: Termina
         <div ref={bottomRef} />
       </div>
 
-      <div className="flex items-center gap-2 border-t border-border px-4 py-2">
-        <span className="text-mono-sm text-muted">{prompt}</span>
-        <span className="cursor-blink inline-block h-[1em] w-2 bg-[var(--typro-text)] opacity-40" />
+      <div className="flex items-center gap-2 border-t border-border px-4 py-1.5">
+        <span className="text-mono-sm text-muted opacity-40">{prompt}</span>
+        <span className="cursor-blink inline-block h-[1em] w-2 bg-[var(--typro-text)] opacity-30" />
       </div>
     </div>
   );
