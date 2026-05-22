@@ -120,7 +120,7 @@ export default function Home() {
                 { label: "GitHub", href: "https://github.com/santhosh9863" },
                 { label: "LinkedIn", href: "https://linkedin.com/in/santhosh-krishna-698638372" },
                 { label: "Email", href: "mailto:santhoshkrishna.r67@gmail.com" },
-                { label: "Resume", href: "https://github.com/santhosh9863/resume" },
+                { label: "Resume", href: "/Santhosh_Krishna_R_Resume.docx" },
               ].map((link) => (
                 <TactileButton
                   key={link.label}
@@ -194,8 +194,8 @@ export default function Home() {
               "Responsive Shell",
             ]}
             links={[
-              { label: "GitHub", href: "https://github.com/santhosh9863/attendance-tracker" },
-              { label: "Releases", href: "https://github.com/santhosh9863/attendance-tracker/releases" },
+              { label: "GitHub", href: "https://github.com/santhosh9863/safebunk" },
+              { label: "Releases", href: "https://github.com/santhosh9863/safebunk/releases" },
             ]}
             isDimmed={activeModule !== null && activeModule !== "Pulse"}
             previewContent={<PulsePreview />}
@@ -239,8 +239,8 @@ export default function Home() {
               "Edge Delivery",
             ]}
             links={[
-              { label: "GitHub", href: "https://github.com/santhosh9863/pulse-web-platform" },
-              { label: "Live", href: "https://pulse-web-platform.vercel.app" },
+              { label: "GitHub", href: "https://github.com/santhosh9863/Pulse-website" },
+              { label: "Live", href: "https://pulse-website-pi.vercel.app" },
             ]}
             isDimmed={activeModule !== null && activeModule !== "Pulse Web"}
             previewContent={<PulseWebPreview />}
@@ -284,7 +284,8 @@ export default function Home() {
               "Component API",
             ]}
             links={[
-              { label: "GitHub", href: "https://github.com/santhosh9863/typro-ui-engine" },
+              { label: "GitHub", href: "https://github.com/santhosh9863/pro-type" },
+              { label: "Live", href: "https://typro-delta.vercel.app" },
             ]}
             isDimmed={activeModule !== null && activeModule !== "Typro UI"}
             previewContent={<TyproPreview />}
@@ -328,8 +329,8 @@ export default function Home() {
               "Deploy Pipeline",
             ]}
             links={[
-              { label: "GitHub", href: "https://github.com/santhosh9863/perfect-care-platform" },
-              { label: "Live", href: "https://perfect-care-platform.vercel.app" },
+              { label: "GitHub", href: "https://github.com/santhosh9863/prefect-care-salon" },
+              { label: "Live", href: "https://perfect-care-salon.vercel.app" },
             ]}
             isDimmed={activeModule !== null && activeModule !== "Perfect Care"}
             previewContent={<PerfectCarePreview />}
@@ -401,7 +402,7 @@ export default function Home() {
                 { label: "GitHub", href: "https://github.com/santhosh9863" },
                 { label: "LinkedIn", href: "https://linkedin.com/in/santhosh-krishna-698638372" },
                 { label: "Email", href: "mailto:santhoshkrishna.r67@gmail.com" },
-                { label: "Resume", href: "https://github.com/santhosh9863/resume" },
+                { label: "Resume", href: "/Santhosh_Krishna_R_Resume.docx" },
               ].map((link) => (
                 <TactileButton
                   key={link.label}
