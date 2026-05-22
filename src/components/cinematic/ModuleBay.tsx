@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { cn } from "@/lib/utils";
-import { DisplayMonitor, type DisplayChannelDef, type DisplayStatusItem } from "@/components/cinematic/DisplayMonitor";
+import { DisplayMonitor, type DisplayChannelDef } from "@/components/cinematic/DisplayMonitor";
 import { SubsystemChip } from "@/components/cinematic/SubsystemChip";
 import { TactileButton } from "@/components/controls/TactileButton";
 
@@ -41,7 +41,6 @@ interface ModuleBayProps {
   stateManagement?: string;
   dataFlow?: string;
   auth?: string;
-  workload?: string;
 }
 
 type Phase = "idle" | "pressed" | "opening" | "open" | "closing";
@@ -135,7 +134,6 @@ export function ModuleBay({
   stateManagement,
   dataFlow,
   auth,
-  workload,
 }: ModuleBayProps) {
   const [phase, setPhase] = useState<Phase>("idle");
   const [tab, setTab] = useState<Tab>("overview");
@@ -146,7 +144,6 @@ export function ModuleBay({
 
   const modulePrefix = name.includes("PULSE SYSTEM") ? "PULSE" : name.includes("TYPRO") ? "TYPRO" : name.includes("PERFECT") ? "PCARE" : "WEB";
   const notes = engineeringNotes ?? NOTES_POOL[modulePrefix as keyof typeof NOTES_POOL] ?? [];
-  const logs = runtimeLogs ?? RUNTIME_POOL[modulePrefix as keyof typeof RUNTIME_POOL] ?? [];
   const isExpanded = phase === "opening" || phase === "open";
 
   const clearTimers = useCallback(() => {
@@ -168,6 +165,9 @@ export function ModuleBay({
   );
 
   const handleToggle = useCallback(() => {
+    const prefix = name.includes("PULSE SYSTEM") ? "PULSE" : name.includes("TYPRO") ? "TYPRO" : name.includes("PERFECT") ? "PCARE" : "WEB";
+    const currentLogs = runtimeLogs ?? RUNTIME_POOL[prefix as keyof typeof RUNTIME_POOL] ?? [];
+
     clearTimers();
 
     if (!isOpenRef.current) {
@@ -179,13 +179,13 @@ export function ModuleBay({
 
       schedule(() => {
         setPhase("open");
-        setLiveLogs(logs.slice(0, 2));
+        setLiveLogs(currentLogs.slice(0, 2));
         setPulseCount((c) => c + 1);
         onOpen?.();
       }, 440);
 
       schedule(() => {
-        setLiveLogs(logs);
+        setLiveLogs(currentLogs);
         setPulseCount((c) => c + 1);
       }, 800);
     } else {
@@ -198,7 +198,7 @@ export function ModuleBay({
         onClose?.();
       }, 200);
     }
-  }, [clearTimers, schedule, logs, onOpen, onClose]);
+  }, [clearTimers, schedule, runtimeLogs, name, onOpen, onClose]);
 
   const staggerDelay = (index: number) => `${80 + index * 80}ms`;
 
@@ -222,8 +222,8 @@ export function ModuleBay({
           phase === "opening" && "module-trigger--softened",
         )}
       >
-        <div className="flex items-baseline gap-4 overflow-hidden">
-          <span className="shrink-0 text-body-sm font-black tracking-widest text-foreground">
+        <div className="min-w-0 flex items-baseline gap-2 sm:gap-4">
+          <span className="shrink-0 text-mono-sm sm:text-body-sm font-black mobile-operational-text sm:tracking-widest text-foreground">
             {name}
           </span>
           <span className="shrink-0 text-mono-sm text-muted">

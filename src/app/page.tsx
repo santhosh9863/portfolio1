@@ -14,7 +14,6 @@ import { SystemNode } from "@/components/cinematic/SystemNode";
 import { TerminalCore } from "@/components/atmosphere/TerminalCore";
 import { TactileButton } from "@/components/controls/TactileButton";
 import { SidebarNode } from "@/components/layout/SidebarNode";
-import { StatusIndicator } from "@/components/atmosphere/StatusIndicator";
 import { SystemClock } from "@/components/atmosphere/SystemClock";
 import { BootSequence } from "@/components/atmosphere/BootSequence";
 
@@ -117,8 +116,8 @@ export default function Home() {
     <>
     <main className="relative mx-auto flex min-h-dvh max-w-xl flex-col gap-6 px-6 py-6 sm:px-8 sm:py-6">
       <HeaderBar
-        title="SANthosh OS"
-        version="v0.1.0"
+        title="SANTHOSH KRISHNA R"
+        version="FRONTEND SYSTEMS"
         statusRail={
           <>
             {activeSection && (
@@ -144,7 +143,7 @@ export default function Home() {
             </span>
           </div>
 
-          <div className="grid grid-cols-2 gap-x-4 gap-y-0">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 sm:gap-y-0">
             <DataRow labelWidth="w-16" label="USER ID" value="SANTHOSH KRISHNA R" />
             <DataRow labelWidth="w-16" label="STACK" value="FLUTTER / NEXT.JS / FIREBASE" />
             <DataRow labelWidth="w-16" label="ROLE" value="FRONTEND SYSTEMS DEVELOPER" />
@@ -392,7 +391,7 @@ export default function Home() {
                   href={isEmail ? commLinks[label] : undefined}
                   target={isEmail ? undefined : "_blank"}
                   rel={isEmail ? undefined : "noopener noreferrer"}
-                  className="flex items-center justify-between rounded-lg px-4 py-2 text-left"
+                  className="flex flex-col sm:flex-row sm:items-center sm:justify-between rounded-lg px-4 py-2 text-left"
                   onClick={() => {
                     handleCommPress(label);
                     if (!isEmail) {
@@ -400,7 +399,7 @@ export default function Home() {
                     }
                   }}
                 >
-                  <div className="flex items-baseline gap-4">
+                  <div className="flex items-baseline gap-2 sm:gap-4">
                     <span className="w-20 shrink-0 text-mono-sm font-black text-foreground">
                       {label}
                     </span>

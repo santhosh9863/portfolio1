@@ -1,4 +1,8 @@
 @layer components {
+  .mobile-operational-text {
+    letter-spacing: 0.04em;
+  }
+
   .text-display-hero {
     font-size: 8rem;
     line-height: 0.85;
@@ -114,5 +118,19 @@
     letter-spacing: 0.2em;
     font-weight: 700;
     text-transform: uppercase;
+  }
+}
+
+@media (max-width: 639px) {
+  .text-body-sm {
+    font-size: 0.75rem;
+  }
+
+  .text-mono-sm {
+    font-size: 0.625rem;
+  }
+
+  .text-label {
+    font-size: 0.625rem;
   }
 }

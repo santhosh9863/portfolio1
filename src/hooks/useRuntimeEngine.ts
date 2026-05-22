@@ -35,9 +35,10 @@ const HEALTH_OPTIONS = ["OPTIMAL", "STABLE", "OPTIMAL", "NOMINAL"] as const;
 
 export function useRuntimeEngine(): RuntimeEngine {
   const [engine, setEngine] = useState(INITIAL);
-  const lastDeployRef = useRef(Date.now() - 2 * 60 * 60 * 1000);
+  const lastDeployRef = useRef(0);
 
   useEffect(() => {
+    lastDeployRef.current = Date.now() - 2 * 60 * 60 * 1000;
     const tick = () => {
       setEngine((prev) => ({
         ...prev,

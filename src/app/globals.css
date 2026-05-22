@@ -6,6 +6,12 @@
 @import "../styles/interactions.css";
 @import "../styles/modules.css";
 
+@layer base {
+  body {
+    overflow-x: hidden;
+  }
+}
+
 @theme inline {
   --color-base: var(--typro-bg);
   --color-bg-secondary: var(--typro-bg-secondary);

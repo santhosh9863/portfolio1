@@ -135,7 +135,7 @@ export function TerminalCore({ className, idle = false, activeSection }: Termina
   const add = useCallback((channel: Channel, text: string, ok: boolean) => {
     setEntries((prev) => {
       const entry: Entry = { id: idRef.current++, time: timestamp(), channel, text, ok };
-      return [...prev.slice(-39), entry];
+      return [...prev.slice(-25), entry];
     });
   }, []);
 
@@ -209,20 +209,24 @@ export function TerminalCore({ className, idle = false, activeSection }: Termina
     <div className={cn("surface-cavity flex flex-col", className)}>
       <div className="flex items-center justify-between border-b border-border px-4 py-2">
         <span className="text-label text-muted">TERMINAL CORE</span>
-        <div className="flex items-center gap-4 text-mono-sm text-muted">
+        <div className="hidden sm:flex items-center gap-4 text-mono-sm text-muted">
           <span className="inline-flex items-center gap-1.5">
             <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#00b894] shadow-[0_0_4px_rgba(0,184,148,0.35)] animate-[led-pulse_4s_ease-in-out_infinite]" />
             CHANNEL ACTIVE
           </span>
           <span className="opacity-60">SESSION: CONNECTED</span>
         </div>
+        <span className="sm:hidden inline-flex items-center gap-1.5 text-mono-sm text-muted">
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#00b894] shadow-[0_0_4px_rgba(0,184,148,0.35)] animate-[led-pulse_4s_ease-in-out_infinite]" />
+          ACTIVE
+        </span>
       </div>
 
-      <div ref={scrollRef} className="flex min-h-[240px] max-h-[320px] flex-col gap-1.5 overflow-y-auto px-4 py-3">
+      <div ref={scrollRef} className="flex min-h-[160px] sm:min-h-[240px] max-h-[200px] sm:max-h-[320px] flex-col gap-1 overflow-y-auto overflow-x-hidden px-4 py-3">
         {entries.map((e) => (
-          <div key={e.id} className="flex items-baseline gap-3 text-mono-sm leading-relaxed">
-            <span className="w-[4.5em] shrink-0 text-muted opacity-40">[{e.time}]</span>
-            <span className="w-[7em] shrink-0 text-muted opacity-50">[{e.channel}]</span>
+          <div key={e.id} className="flex flex-wrap items-baseline gap-x-1.5 text-mono-sm leading-relaxed">
+            <span className="text-muted opacity-40">[{e.time}]</span>
+            <span className="text-muted opacity-50">[{e.channel}]</span>
             <span className={e.ok ? "text-correct" : "text-foreground"}>
               {e.text}
             </span>

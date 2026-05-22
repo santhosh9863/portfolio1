@@ -25,7 +25,7 @@ export function SystemNode({
       <button
         onClick={() => setOpen(!open)}
         className={cn(
-          "rounded-lg px-2 py-2 text-center w-full",
+          "rounded-lg px-1.5 sm:px-2 py-1.5 sm:py-2 text-center w-full",
           open ? "system-node--open" : "system-node",
         )}
       >

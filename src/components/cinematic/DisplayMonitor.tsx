@@ -45,12 +45,13 @@ export function DisplayMonitor({
 
   useEffect(() => {
     if (active) {
-      setPowerState("powering");
-      const t = setTimeout(() => setPowerState("online"), 300);
-      return () => clearTimeout(t);
+      const t1 = setTimeout(() => setPowerState("powering"), 0);
+      const t2 = setTimeout(() => setPowerState("online"), 300);
+      return () => { clearTimeout(t1); clearTimeout(t2); };
     } else {
-      setPowerState("off");
-      setActiveChannel(defaultChannel || channels[0]?.id || "");
+      const t3 = setTimeout(() => setPowerState("off"), 0);
+      const t4 = setTimeout(() => setActiveChannel(defaultChannel || channels[0]?.id || ""), 0);
+      return () => { clearTimeout(t3); clearTimeout(t4); };
     }
   }, [active, channels, defaultChannel]);
 

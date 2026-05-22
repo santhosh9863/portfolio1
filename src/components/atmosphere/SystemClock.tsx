@@ -12,7 +12,7 @@ const MONTHS = [
   "JUL", "AUG", "SEP", "OCT", "NOV", "DEC",
 ];
 
-const TZ = new Intl.DateTimeFormat().resolvedOptions().timeZone;
+const TZ = "IST";
 
 export function SystemClock({ className }: SystemClockProps) {
   const [time, setTime] = useState(new Date());
