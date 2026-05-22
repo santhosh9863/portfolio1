@@ -18,7 +18,7 @@ export function SubsystemChip({
       type="button"
       onClick={onClick}
       className={cn(
-        "subsystem-chip rounded-md px-2 py-0.5 text-mono-sm text-muted",
+        "subsystem-chip rounded-md px-2 py-1 text-mono-sm text-secondary",
         className,
       )}
     >

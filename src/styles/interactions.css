@@ -1,28 +1,34 @@
 @layer components {
+  /* — LAYER 3: Interactive buttons — */
+
   .btn-typro {
+    position: relative;
     background-color: rgb(var(--typro-bg-rgb));
-    box-shadow:
-      6px 6px 12px rgba(var(--typro-shadow-dark-rgb), 0.6),
-      -6px -6px 12px rgba(var(--typro-shadow-light-rgb), 0.9);
-    transition: all 40ms ease-out;
+    box-shadow: var(--shadow-raised);
+    transition:
+      all var(--motion-hover) var(--ease-out-soft),
+      background-color var(--motion-press) var(--ease-press);
     cursor: pointer;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
   }
 
+  .btn-typro:focus-visible {
+    outline: 2px solid rgba(9, 132, 227, 0.5);
+    outline-offset: 2px;
+  }
+
   .btn-typro:hover {
-    box-shadow:
-      7px 7px 14px rgba(var(--typro-shadow-dark-rgb), 0.65),
-      -7px -7px 14px rgba(var(--typro-shadow-light-rgb), 0.95);
-    transform: translateY(-0.8px) scale(1.002);
+    box-shadow: var(--shadow-raised-hover), var(--glow-hover);
+    transform: translateY(-1.2px) scale(1.004);
   }
 
   .btn-typro:active {
     background-color: rgb(var(--typro-bg-secondary-rgb));
-    box-shadow:
-      inset 4px 4px 8px rgba(var(--typro-shadow-dark-rgb), 0.6),
-      inset -4px -4px 8px rgba(var(--typro-shadow-light-rgb), 0.9);
+    box-shadow: var(--shadow-pressed);
     transform: scale(0.985);
+    transition-duration: var(--motion-press);
+    transition-timing-function: var(--ease-press);
   }
 
   .btn-typro:disabled {
@@ -32,22 +38,33 @@
   }
 
   .btn-typro-sm {
+    position: relative;
     background-color: rgb(var(--typro-bg-rgb));
-    box-shadow:
-      3px 3px 6px rgba(var(--typro-shadow-dark-rgb), 0.6),
-      -3px -3px 6px rgba(var(--typro-shadow-light-rgb), 0.9);
-    transition: all 40ms ease-out;
+    box-shadow: var(--shadow-raised-sm);
+    transition:
+      all var(--motion-hover) var(--ease-out-soft),
+      background-color var(--motion-press) var(--ease-press);
     cursor: pointer;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
   }
 
+  .btn-typro-sm:focus-visible {
+    outline: 2px solid rgba(9, 132, 227, 0.5);
+    outline-offset: 2px;
+  }
+
+  .btn-typro-sm:hover {
+    box-shadow: var(--shadow-raised-sm-hover), var(--glow-hover);
+    transform: translateY(-0.8px);
+  }
+
   .btn-typro-sm:active {
     background-color: rgb(var(--typro-bg-secondary-rgb));
-    box-shadow:
-      inset 2px 2px 4px rgba(var(--typro-shadow-dark-rgb), 0.6),
-      inset -2px -2px 4px rgba(var(--typro-shadow-light-rgb), 0.9);
+    box-shadow: var(--shadow-pressed-sm);
     transform: scale(0.985);
+    transition-duration: var(--motion-press);
+    transition-timing-function: var(--ease-press);
   }
 
   .btn-typro-sm:disabled {
@@ -56,12 +73,19 @@
     transform: none;
   }
 
+  /* — LAYER 2: Inset section well — */
+
   .well-typro {
     background-color: rgb(var(--typro-bg-secondary-rgb));
-    box-shadow:
-      inset 4px 4px 8px rgba(var(--typro-shadow-dark-rgb), 0.6),
-      inset -3px -4px 8px rgba(var(--typro-shadow-light-rgb), 0.9);
+    box-shadow: var(--shadow-well);
     border-radius: 12px;
+    transition:
+      box-shadow var(--motion-standard) var(--ease-release),
+      transform var(--motion-standard) var(--ease-release);
+  }
+
+  .well-typro:not(.well--focused):hover {
+    box-shadow: var(--shadow-well), var(--glow-ambient);
   }
 
   .well-typro-pressed {
@@ -73,12 +97,14 @@
     transform: scale(0.99);
   }
 
+  /* — Machine reveal (expandable content) — */
+
   .machine-reveal {
     display: grid;
     grid-template-rows: 0fr;
     transition:
-      grid-template-rows 400ms cubic-bezier(0.25, 0.1, 0.25, 1);
-    transition-delay: 40ms;
+      grid-template-rows var(--motion-expand) var(--ease-mechanical);
+    transition-delay: var(--motion-fast);
   }
 
   .machine-reveal--open {
@@ -93,8 +119,8 @@
     opacity: 0;
     filter: blur(2px);
     transition:
-      opacity 200ms ease-in-out,
-      filter 200ms ease-in-out;
+      opacity var(--motion-standard) ease-in-out,
+      filter var(--motion-standard) ease-in-out;
     transition-delay: 120ms;
   }
 
@@ -103,68 +129,87 @@
     filter: blur(0px);
   }
 
+  /* — Focus / inspection states — */
+
   .well--focused {
-    box-shadow:
-      inset 5px 5px 10px rgba(var(--typro-shadow-dark-rgb), 0.63),
-      inset -5px -5px 10px rgba(var(--typro-shadow-light-rgb), 0.92);
-    transition: box-shadow 400ms ease-out;
+    box-shadow: var(--shadow-well-focused), var(--glow-ambient);
   }
 
   .well--inspection {
     box-shadow:
       inset 6px 6px 12px rgba(var(--typro-shadow-dark-rgb), 0.65),
       inset -4px -5px 12px rgba(var(--typro-shadow-light-rgb), 0.93);
-    transition: box-shadow 600ms ease-out;
+    transition: box-shadow var(--motion-slow) ease-out;
   }
 
+  /* — LAYER 3: System node cards — */
+
   .system-node {
+    position: relative;
     background-color: rgb(var(--typro-bg-rgb));
-    box-shadow:
-      3px 3px 6px rgba(var(--typro-shadow-dark-rgb), 0.6),
-      -3px -3px 6px rgba(var(--typro-shadow-light-rgb), 0.9);
-    transition: all 40ms ease-out;
+    box-shadow: var(--shadow-raised-sm);
+    transition:
+      all var(--motion-hover) var(--ease-out-soft),
+      background-color var(--motion-press) var(--ease-press);
     cursor: pointer;
     user-select: none;
   }
 
+  .system-node:focus-visible {
+    outline: 2px solid rgba(9, 132, 227, 0.5);
+    outline-offset: 2px;
+  }
+
   .system-node:hover {
-    box-shadow:
-      5px 5px 10px rgba(var(--typro-shadow-dark-rgb), 0.65),
-      -5px -5px 10px rgba(var(--typro-shadow-light-rgb), 0.95);
-    transform: translateY(-0.5px);
+    box-shadow: var(--shadow-raised-sm-hover), var(--glow-hover);
+    transform: translateY(-0.8px);
   }
 
   .system-node:active {
     background-color: rgb(var(--typro-bg-secondary-rgb));
-    box-shadow:
-      inset 3px 3px 6px rgba(var(--typro-shadow-dark-rgb), 0.6),
-      inset -3px -3px 6px rgba(var(--typro-shadow-light-rgb), 0.9);
+    box-shadow: var(--shadow-pressed-sm);
     transform: scale(0.985);
+    transition-duration: var(--motion-press);
+    transition-timing-function: var(--ease-press);
   }
 
   .system-node--open {
     background-color: rgb(var(--typro-bg-secondary-rgb));
-    box-shadow:
-      inset 3px 3px 6px rgba(var(--typro-shadow-dark-rgb), 0.6),
-      inset -3px -3px 6px rgba(var(--typro-shadow-light-rgb), 0.9);
+    box-shadow: var(--shadow-pressed-sm);
     transform: scale(0.985);
   }
 
+  /* — Depth toggle — */
+
   .depth-toggle {
-    transition: all 40ms ease-out;
+    transition: all var(--motion-fast) ease-out;
   }
 
   .depth-toggle--raised {
     background-color: rgb(var(--typro-bg-rgb));
-    box-shadow:
-      6px 6px 12px rgba(var(--typro-shadow-dark-rgb), 0.6),
-      -6px -6px 12px rgba(var(--typro-shadow-light-rgb), 0.9);
+    box-shadow: var(--shadow-raised);
   }
 
   .depth-toggle--inset {
     background-color: rgb(var(--typro-bg-secondary-rgb));
-    box-shadow:
-      inset 4px 4px 8px rgba(var(--typro-shadow-dark-rgb), 0.6),
-      inset -4px -4px 8px rgba(var(--typro-shadow-light-rgb), 0.9);
+    box-shadow: var(--shadow-pressed);
+  }
+
+  /* — Sidebar accent indicator — */
+
+  .sidebar-accent {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0;
+    height: 16px;
+    border-radius: 0 4px 4px 0;
+    background-color: rgb(9, 132, 227);
+    transform: translateY(-50%);
+    transition: width var(--motion-standard) var(--ease-release);
+  }
+
+  .sidebar-accent--active {
+    width: 2px;
   }
 }

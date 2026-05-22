@@ -22,6 +22,7 @@ interface DisplayMonitorProps {
   statusItems?: DisplayStatusItem[];
   defaultChannel?: string;
   children?: React.ReactNode;
+  label?: string;
 }
 
 export function DisplayMonitor({
@@ -32,6 +33,7 @@ export function DisplayMonitor({
   statusItems = [],
   defaultChannel,
   children,
+  label,
 }: DisplayMonitorProps) {
   const [activeChannel, setActiveChannel] = useState(
     defaultChannel || channels[0]?.id || "",
@@ -85,6 +87,7 @@ export function DisplayMonitor({
       )}
     >
       <div className="display-monitor__cavity">
+        {label && <span className="display-monitor__screen-header">{label}</span>}
         <div
           className={cn(
             "display-monitor__screen",

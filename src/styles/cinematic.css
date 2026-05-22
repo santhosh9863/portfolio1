@@ -3,7 +3,7 @@
     --typro-bg: #e0e5ec;
     --typro-bg-secondary: #d1d9e6;
     --typro-text: #2d3436;
-    --typro-text-secondary: #636e72;
+    --typro-text-secondary: #5a6570;
     --typro-text-muted: #b2bec3;
     --typro-shadow-light: #ffffff;
     --typro-shadow-dark: #a3b1c6;
@@ -22,5 +22,86 @@
     --typro-bg-rgb: 224, 229, 236;
     --typro-bg-secondary-rgb: 209, 217, 230;
     --typro-text-rgb: 45, 52, 54;
+
+    /* === UNIFIED SHADOW SYSTEM (Phase 1.2) === */
+
+    /* Layer 1 — Ambient environmental contact */
+    --shadow-ambient: inset 2px 2px 4px rgba(var(--typro-shadow-dark-rgb), 0.25), inset -2px -2px 4px rgba(var(--typro-shadow-light-rgb), 0.35);
+
+    /* Layer 2 — Inset well (section surfaces) */
+    --shadow-well: inset 4px 4px 10px rgba(var(--typro-shadow-dark-rgb), 0.68), inset -4px -4px 10px rgba(var(--typro-shadow-light-rgb), 0.9);
+    --shadow-well-focused: inset 5px 5px 12px rgba(var(--typro-shadow-dark-rgb), 0.7), inset -5px -5px 12px rgba(var(--typro-shadow-light-rgb), 0.92);
+
+    /* Layer 3 — Raised interactive surfaces */
+    --shadow-raised-sm: 3px 3px 6px rgba(var(--typro-shadow-dark-rgb), 0.58), -3px -3px 6px rgba(var(--typro-shadow-light-rgb), 0.85);
+    --shadow-raised-sm-hover: 4px 4px 8px rgba(var(--typro-shadow-dark-rgb), 0.62), -4px -4px 8px rgba(var(--typro-shadow-light-rgb), 0.9);
+    --shadow-raised: 6px 6px 12px rgba(var(--typro-shadow-dark-rgb), 0.62), -6px -6px 12px rgba(var(--typro-shadow-light-rgb), 0.9);
+    --shadow-raised-hover: 7px 7px 14px rgba(var(--typro-shadow-dark-rgb), 0.67), -7px -7px 14px rgba(var(--typro-shadow-light-rgb), 0.95);
+    --shadow-raised-lg: 8px 8px 16px rgba(var(--typro-shadow-dark-rgb), 0.62), -8px -8px 16px rgba(var(--typro-shadow-light-rgb), 0.9);
+    --shadow-raised-xl: 12px 12px 24px rgba(var(--typro-shadow-dark-rgb), 0.62), -12px -12px 24px rgba(var(--typro-shadow-light-rgb), 0.9);
+
+    /* Layer 3 — Pressed/interactive inset */
+    --shadow-pressed: inset 4px 4px 8px rgba(var(--typro-shadow-dark-rgb), 0.62), inset -4px -4px 8px rgba(var(--typro-shadow-light-rgb), 0.9);
+    --shadow-pressed-sm: inset 2px 2px 4px rgba(var(--typro-shadow-dark-rgb), 0.58), inset -2px -2px 4px rgba(var(--typro-shadow-light-rgb), 0.85);
+
+    /* Layer 4 — Embedded cavity (monitors, terminal) */
+    --shadow-cavity: inset 4px 4px 10px rgba(var(--typro-shadow-dark-rgb), 0.72), inset -5px -5px 12px rgba(var(--typro-shadow-light-rgb), 0.85);
+    --shadow-cavity-hover: inset 4px 4px 11px rgba(var(--typro-shadow-dark-rgb), 0.74), inset -5px -5px 13px rgba(var(--typro-shadow-light-rgb), 0.87);
+
+    /* Layer 4 — Deep monitor cavity (embedded display) */
+    --shadow-cavity-deep: inset 5px 5px 14px rgba(var(--typro-shadow-dark-rgb), 0.78), inset -6px -6px 16px rgba(var(--typro-shadow-light-rgb), 0.8);
+
+    /* Layer 5 — Active signal glow */
+    --glow-active: 0 0 20px rgba(9, 132, 227, 0.1);
+    --glow-active-strong: 0 0 28px rgba(9, 132, 227, 0.15);
+
+    /* Monitor frame shadow */
+    --shadow-monitor-frame: 4px 4px 10px rgba(var(--typro-shadow-dark-rgb), 0.6), -4px -4px 10px rgba(var(--typro-shadow-light-rgb), 0.85);
+
+    /* === DYNAMIC LIGHTING SYSTEM (Phase 3.2) === */
+
+    /* Surface hover illumination (barely perceptible bloom) */
+    --glow-hover: 0 0 18px rgba(9, 132, 227, 0.025);
+
+    /* Ambient focus illumination */
+    --glow-ambient: 0 0 28px rgba(9, 132, 227, 0.03);
+
+    /* === UNIFIED MOTION SYSTEM (Phase 1.6) === */
+
+    /* Timing */
+    --motion-fast: 40ms;
+    --motion-press: 80ms;
+    --motion-release: 150ms;
+    --motion-hover: 160ms;
+    --motion-cavity: 160ms;
+    --motion-standard: 250ms;
+    --motion-dim: 350ms;
+    --motion-expand: 400ms;
+    --motion-slow: 600ms;
+
+    /* Easing */
+    --ease-mechanical: cubic-bezier(0.25, 0.1, 0.25, 1);
+    --ease-out-soft: cubic-bezier(0.0, 0.0, 0.2, 1);
+    --ease-press: cubic-bezier(0.2, 0.0, 0.2, 1.0);
+    --ease-release: cubic-bezier(0.0, 0.0, 0.1, 1.0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-press: 0ms;
+    --motion-release: 0ms;
+    --motion-hover: 0ms;
+    --motion-cavity: 0ms;
+    --motion-standard: 0ms;
+    --motion-dim: 0ms;
+    --motion-expand: 0ms;
+    --motion-slow: 0ms;
+  }
+
+  .shadow-breathe-trigger,
+  .raised-breathe-trigger {
+    animation: none;
   }
 }

@@ -21,7 +21,7 @@ export function DataRow({
     <div className={cn("flex items-baseline gap-4", className)}>
       <span
         className={cn(
-          "shrink-0 text-mono-sm text-muted",
+          "shrink-0 text-mono-sm text-secondary",
           labelWidth,
         )}
       >

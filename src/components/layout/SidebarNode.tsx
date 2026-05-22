@@ -18,17 +18,16 @@ export function SidebarNode({
   return (
     <button
       onClick={onClick}
+      aria-current={active ? "page" : undefined}
       className={cn(
-        "relative flex-1 rounded-lg py-2 text-center text-label transition-all duration-40 ease-out",
+        "relative flex-1 rounded-lg py-2 text-center text-label",
         active
-          ? "bg-[var(--typro-bg-secondary)] shadow-[inset_4px_4px_8px_rgba(163,177,198,0.6),inset_-4px_-4px_8px_rgba(255,255,255,0.9)] text-muted"
-          : "btn-typro-sm text-muted hover:shadow-[4px_4px_8px_rgba(163,177,198,0.65),-4px_-4px_8px_rgba(255,255,255,0.95)]",
+          ? "surface-pressed text-secondary"
+          : "btn-typro-sm text-secondary",
         className,
       )}
     >
-      {active && (
-        <span className="absolute left-0 top-1/2 h-4 w-0.5 -translate-y-1/2 rounded-r bg-accent" />
-      )}
+      <span className={cn("sidebar-accent", active && "sidebar-accent--active")} />
       {label}
     </button>
   );

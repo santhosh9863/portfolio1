@@ -16,8 +16,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SANthosh OS",
-  description: "Cinematic portfolio interface",
+  title: "Santhosh Krishna R — Frontend Systems Engineer",
+  description:
+    "Cinematic portfolio of Santhosh Krishna R — frontend systems engineer building cross-platform products with Flutter, Next.js, and Firebase.",
+  icons: [{ rel: "icon", url: "/favicon.svg", type: "image/svg+xml" }],
+  openGraph: {
+    title: "Santhosh Krishna R — Frontend Systems Engineer",
+    description:
+      "Cinematic cross-platform portfolio with Flutter, Next.js, and Firebase.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

@@ -25,7 +25,7 @@ export function HeaderBar({
       </div>
       {statusRail && (
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4 text-mono-sm text-muted">
+          <div className="flex items-center gap-4 text-mono-sm text-secondary">
             {statusRail}
           </div>
         </div>

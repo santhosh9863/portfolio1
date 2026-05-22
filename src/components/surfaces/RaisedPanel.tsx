@@ -16,7 +16,7 @@ export function RaisedPanel({
   return (
     <Tag
       className={cn(
-        "surface-raised rounded-xl transition-all duration-40 ease-out",
+        "surface-raised rounded-xl",
         className,
       )}
     >

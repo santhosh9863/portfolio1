@@ -163,16 +163,16 @@ export function TerminalCore({ className, idle = false, activeSection }: Termina
   }, [entries]);
 
   return (
-    <div className={cn("surface-cavity flex flex-col", className)}>
+    <div className={cn("surface-cavity--deeper flex flex-col", className)}>
       <div className="flex items-center justify-between border-b border-border px-4 py-2">
         <span className="text-mono-sm text-muted opacity-40">Terminal</span>
-        <span className="flex items-center gap-1.5 text-mono-sm text-muted opacity-30">
+        <span className="flex items-center gap-2 text-mono-sm text-muted opacity-30">
           <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#00b894] shadow-[0_0_4px_rgba(0,184,148,0.35)] animate-[led-pulse_4s_ease-in-out_infinite]" />
           listening
         </span>
       </div>
 
-      <div ref={scrollRef} className="flex min-h-[120px] sm:min-h-[160px] max-h-[160px] sm:max-h-[200px] flex-col gap-0.5 overflow-y-auto overflow-x-hidden px-4 py-2">
+      <div ref={scrollRef} className="flex min-h-[120px] sm:min-h-[160px] max-h-[160px] sm:max-h-[200px] flex-col gap-1 overflow-y-auto overflow-x-hidden px-4 py-2" aria-live="polite" aria-label="System activity log">
         {entries.map((e) => (
           <div key={e.id} className="flex flex-wrap items-baseline gap-x-1.5 text-mono-sm leading-snug opacity-70">
             <span className="text-muted opacity-30">[{e.time}]</span>
@@ -184,7 +184,7 @@ export function TerminalCore({ className, idle = false, activeSection }: Termina
         <div ref={bottomRef} />
       </div>
 
-      <div className="flex items-center gap-2 border-t border-border px-4 py-1.5">
+      <div className="flex items-center gap-2 border-t border-border px-4 py-2">
         <span className="text-mono-sm text-muted opacity-40">{prompt}</span>
         <span className="cursor-blink inline-block h-[1em] w-2 bg-[var(--typro-text)] opacity-30" />
       </div>

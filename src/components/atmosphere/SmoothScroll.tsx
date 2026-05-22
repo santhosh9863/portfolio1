@@ -15,15 +15,17 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
     window.scrollTo(0, 0);
 
     const lenis = new Lenis({
-      duration: 1.5,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      duration: 1.2,
+      easing: (t: number) => 1 - Math.pow(1 - t, 3),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 0.6,
-      touchMultiplier: 0.5,
-      autoResize: false,
+      wheelMultiplier: 0.55,
+      touchMultiplier: 0.45,
+      autoResize: true,
     });
+
+    (window as unknown as Record<string, unknown>).__lenis = lenis;
 
     let rafId: number;
     const raf = (time: number) => {

@@ -24,15 +24,16 @@ export function SystemNode({
     <div className={cn("flex flex-col", className)}>
       <button
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
         className={cn(
-          "rounded-lg px-1.5 sm:px-2 py-1.5 sm:py-2 text-center w-full",
+          "rounded-lg px-2 py-2 text-center w-full flex flex-col items-center justify-center",
           open ? "system-node--open" : "system-node",
         )}
       >
-        <span className="block text-mono-sm font-black text-foreground">
+        <span className="block text-mono-sm font-black text-foreground leading-snug break-words">
           {title}
         </span>
-        <span className="block text-mono-sm text-muted">{subtitle}</span>
+        <span className="block text-mono-sm text-secondary leading-snug mt-1 break-words">{subtitle}</span>
       </button>
 
       {(utilization || currentUse) && (
@@ -55,7 +56,7 @@ export function SystemNode({
             >
               {utilization && (
                 <div className="flex items-baseline gap-2">
-                  <span className="text-mono-sm text-muted">
+                  <span className="text-mono-sm text-secondary">
                     UTILIZATION
                   </span>
                   <span className="text-mono-sm text-foreground">
@@ -65,7 +66,7 @@ export function SystemNode({
               )}
               {currentUse && (
                 <div className="flex items-baseline gap-2">
-                  <span className="text-mono-sm text-muted">CURRENT</span>
+                  <span className="text-mono-sm text-secondary">CURRENT</span>
                   <span className="text-mono-sm text-foreground">
                     {currentUse}
                   </span>

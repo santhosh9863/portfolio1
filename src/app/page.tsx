@@ -16,6 +16,16 @@ import { TactileButton } from "@/components/controls/TactileButton";
 import { SidebarNode } from "@/components/layout/SidebarNode";
 import { SystemClock } from "@/components/atmosphere/SystemClock";
 import { BootSequence } from "@/components/atmosphere/BootSequence";
+import {
+  PulsePreview,
+  pulseChannels,
+  PulseWebPreview,
+  pulseWebChannels,
+  TyproPreview,
+  typroChannels,
+  PerfectCarePreview,
+  perfectCareChannels,
+} from "@/components/previews/ProductPreviews";
 
 const techNodes = [
   { title: "Flutter", subtitle: "Cross-platform framework", utilization: "92%", currentUse: "Pulse ecosystem" },
@@ -77,7 +87,14 @@ export default function Home() {
 
   const scrollToSection = (id: string) => {
     const el = document.querySelector(`[data-section="${id}"]`);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      const lenis = (window as unknown as Record<string, unknown>).__lenis as { scrollTo: (el: Element) => void } | undefined;
+      if (lenis) {
+        lenis.scrollTo(el);
+      } else {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   };
 
   const handleNavClick = (label: string) => {
@@ -89,7 +106,7 @@ export default function Home() {
 
   return (
     <>
-    <main className="relative mx-auto flex min-h-dvh max-w-xl flex-col gap-6 px-6 py-6 sm:px-8 sm:py-6 overflow-x-hidden">
+    <main className="relative mx-auto flex min-h-dvh max-w-6xl flex-col gap-6 px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 pb-[max(1rem,env(safe-area-inset-bottom))] overflow-x-hidden">
       <HeaderBar
         title="Santhosh Krishna R"
         statusRail={
@@ -106,22 +123,22 @@ export default function Home() {
       </HeaderBar>
 
       <InsetPanel className={cn("shadow-breathe-trigger animate-[shadow-breathe_8s_ease-in-out_infinite]", activeModule && "well--focused")}>
-        <div className="flex flex-col gap-0 px-6 py-6">
+        <div className="flex flex-col gap-0 px-4 sm:px-6 py-6">
 
           {/* HERO */}
-          <div data-section="profile" className="mb-2">
-            <h1 className="text-heading-xl sm:text-display font-black text-foreground leading-tight tracking-tight">
+          <section aria-label="Introduction" data-section="profile">
+            <h1 className="text-hero-mobile sm:text-display text-foreground">
               SANTHOSH<br />KRISHNA R
             </h1>
-            <p className="text-body-sm sm:text-body text-muted mt-2 leading-relaxed">
+            <p className="text-body-sm sm:text-body text-secondary mt-4">
               Frontend systems engineer. Building cinematic cross-platform products with Flutter, Next.js, and Firebase.
             </p>
-            <div className="flex flex-wrap items-center gap-2 mt-6">
+            <div className="flex flex-wrap items-center gap-2 mt-8">
               {[
                 { label: "GitHub", href: "https://github.com/santhosh9863" },
                 { label: "LinkedIn", href: "https://linkedin.com/in/santhosh-krishna-698638372" },
                 { label: "Email", href: "mailto:santhoshkrishna.r67@gmail.com" },
-                { label: "Resume", href: "https://github.com/santhosh9863/resume/releases" },
+                { label: "Resume", href: "https://github.com/santhosh9863/resume" },
               ].map((link) => (
                 <TactileButton
                   key={link.label}
@@ -130,43 +147,47 @@ export default function Home() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-lg px-3 py-1.5 text-mono-sm"
+                  className="rounded-lg px-4 py-3 sm:py-2 text-mono-sm"
                 >
                   {link.label}
                 </TactileButton>
               ))}
             </div>
-          </div>
+          </section>
 
-          <div className="my-6 border-t border-border" />
+          <hr className="my-6 sm:my-8 border-t border-border" />
 
           {/* ABOUT */}
-          <div className="mb-3" data-section="about-inline">
-            <span className="text-label font-semibold tracking-wider text-foreground">
-              About
-            </span>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 sm:gap-y-0">
-            <DataRow labelWidth="w-14" label="Stack" value="Flutter / Next.js / Firebase" />
-            <DataRow labelWidth="w-14" label="Role" value="Frontend systems engineer" />
-            <DataRow labelWidth="w-14" label="Education" value="BCA — St. Francis College" />
-            <DataRow labelWidth="w-14" label="Location" value="Bangalore, India" />
-            <DataRow labelWidth="w-14" label="Focus" value="Cross-platform applications" />
-            <DataRow labelWidth="w-14" label="Languages" value="English / Kannada / Telugu / Tamil / Hindi" />
-          </div>
+          <section aria-label="About">
+            <div className="mb-4" data-section="about-inline">
+              <span className="text-label text-foreground">
+                About
+              </span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
+              <DataRow labelWidth="w-14" label="Stack" value="Flutter / Next.js / Firebase" />
+              <DataRow labelWidth="w-14" label="Role" value="Frontend systems engineer" />
+              <DataRow labelWidth="w-14" label="Education" value="BCA — St. Francis College" />
+              <DataRow labelWidth="w-14" label="Location" value="Bangalore, India" />
+              <DataRow labelWidth="w-14" label="Focus" value="Cross-platform applications" />
+              <DataRow labelWidth="w-14" label="Languages" value="English / Kannada / Telugu / Tamil / Hindi" />
+            </div>
+          </section>
 
-          <div className="my-6 border-t border-border" />
+          <hr className="my-6 sm:my-8 border-t border-border" />
 
           {/* PROJECTS */}
-          <div className="mb-3" data-section="modules">
-            <span className="text-label font-semibold tracking-wider text-foreground">
-              Projects
-            </span>
-          </div>
+          <section aria-label="Projects">
+            <div className="mb-4" data-section="modules">
+              <span className="text-label text-foreground">
+                Projects
+              </span>
+            </div>
 
           <ModuleBay
             name="Pulse"
             subtitle="Attendance intelligence platform"
+            description="Real-time attendance analytics with subject tracking, prediction modeling, and Firebase-powered sync infrastructure."
             status="Active"
             stack="Flutter / Firebase / Dart"
             year="2026"
@@ -201,6 +222,28 @@ export default function Home() {
               { text: "build artifacts finalized", ok: true },
             ]}
             isDimmed={activeModule !== null && activeModule !== "Pulse"}
+            previewContent={<PulsePreview />}
+            previewChannels={pulseChannels}
+            decisions={[
+              { area: "Flutter", text: "Cross-platform from single codebase", outcome: "Android + desktop" },
+              { area: "Provider", text: "Lightweight state without runtime overhead", outcome: "Minimal rebuilds" },
+              { area: "Firebase", text: "Real-time sync for attendance updates", outcome: "Instant across devices" },
+              { area: "QR Flow", text: "3-tap attendance reduces friction", outcome: "45s → 8s marking" },
+            ]}
+            archFlow={[
+              { name: "Flutter App", role: "presentation layer" },
+              { name: "Provider State", role: "state management" },
+              { name: "Firebase Auth", role: "authentication" },
+              { name: "Firestore DB", role: "realtime storage" },
+              { name: "Attendance Pipeline", role: "analytics & sync" },
+            ]}
+            story={{
+              purpose: "Realtime attendance intelligence platform",
+              problem: "Manual tracking is slow and hard to analyze over time",
+              approach: "Flutter + Provider + Firebase for cross-platform realtime sync",
+              journey: "MVP tracking via analytics, predictions, then APK pipeline",
+              result: "3-tap attendance marking with live analytics dashboards",
+            }}
             onOpen={() => handleModuleOpen("Pulse")}
             onClose={handleModuleClose}
             subsystemChecks={runtime.subsystemChecks}
@@ -213,6 +256,7 @@ export default function Home() {
           <ModuleBay
             name="Pulse Web"
             subtitle="Cross-platform web dashboard"
+            description="Responsive web companion for Pulse — dashboard analytics, mobile-first layout, and Vercel-optimized static delivery."
             status="Live"
             stack="Next.js / React / Tailwind CSS"
             year="2026"
@@ -245,6 +289,27 @@ export default function Home() {
               { text: "static assets optimized", ok: true },
             ]}
             isDimmed={activeModule !== null && activeModule !== "Pulse Web"}
+            previewContent={<PulseWebPreview />}
+            previewChannels={pulseWebChannels}
+            decisions={[
+              { area: "Next.js", text: "Static generation for instant page loads", outcome: "Edge CDN delivery" },
+              { area: "Tailwind", text: "Utility-first responsive system", outcome: "Consistent breakpoints" },
+              { area: "Architecture", text: "Modular component tree for dashboards", outcome: "Reusable views" },
+              { area: "Assets", text: "Optimized static asset pipeline", outcome: "Sub-second load" },
+            ]}
+            archFlow={[
+              { name: "Next.js Frontend", role: "static generation" },
+              { name: "Tailwind UI", role: "responsive system" },
+              { name: "Static Optimizer", role: "asset pipeline" },
+              { name: "Vercel Edge", role: "CDN deployment" },
+            ]}
+            story={{
+              purpose: "Responsive web dashboard for the Pulse ecosystem",
+              problem: "Mobile-only access limited desktop monitoring capability",
+              approach: "Next.js static generation for fast page delivery on edge",
+              journey: "Dashboard layout via analytics views then edge deployment",
+              result: "Sub-second loading companion dashboard with live metrics",
+            }}
             onOpen={() => handleModuleOpen("Pulse Web")}
             onClose={handleModuleClose}
             subsystemChecks={runtime.subsystemChecks}
@@ -257,6 +322,7 @@ export default function Home() {
           <ModuleBay
             name="Typro UI"
             subtitle="Neumorphic component system"
+            description="Cinematic UI engine with depth-rendered shadows, mechanical interaction physics, and industrial design language."
             status="Live"
             stack="Next.js / TypeScript / Vercel"
             year="2026"
@@ -274,7 +340,6 @@ export default function Home() {
             buildStatus="Live"
             links={[
               { label: "GitHub", href: "https://github.com/santhosh9863/typro-ui-engine" },
-              { label: "Repo", href: "https://github.com/santhosh9863/typro-ui-engine" },
             ]}
             engineeringNotes={[
               "depth pressure system for tactile interaction feedback",
@@ -289,6 +354,28 @@ export default function Home() {
               { text: "render pipeline optimized", ok: true },
             ]}
             isDimmed={activeModule !== null && activeModule !== "Typro UI"}
+            previewContent={<TyproPreview />}
+            previewChannels={typroChannels}
+            decisions={[
+              { area: "Neumorphism", text: "Depth-based interaction without color", outcome: "Tactile + restrained" },
+              { area: "Motion", text: "Mechanical timing system", outcome: "160ms hover, 40ms press" },
+              { area: "TypeScript", text: "Strict interfaces for shadow engine", outcome: "Type-safe CSS variables" },
+              { area: "Architecture", text: "CSS custom property shadow system", outcome: "Scalable across 50+ components" },
+            ]}
+            archFlow={[
+              { name: "Next.js App", role: "component host" },
+              { name: "Neumorphic Engine", role: "shadow system" },
+              { name: "Motion Controller", role: "interaction timing" },
+              { name: "CSS Variables", role: "theme architecture" },
+              { name: "Responsive Layer", role: "viewport scaling" },
+            ]}
+            story={{
+              purpose: "Cinematic neumorphic UI for tactile portfolio experiences",
+              problem: "Most portfolios lack immersive interaction quality",
+              approach: "CSS shadow engine with mechanical timing via TypeScript",
+              journey: "Shadow system via interaction physics then motion refinement",
+              result: "50+ component design system with depth-based interactions",
+            }}
             onOpen={() => handleModuleOpen("Typro UI")}
             onClose={handleModuleClose}
             subsystemChecks={runtime.subsystemChecks}
@@ -301,6 +388,7 @@ export default function Home() {
           <ModuleBay
             name="Perfect Care"
             subtitle="Professional service platform"
+            description="Clean business frontend with responsive service presentation, optimized delivery pipeline, and cross-device layout system."
             status="Live"
             stack="Next.js / Tailwind / Vercel"
             year="2025"
@@ -332,6 +420,26 @@ export default function Home() {
               { text: "deployment configuration valid", ok: true },
             ]}
             isDimmed={activeModule !== null && activeModule !== "Perfect Care"}
+            previewContent={<PerfectCarePreview />}
+            previewChannels={perfectCareChannels}
+            decisions={[
+              { area: "Next.js", text: "Static generation for service pages", outcome: "Fast content delivery" },
+              { area: "Tailwind", text: "Responsive layout utilities", outcome: "Cross-device consistency" },
+              { area: "Architecture", text: "Component composition for cards", outcome: "Reusable presentation" },
+            ]}
+            archFlow={[
+              { name: "Next.js Frontend", role: "static pages" },
+              { name: "Tailwind Layout", role: "responsive grid" },
+              { name: "Component System", role: "service cards" },
+              { name: "Vercel Deploy", role: "edge delivery" },
+            ]}
+            story={{
+              purpose: "Clean business frontend for professional service presentation",
+              problem: "Small businesses need simple yet polished online presence",
+              approach: "Next.js static generation with Tailwind responsive layout",
+              journey: "Static page structure via responsive refinement then deployment",
+              result: "Fast cross-device service platform with optimized delivery",
+            }}
             onOpen={() => handleModuleOpen("Perfect Care")}
             onClose={handleModuleClose}
             subsystemChecks={runtime.subsystemChecks}
@@ -341,80 +449,90 @@ export default function Home() {
             auth="—"
           />
 
-          <div className="my-6 border-t border-border" />
+          </section>
+
+          <hr className="my-6 sm:my-8 border-t border-border" />
 
           {/* TECHNOLOGY */}
-          <div className="mb-3" data-section="matrix">
-            <span className="text-label font-semibold tracking-wider text-foreground">
-              Technology
-            </span>
-          </div>
+          <section aria-label="Technology">
+            <div className="mb-4" data-section="matrix">
+              <span className="text-label text-foreground">
+                Technology
+              </span>
+            </div>
 
-          <div className="grid grid-cols-2 gap-2">
-            {techNodes.map((node) => (
-              <SystemNode
-                key={node.title}
-                title={node.title}
-                subtitle={node.subtitle}
-                utilization={node.utilization}
-                currentUse={node.currentUse}
-              />
-            ))}
-          </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              {techNodes.map((node) => (
+                <SystemNode
+                  key={node.title}
+                  title={node.title}
+                  subtitle={node.subtitle}
+                  utilization={node.utilization}
+                  currentUse={node.currentUse}
+                />
+              ))}
+            </div>
+          </section>
 
-          <div className="my-6 border-t border-border" />
+          <hr className="my-6 sm:my-8 border-t border-border" />
 
           {/* ACTIVITY */}
-          <div className="mb-3" data-section="history">
-            <span className="text-label font-semibold tracking-wider text-foreground">
-              Activity
-            </span>
-          </div>
+          <section aria-label="Activity">
+            <div className="mb-4" data-section="history">
+              <span className="text-label text-foreground">
+                Activity
+              </span>
+            </div>
 
-          <TerminalCore idle={isIdle} activeSection={activeSection} />
+            <TerminalCore idle={isIdle} activeSection={activeSection} />
+          </section>
 
-          <div className="my-6 border-t border-border" />
+          <hr className="my-6 sm:my-8 border-t border-border" />
 
           {/* CONNECT */}
-          <div className="mb-3" data-section="communication">
-            <span className="text-label font-semibold tracking-wider text-foreground">
-              Connect
-            </span>
-          </div>
+          <section aria-label="Connect">
+            <div className="mb-4" data-section="communication">
+              <span className="text-label text-foreground">
+                Connect
+              </span>
+            </div>
 
-          <div className="flex flex-wrap gap-2">
-            {[
-              { label: "GitHub", href: "https://github.com/santhosh9863" },
-              { label: "LinkedIn", href: "https://linkedin.com/in/santhosh-krishna-698638372" },
-              { label: "Email", href: "mailto:santhoshkrishna.r67@gmail.com" },
-              { label: "Resume", href: "https://github.com/santhosh9863/resume/releases" },
-            ].map((link) => (
-              <TactileButton
-                key={link.label}
-                variant="sm"
-                as="a"
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-lg px-3 py-1.5 text-mono-sm"
-              >
-                {link.label}
-              </TactileButton>
-            ))}
-          </div>
+            <div className="flex flex-wrap gap-2">
+              {[
+                { label: "GitHub", href: "https://github.com/santhosh9863" },
+                { label: "LinkedIn", href: "https://linkedin.com/in/santhosh-krishna-698638372" },
+                { label: "Email", href: "mailto:santhoshkrishna.r67@gmail.com" },
+                { label: "Resume", href: "https://github.com/santhosh9863/resume" },
+              ].map((link) => (
+                <TactileButton
+                  key={link.label}
+                  variant="sm"
+                  as="a"
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-lg px-4 py-2 text-mono-sm"
+                >
+                  {link.label}
+                </TactileButton>
+              ))}
+            </div>
+          </section>
         </div>
       </InsetPanel>
 
-      <RaisedPanel className="raised-breathe-trigger flex items-center gap-2 px-4 py-2 animate-[raised-breathe_10s_ease-in-out_infinite]">
-        {navItems.map((item) => (
-          <SidebarNode
-            key={item}
-            label={item}
-            active={activeNav === item}
-            onClick={() => handleNavClick(item)}
-          />
-        ))}
-      </RaisedPanel>
+      <nav aria-label="Navigation">
+        <RaisedPanel className="raised-breathe-trigger flex items-center gap-2 px-4 py-2 animate-[raised-breathe_10s_ease-in-out_infinite]">
+          {navItems.map((item) => (
+            <SidebarNode
+              key={item}
+              label={item}
+              active={activeNav === item}
+              onClick={() => handleNavClick(item)}
+            />
+          ))}
+        </RaisedPanel>
+      </nav>
 
       <div className="flex items-center justify-center py-2">
         <span className="text-footer opacity-20">Santhosh Krishna R</span>
