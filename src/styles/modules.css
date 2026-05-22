@@ -11,7 +11,8 @@
     box-shadow:
       inset 4px 4px 10px rgba(var(--typro-shadow-dark-rgb), 0.7),
       inset -5px -5px 12px rgba(var(--typro-shadow-light-rgb), 0.85);
-    border-radius: 8px;
+    border-radius: 10px;
+    padding: 6px 6px;
   }
 
   /* === MECHANICAL EXPANSION PHYSICS === */
@@ -93,24 +94,25 @@
   }
 
   .module-identity__name {
-    font-size: 1rem;
-    letter-spacing: 0.04em;
+    font-size: 1.0625rem;
+    letter-spacing: 0.03em;
     font-weight: 900;
     color: rgb(var(--typro-text-rgb));
   }
 
   .module-identity__blurb {
-    font-size: 0.75rem;
-    letter-spacing: 0.04em;
+    font-size: 0.8125rem;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
     color: rgba(var(--typro-text-rgb), 0.55);
   }
 
   @media (min-width: 640px) {
     .module-identity__name {
-      font-size: 1.125rem;
+      font-size: 1.25rem;
     }
     .module-identity__blurb {
-      font-size: 0.8125rem;
+      font-size: 0.875rem;
     }
   }
 
@@ -138,8 +140,7 @@
   }
 
   .module-meta__value {
-    font-family: var(--font-geist-mono);
-    font-size: 0.6875rem;
+    font-size: 0.8125rem;
     color: rgba(var(--typro-text-rgb), 0.7);
   }
 
@@ -614,16 +615,15 @@
   }
 
   .decision-row__arrow {
-    font-family: var(--font-geist-mono);
-    font-size: 0.5625rem;
-    color: rgba(var(--typro-text-rgb), 0.15);
+    font-size: 0.75rem;
+    color: rgba(var(--typro-text-rgb), 0.2);
     flex-shrink: 0;
   }
 
   .decision-row__text {
-    font-family: var(--font-geist-mono);
-    font-size: 0.625rem;
-    color: rgba(var(--typro-text-rgb), 0.5);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: rgba(var(--typro-text-rgb), 0.55);
   }
 
   .decision-row__outcome {
@@ -650,10 +650,10 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    max-width: 260px;
-    padding: 6px 10px;
+    max-width: 280px;
+    padding: 8px 12px;
     background-color: rgb(var(--typro-bg-rgb));
-    border-radius: 4px;
+    border-radius: 6px;
     box-shadow:
       2px 2px 4px rgba(var(--typro-shadow-dark-rgb), 0.5),
       -2px -2px 4px rgba(var(--typro-shadow-light-rgb), 0.75);
@@ -667,11 +667,10 @@
   }
 
   .arch-node__name {
-    font-family: var(--font-geist-mono);
-    font-size: 0.625rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    color: rgba(var(--typro-text-rgb), 0.55);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: rgba(var(--typro-text-rgb), 0.6);
   }
 
   .arch-node__role {
@@ -682,8 +681,8 @@
   }
 
   .arch-node__led {
-    width: 4px;
-    height: 4px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     flex-shrink: 0;
     background: rgba(0, 184, 148, 0.35);
@@ -694,7 +693,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 22px;
+    height: 24px;
     gap: 2px;
     position: relative;
   }
@@ -741,13 +740,13 @@
   .story-block {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 4px;
   }
 
   .story-row {
     display: flex;
     align-items: baseline;
-    gap: 6px;
+    gap: 8px;
   }
 
   .story-row__label {
@@ -761,8 +760,8 @@
   }
 
   .story-row__text {
-    font-family: var(--font-geist-mono);
-    font-size: 0.625rem;
-    color: rgba(var(--typro-text-rgb), 0.45);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: rgba(var(--typro-text-rgb), 0.5);
   }
 }
