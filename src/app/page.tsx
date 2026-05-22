@@ -3,13 +3,11 @@
 import { useState, useCallback, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { useSectionObserver } from "@/hooks/useSectionObserver";
-import { useIdleDetector } from "@/hooks/useIdleDetector";
 import { HeaderBar } from "@/components/layout/HeaderBar";
 import { InsetPanel } from "@/components/surfaces/InsetPanel";
 import { RaisedPanel } from "@/components/surfaces/RaisedPanel";
 import { ModuleBay } from "@/components/cinematic/ModuleBay";
 import { SystemNode } from "@/components/cinematic/SystemNode";
-import { TerminalCore } from "@/components/atmosphere/TerminalCore";
 import { TactileButton } from "@/components/controls/TactileButton";
 import { SidebarNode } from "@/components/layout/SidebarNode";
 import { SystemClock } from "@/components/atmosphere/SystemClock";
@@ -26,27 +24,26 @@ import {
 } from "@/components/previews/ProductPreviews";
 
 const primaryTech = [
-  { title: "Flutter", subtitle: "Cross-platform framework", utilization: "92%", currentUse: "Pulse ecosystem" },
-  { title: "Next.js", subtitle: "React metaframework", utilization: "78%", currentUse: "Web platform" },
-  { title: "Firebase", subtitle: "Backend infrastructure", utilization: "85%", currentUse: "Auth + Firestore" },
+  { title: "Flutter", subtitle: "Cross-platform app framework", usage: "→ Pulse attendance platform" },
+  { title: "Next.js", subtitle: "React metaframework deployment", usage: "→ Portfolio + Pulse Web" },
+  { title: "Firebase", subtitle: "Realtime backend infrastructure", usage: "→ Auth + realtime sync" },
 ];
 
 const secondaryTech = [
-  { title: "TypeScript", subtitle: "Type-safe JavaScript", utilization: "95%" },
-  { title: "Tailwind CSS", subtitle: "Utility-first styling", utilization: "88%" },
-  { title: "Dart", subtitle: "Compiled language", utilization: "80%" },
-  { title: "React", subtitle: "UI component library", utilization: "72%" },
-  { title: "Git", subtitle: "Version control", utilization: "90%" },
-  { title: "Vercel", subtitle: "Edge deployment", utilization: "76%" },
+  { title: "TypeScript", subtitle: "Strict React architecture typing", usage: "→ Typed frontend systems" },
+  { title: "Tailwind CSS", subtitle: "Utility-first responsive styling", usage: "→ Rapid UI iteration" },
+  { title: "Dart", subtitle: "Flutter application language", usage: "→ Provider app architecture" },
+  { title: "React", subtitle: "Composable frontend architecture", usage: "→ Interactive UI systems" },
+  { title: "Git", subtitle: "Version control workflow", usage: "→ Releases + branching" },
+  { title: "Vercel", subtitle: "Edge deployment platform", usage: "→ Production web hosting" },
 ];
 
-const techNodes = [...primaryTech, ...secondaryTech] as { title: string; subtitle: string; utilization: string; currentUse?: string }[];
+const techNodes = [...primaryTech, ...secondaryTech];
 
 const sectionLabels: Record<string, string> = {
   profile: "About",
   modules: "Projects",
   matrix: "Technology",
-  history: "Activity",
   communication: "Connect",
 };
 
@@ -56,7 +53,6 @@ export default function Home() {
   const [activeNav, setActiveNav] = useState("About");
   const [bootDone, setBootDone] = useState(false);
   const activeSection = useSectionObserver();
-  const isIdle = useIdleDetector(10000);
   const [activeModule, setActiveModule] = useState<string | null>(null);
 
   const handleModuleOpen = useCallback((name: string) => {
@@ -70,22 +66,6 @@ export default function Home() {
   useEffect(() => {
     document.documentElement.dataset.activeSection = activeSection || "";
   }, [activeSection]);
-
-  useEffect(() => {
-    if (activeModule) {
-      document.documentElement.dataset.focused = "true";
-    } else {
-      delete document.documentElement.dataset.focused;
-    }
-  }, [activeModule]);
-
-  useEffect(() => {
-    if (isIdle) {
-      document.documentElement.dataset.idle = "true";
-    } else {
-      delete document.documentElement.dataset.idle;
-    }
-  }, [isIdle]);
 
   const scrollToSection = (id: string) => {
     const el = document.querySelector(`[data-section="${id}"]`);
@@ -124,7 +104,7 @@ export default function Home() {
         <SystemClock />
       </HeaderBar>
 
-      <InsetPanel className={cn("shadow-breathe-trigger animate-[shadow-breathe_8s_ease-in-out_infinite]", activeModule && "well--focused")}>
+      <InsetPanel className={cn(activeModule && "well--focused")}>
         <div className="flex flex-col gap-0 px-4 sm:px-6 py-6">
 
           {/* HERO */}
@@ -132,8 +112,8 @@ export default function Home() {
             <h1 className="text-hero-mobile sm:text-display text-foreground">
               SANTHOSH<br />KRISHNA R
             </h1>
-            <p className="text-body-sm sm:text-body-lg text-secondary mt-4 max-w-2xl">
-              Frontend engineer building cross-platform products with Flutter, Next.js, and Firebase. Based in Bangalore.
+            <p className="text-body-sm sm:text-body-lg text-secondary mt-4 max-w-2xl leading-relaxed">
+              BCA student building cross-platform products with Flutter, Next.js, and Firebase. Real-time systems, production apps, and clean architecture.
             </p>
             <div className="flex flex-wrap items-center gap-2 mt-8">
               {[
@@ -167,16 +147,18 @@ export default function Home() {
               </span>
             </div>
             <p className="text-body-sm sm:text-body-lg text-secondary max-w-2xl leading-relaxed">
-              Frontend engineer building cross-platform products with Flutter, Next.js, and Firebase. Currently focused on real-time attendance systems, responsive web platforms, and cinematic UI engineering. Based in Bangalore.
+              BCA student at St. Francis College, Bangalore. I build cross-platform applications using Flutter for mobile and Next.js for web, powered by Firebase for authentication, real-time sync, and serverless infrastructure. My work spans attendance intelligence platforms, responsive dashboards, and engineered UI systems — all shipped to production.
             </p>
             <div className="mt-6 sm:mt-7">
               <div className="grid grid-cols-[7.5em_1fr] gap-x-4 gap-y-3 sm:gap-y-3.5">
                 <span className="text-mono-xs text-muted uppercase tracking-wider">Stack</span>
-                <span className="text-body-sm sm:text-body text-foreground">Flutter / Next.js / Firebase</span>
+                <span className="text-body-sm sm:text-body text-foreground">Flutter / Next.js / Firebase / Tailwind</span>
                 <span className="text-mono-xs text-muted uppercase tracking-wider">Education</span>
-                <span className="text-body-sm sm:text-body text-foreground">BCA — St. Francis College</span>
+                <span className="text-body-sm sm:text-body text-foreground">BCA — St. Francis College, Bangalore</span>
                 <span className="text-mono-xs text-muted uppercase tracking-wider">Location</span>
                 <span className="text-body-sm sm:text-body text-foreground">Bangalore, India</span>
+                <span className="text-mono-xs text-muted uppercase tracking-wider">Focus</span>
+                <span className="text-body-sm sm:text-body text-foreground">Cross-platform mobile + web applications</span>
                 <span className="text-mono-xs text-muted uppercase tracking-wider">Languages</span>
                 <span className="text-body-sm sm:text-body text-foreground">English / Kannada / Telugu / Tamil / Hindi</span>
               </div>
@@ -198,18 +180,18 @@ export default function Home() {
           <ModuleBay
             name="Pulse"
             subtitle="Attendance intelligence platform"
-            description="Real-time attendance analytics with subject tracking, prediction modeling, and Firebase-powered sync infrastructure."
+            description="Flutter-based attendance tracker with real-time Firestore sync, subject-wise analytics, and a prediction system that helps identify attendance patterns. Built with Provider for lightweight state management."
             status="Active"
-            stack="Flutter / Firebase / Dart"
+            stack="Flutter / Dart / Firebase / Firestore"
             year="2026"
             components={[
-              "attendance analytics",
-              "attendance simulator",
-              "subject tracking",
-              "prediction system",
-              "firebase authentication",
-              "realtime synchronization",
-              "apk deployment workflow",
+              "Analytics Dashboard",
+              "Subject Tracker",
+              "Prediction Engine",
+              "Auth Gateway",
+              "Realtime Sync",
+              "APK Pipeline",
+              "Responsive Shell",
             ]}
             links={[
               { label: "GitHub", href: "https://github.com/santhosh9863/attendance-tracker" },
@@ -219,24 +201,24 @@ export default function Home() {
             previewContent={<PulsePreview />}
             previewChannels={pulseChannels}
             decisions={[
-              { area: "Flutter", text: "Cross-platform from single codebase", outcome: "Android + desktop" },
-              { area: "Provider", text: "Lightweight state without runtime overhead", outcome: "Minimal rebuilds" },
-              { area: "Firebase", text: "Real-time sync for attendance updates", outcome: "Instant across devices" },
-              { area: "QR Flow", text: "3-tap attendance reduces friction", outcome: "45s → 8s marking" },
+              { area: "Flutter", text: "Single codebase for Android and desktop", outcome: "Faster iteration, consistent UI" },
+              { area: "Provider", text: "Lightweight state without runtime overhead", outcome: "Minimal rebuilds, clean separation" },
+              { area: "Firebase", text: "Real-time Firestore for live attendance sync", outcome: "Instant updates across devices" },
+              { area: "QR Flow", text: "3-tap attendance flow instead of manual entry", outcome: "45s → 8s per marking" },
             ]}
             archFlow={[
-              { name: "Flutter App", role: "presentation layer" },
-              { name: "Provider State", role: "state management" },
-              { name: "Firebase Auth", role: "authentication" },
-              { name: "Firestore DB", role: "realtime storage" },
-              { name: "Attendance Pipeline", role: "analytics & sync" },
+              { name: "Flutter App", role: "cross-platform UI layer" },
+              { name: "Provider State", role: "lightweight state management" },
+              { name: "Firebase Auth", role: "email + Google sign-in" },
+              { name: "Cloud Firestore", role: "realtime attendance storage" },
+              { name: "Analytics Pipeline", role: "subject-wise computation" },
             ]}
             story={{
-              purpose: "Realtime attendance intelligence platform",
-              problem: "Manual tracking is slow and hard to analyze over time",
-              approach: "Flutter + Provider + Firebase for cross-platform realtime sync",
-              journey: "MVP tracking via analytics, predictions, then APK pipeline",
-              result: "3-tap attendance marking with live analytics dashboards",
+              purpose: "Real-time attendance analytics for students and educators",
+              problem: "Manual attendance records are slow, error-prone, and hard to analyze across subjects over time",
+              approach: "Built with Flutter for cross-platform reach, Firebase for real-time sync, and Provider for clean state architecture",
+              journey: "Started with basic CRUD tracking, added subject analytics, then prediction modeling, and finally a QR-based flow that reduced marking time by 80%",
+              result: "3-tap attendance marking with live dashboards, subject-wise analytics, and APK distribution pipeline",
             }}
             onOpen={() => handleModuleOpen("Pulse")}
             onClose={handleModuleClose}
@@ -244,17 +226,17 @@ export default function Home() {
 
           <ModuleBay
             name="Pulse Web"
-            subtitle="Cross-platform web dashboard"
-            description="Responsive web companion for Pulse — dashboard analytics, mobile-first layout, and Vercel-optimized static delivery."
+            subtitle="Responsive analytics dashboard"
+            description="Next.js web companion for Pulse — real-time attendance data visualization, mobile-first responsive layout, and static-optimized delivery via Vercel."
             status="Live"
-            stack="Next.js / React / Tailwind CSS"
+            stack="Next.js / React / TypeScript / Tailwind CSS"
             year="2026"
             components={[
-              "responsive dashboard",
-              "mobile-first layout",
-              "interaction system",
-              "component architecture",
-              "static optimization",
+              "Analytics Dashboard",
+              "Data Visualization",
+              "Responsive Shell",
+              "Component System",
+              "Edge Delivery",
             ]}
             links={[
               { label: "GitHub", href: "https://github.com/santhosh9863/pulse-web-platform" },
@@ -264,23 +246,23 @@ export default function Home() {
             previewContent={<PulseWebPreview />}
             previewChannels={pulseWebChannels}
             decisions={[
-              { area: "Next.js", text: "Static generation for instant page loads", outcome: "Edge CDN delivery" },
-              { area: "Tailwind", text: "Utility-first responsive system", outcome: "Consistent breakpoints" },
-              { area: "Architecture", text: "Modular component tree for dashboards", outcome: "Reusable views" },
-              { area: "Assets", text: "Optimized static asset pipeline", outcome: "Sub-second load" },
+              { area: "Next.js", text: "Static generation for fast page loads on edge", outcome: "Instant initial render via CDN" },
+              { area: "Tailwind", text: "Utility-first responsive system", outcome: "Consistent breakpoints, less CSS overhead" },
+              { area: "TypeScript", text: "Type-safe component interfaces", outcome: "Clean data contracts across views" },
+              { area: "Vercel", text: "Edge-optimized static deployment", outcome: "Sub-second load times globally" },
             ]}
             archFlow={[
-              { name: "Next.js Frontend", role: "static generation" },
-              { name: "Tailwind UI", role: "responsive system" },
-              { name: "Static Optimizer", role: "asset pipeline" },
-              { name: "Vercel Edge", role: "CDN deployment" },
+              { name: "Next.js App", role: "static site generation" },
+              { name: "Tailwind UI", role: "responsive design system" },
+              { name: "React Components", role: "modular dashboard views" },
+              { name: "Vercel Edge", role: "CDN deployment + caching" },
             ]}
             story={{
-              purpose: "Responsive web dashboard for the Pulse ecosystem",
-              problem: "Mobile-only access limited desktop monitoring capability",
-              approach: "Next.js static generation for fast page delivery on edge",
-              journey: "Dashboard layout via analytics views then edge deployment",
-              result: "Sub-second loading companion dashboard with live metrics",
+              purpose: "Web-based analytics dashboard that extends the Pulse mobile app to desktop browsers",
+              problem: "Attendance data was only accessible on mobile, limiting review and analysis on larger screens",
+              approach: "Next.js static generation with Tailwind CSS for a responsive, fast-loading companion dashboard",
+              journey: "Designed the dashboard layout system first, built analytics views with reusable components, then optimized for static delivery on Vercel's edge network",
+              result: "A sub-second loading web companion that mirrors Pulse's attendance data with full desktop readability",
             }}
             onOpen={() => handleModuleOpen("Pulse Web")}
             onClose={handleModuleClose}
@@ -288,17 +270,18 @@ export default function Home() {
 
           <ModuleBay
             name="Typro UI"
-            subtitle="Neumorphic component system"
-            description="Cinematic UI engine with depth-rendered shadows, mechanical interaction physics, and industrial design language — used to build this portfolio."
+            subtitle="Neumorphic design system"
+            description="A neumorphic component library built with Next.js and TypeScript — CSS-driven shadow system, mechanical interaction physics, and industrial design language. Used to build this portfolio."
             status="Live"
-            stack="Next.js / TypeScript / Vercel"
+            stack="Next.js / TypeScript / CSS / Vercel"
             year="2026"
             components={[
-              "depth rendering",
-              "interaction system",
-              "responsive engine",
-              "type-safe architecture",
-              "deployment pipeline",
+              "Shadow Engine",
+              "Motion System",
+              "Surface System",
+              "Layout Primitives",
+              "Interaction Physics",
+              "Component API",
             ]}
             links={[
               { label: "GitHub", href: "https://github.com/santhosh9863/typro-ui-engine" },
@@ -307,24 +290,24 @@ export default function Home() {
             previewContent={<TyproPreview />}
             previewChannels={typroChannels}
             decisions={[
-              { area: "Neumorphism", text: "Depth-based interaction without color", outcome: "Tactile + restrained" },
-              { area: "Motion", text: "Mechanical timing system", outcome: "160ms hover, 40ms press" },
-              { area: "TypeScript", text: "Strict interfaces for shadow engine", outcome: "Type-safe CSS variables" },
-              { area: "Architecture", text: "CSS custom property shadow system", outcome: "Scalable across 50+ components" },
+              { area: "Neumorphism", text: "CSS shadow-based depth instead of color-coded UI", outcome: "Tactile interactions with monochrome palette" },
+              { area: "Motion System", text: "Mechanical timing (160ms hover, 40ms press)", outcome: "Interactions feel weighted, not animated" },
+              { area: "TypeScript", text: "Strict interfaces for shadow configuration", outcome: "Type-safe CSS custom property generation" },
+              { area: "Architecture", text: "Single-source shadow variables in :root", outcome: "50+ components share consistent depth" },
             ]}
             archFlow={[
-              { name: "Next.js App", role: "component host" },
-              { name: "Neumorphic Engine", role: "shadow system" },
-              { name: "Motion Controller", role: "interaction timing" },
-              { name: "CSS Variables", role: "theme architecture" },
-              { name: "Responsive Layer", role: "viewport scaling" },
+              { name: "Next.js App", role: "component host + documentation" },
+              { name: "CSS Shadow Engine", role: ":root variables for unified depth" },
+              { name: "Motion Controller", role: "CSS custom property timing system" },
+              { name: "Component Library", role: "50+ neumorphic primitives" },
+              { name: "Vercel Deploy", role: "edge-delivered static site" },
             ]}
             story={{
-              purpose: "Cinematic neumorphic UI for tactile portfolio experiences",
-              problem: "Most portfolios lack immersive interaction quality",
-              approach: "CSS shadow engine with mechanical timing via TypeScript",
-              journey: "Shadow system via interaction physics then motion refinement",
-              result: "50+ component design system with depth-based interactions",
+              purpose: "A reusable neumorphic UI system that emphasizes tactile depth over flat design",
+              problem: "Most component libraries rely on color for hierarchy, making them feel visually noisy",
+              approach: "CSS custom property shadow system with mechanical motion timing, all controlled via TypeScript interfaces",
+              journey: "Started with a single neumorphic button, expanded to a shadow variable architecture, then built 50+ primitives with consistent mechanical feel",
+              result: "A design system where surfaces feel sculpted, interactions feel weighted, and the monochrome palette keeps the focus on content",
             }}
             onOpen={() => handleModuleOpen("Typro UI")}
             onClose={handleModuleClose}
@@ -333,15 +316,16 @@ export default function Home() {
           <ModuleBay
             name="Perfect Care"
             subtitle="Professional service platform"
-            description="Clean business frontend with responsive service presentation, optimized delivery pipeline, and cross-device layout system."
+            description="A clean, responsive frontend for a professional services business — service presentation cards, optimized static delivery, and cross-device layout built with Next.js and Tailwind CSS."
             status="Live"
-            stack="Next.js / Tailwind / Vercel"
+            stack="Next.js / Tailwind CSS / Vercel"
             year="2025"
             components={[
-              "service presentation",
-              "responsive layout",
-              "frontend optimization",
-              "deployment workflow",
+              "Service Cards",
+              "Responsive Layout",
+              "Hero System",
+              "Contact Block",
+              "Deploy Pipeline",
             ]}
             links={[
               { label: "GitHub", href: "https://github.com/santhosh9863/perfect-care-platform" },
@@ -351,22 +335,22 @@ export default function Home() {
             previewContent={<PerfectCarePreview />}
             previewChannels={perfectCareChannels}
             decisions={[
-              { area: "Next.js", text: "Static generation for service pages", outcome: "Fast content delivery" },
-              { area: "Tailwind", text: "Responsive layout utilities", outcome: "Cross-device consistency" },
-              { area: "Architecture", text: "Component composition for cards", outcome: "Reusable presentation" },
+              { area: "Next.js", text: "Static generation for fast service page delivery", outcome: "Instant content rendering" },
+              { area: "Tailwind", text: "Responsive utility classes for layout", outcome: "Consistent cross-device presentation" },
+              { area: "Architecture", text: "Component composition for service cards", outcome: "Reusable card system across pages" },
             ]}
             archFlow={[
-              { name: "Next.js Frontend", role: "static pages" },
-              { name: "Tailwind Layout", role: "responsive grid" },
-              { name: "Component System", role: "service cards" },
+              { name: "Next.js Frontend", role: "static page generation" },
+              { name: "Tailwind Layout", role: "responsive grid system" },
+              { name: "Card Components", role: "reusable service presentation" },
               { name: "Vercel Deploy", role: "edge delivery" },
             ]}
             story={{
-              purpose: "Clean business frontend for professional service presentation",
-              problem: "Small businesses need simple yet polished online presence",
-              approach: "Next.js static generation with Tailwind responsive layout",
-              journey: "Static page structure via responsive refinement then deployment",
-              result: "Fast cross-device service platform with optimized delivery",
+              purpose: "Professional frontend for a service business needing online presence",
+              problem: "Small businesses need a clean, fast website but often get bloated templates",
+              approach: "Next.js static generation with Tailwind CSS for a lightweight, responsive service presentation site",
+              journey: "Structured the page layout for services, built reusable card components, and deployed via Vercel's static pipeline",
+              result: "A fast, clean business frontend that presents services clearly across all device sizes",
             }}
             onOpen={() => handleModuleOpen("Perfect Care")}
             onClose={handleModuleClose}
@@ -392,24 +376,10 @@ export default function Home() {
                   key={node.title}
                   title={node.title}
                   subtitle={node.subtitle}
-                  utilization={node.utilization}
-                  currentUse={node.currentUse}
+                  usage={node.usage}
                 />
               ))}
             </div>
-          </section>
-
-          <hr className="my-8 sm:my-10 border-t border-border" />
-
-          {/* ACTIVITY */}
-          <section aria-label="Activity">
-            <div className="mb-5 sm:mb-6" data-section="history">
-              <span className="text-label text-foreground">
-                Activity
-              </span>
-            </div>
-
-            <TerminalCore idle={isIdle} activeSection={activeSection} />
           </section>
 
           <hr className="my-8 sm:my-10 border-t border-border" />
@@ -421,6 +391,10 @@ export default function Home() {
                 Connect
               </span>
             </div>
+
+            <p className="text-body-sm sm:text-body text-secondary max-w-xl mb-5">
+              Open to internship and project collaboration opportunities. If you are working on something interesting, feel free to reach out.
+            </p>
 
             <div className="flex flex-wrap gap-2">
               {[
@@ -447,7 +421,7 @@ export default function Home() {
       </InsetPanel>
 
       <nav aria-label="Navigation">
-        <RaisedPanel className="raised-breathe-trigger flex items-center gap-2 px-4 py-2 animate-[raised-breathe_10s_ease-in-out_infinite]">
+        <RaisedPanel className="flex items-center gap-2 px-4 py-2">
           {navItems.map((item) => (
             <SidebarNode
               key={item}

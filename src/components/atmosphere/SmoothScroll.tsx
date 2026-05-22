@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import Lenis from "lenis";
 
 interface SmoothScrollProps {
@@ -8,27 +8,30 @@ interface SmoothScrollProps {
 }
 
 export function SmoothScroll({ children }: SmoothScrollProps) {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     history.scrollRestoration = "manual";
     window.scrollTo(0, 0);
 
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.0,
       easing: (t: number) => 1 - Math.pow(1 - t, 3),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 0.55,
-      touchMultiplier: 0.45,
+      wheelMultiplier: 0.5,
+      touchMultiplier: 0.35,
       autoResize: true,
     });
 
     (window as unknown as Record<string, unknown>).__lenis = lenis;
 
     let rafId: number;
+
     const raf = (time: number) => {
+      if (document.hidden) {
+        rafId = requestAnimationFrame(raf);
+        return;
+      }
       lenis.raf(time);
       rafId = requestAnimationFrame(raf);
     };
@@ -40,5 +43,5 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
     };
   }, []);
 
-  return <div ref={wrapperRef}>{children}</div>;
+  return children;
 }

@@ -3,68 +3,73 @@
     background-color: rgb(var(--typro-bg-rgb));
   }
 
-  /* — LAYER 1: Ambient surface contact — */
-
   .surface-ambient {
     background-color: rgb(var(--typro-bg-rgb));
     box-shadow: var(--shadow-ambient);
-    border-radius: 12px;
+    border-radius: 24px;
   }
 
-  /* — LAYER 2: Section surfaces (inset wells) — */
-
   .surface-inset {
-    background-color: rgb(var(--typro-bg-secondary-rgb));
+    background: linear-gradient(145deg, rgb(var(--typro-bg-secondary-rgb)), #e7e2db);
     box-shadow: var(--shadow-well);
-    border-radius: 12px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition:
+      box-shadow var(--motion-standard) var(--ease-release),
+      transform var(--motion-standard) var(--ease-release);
   }
 
   .surface-inset--focused {
     box-shadow: var(--shadow-well-focused);
   }
 
-  /* — LAYER 3: Raised interactive surfaces — */
-
   .surface-raised {
-    background-color: rgb(var(--typro-bg-rgb));
+    background: linear-gradient(145deg, rgb(var(--typro-bg-secondary-rgb)), #e7e2db);
     box-shadow: var(--shadow-raised);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
     transition: all var(--motion-hover) var(--ease-out-soft);
   }
 
   .surface-raised-sm {
     background-color: rgb(var(--typro-bg-rgb));
     box-shadow: var(--shadow-raised-sm);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
     transition: all var(--motion-hover) var(--ease-out-soft);
   }
 
   .surface-raised-lg {
-    background-color: rgb(var(--typro-bg-rgb));
+    background: linear-gradient(145deg, rgb(var(--typro-bg-secondary-rgb)), #e7e2db);
     box-shadow: var(--shadow-raised-lg);
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
   }
 
   .surface-raised-xl {
-    background-color: rgb(var(--typro-bg-rgb));
+    background: linear-gradient(145deg, rgb(var(--typro-bg-secondary-rgb)), #e7e2db);
     box-shadow: var(--shadow-raised-xl);
+    border-radius: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
   }
 
-  /* — LAYER 3: Pressed / interactive inset — */
-
   .surface-pressed {
-    background-color: rgb(var(--typro-bg-secondary-rgb));
+    background-color: rgb(var(--typro-bg-rgb));
     box-shadow: var(--shadow-pressed);
+    border-radius: 16px;
   }
 
   .surface-pressed-sm {
-    background-color: rgb(var(--typro-bg-secondary-rgb));
+    background-color: rgb(var(--typro-bg-rgb));
     box-shadow: var(--shadow-pressed-sm);
+    border-radius: 12px;
   }
-
-  /* — LAYER 4: Embedded cavities (monitors, terminal, display) — */
 
   .surface-cavity {
     background-color: rgb(var(--typro-bg-rgb));
     box-shadow: var(--shadow-cavity);
-    border-radius: 8px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
     transition: box-shadow var(--motion-cavity) var(--ease-out-soft);
   }
 
@@ -73,45 +78,43 @@
   }
 
   .surface-cavity--deeper {
-    background-color: rgb(var(--typro-bg-secondary-rgb));
+    background-color: rgb(var(--typro-bg-rgb));
     box-shadow: var(--shadow-cavity);
-    border-radius: 8px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
     transition: box-shadow var(--motion-cavity) var(--ease-out-soft);
   }
 
   .surface-cavity--deepest {
-    background-color: #c4ccdc;
+    background-color: rgb(var(--typro-bg-rgb));
     background-image: radial-gradient(
       ellipse at 50% 30%,
-      rgba(200, 215, 235, 0.35) 0%,
+      rgba(255, 255, 255, 0.35) 0%,
       transparent 70%
     );
     box-shadow: var(--shadow-cavity-deep);
-    border-radius: 8px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     transition: box-shadow var(--motion-cavity) var(--ease-out-soft);
   }
-
-  /* — Metal key texture — */
 
   .metal-key {
     background-image: linear-gradient(135deg, var(--typro-key-from), var(--typro-key-to));
   }
 
   .chamfer-edge {
-    border-top: 1px solid var(--typro-border);
-    border-left: 1px solid var(--typro-border);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
   }
 
-  /* — Glass overlay — */
-
   .surface-glass {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }
 
   .surface-glass-heavy {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }

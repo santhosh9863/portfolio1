@@ -153,12 +153,12 @@ export function ModuleBay({
               {status}
             </span>
           )}
-          <span className="hidden sm:inline text-mono-xs text-muted opacity-35">
+          <span className="hidden sm:inline text-mono-xs text-subtle">
             {stack}
           </span>
         </div>
         <span className="inline-flex items-center gap-2 sm:gap-3">
-          <span className="hidden sm:inline text-mono-xs text-muted opacity-25">
+          <span className="hidden sm:inline text-mono-xs text-subtle">
             {year}
           </span>
           <span
@@ -254,7 +254,7 @@ export function ModuleBay({
                       transitionDelay: sectionsVisible ? staggerDelay(2) : "0ms",
                     }}
                   >
-                    <span className="text-mono-sm text-muted opacity-40 tracking-wider">
+                    <span className="text-mono-sm text-subtle tracking-wider">
                       STORY
                     </span>
                     <div className="story-block mt-2">
@@ -303,15 +303,15 @@ export function ModuleBay({
                   >
                     {previewContent || (
                       <div className="flex flex-col items-center gap-2 px-4 py-2">
-                        <div className="flex items-baseline gap-3 text-mono-xs text-muted opacity-50">
+                        <div className="flex items-baseline gap-3 text-mono-xs text-secondary">
                           <span className="w-16 shrink-0">STACK</span>
                           <span>{stack}</span>
                         </div>
-                        <div className="flex items-baseline gap-3 text-mono-xs text-muted opacity-50">
+                        <div className="flex items-baseline gap-3 text-mono-xs text-secondary">
                           <span className="w-16 shrink-0">YEAR</span>
                           <span>{year}</span>
                         </div>
-                        <div className="mt-1 flex items-baseline gap-3 text-mono-xs text-muted opacity-50">
+                        <div className="mt-1 flex items-baseline gap-3 text-mono-xs text-secondary">
                           <span className="w-16 shrink-0">STATUS</span>
                           <span className="text-correct">● {status}</span>
                         </div>
@@ -331,7 +331,7 @@ export function ModuleBay({
                       transitionDelay: sectionsVisible ? staggerDelay(4) : "0ms",
                     }}
                   >
-                    <p className="text-body-sm sm:text-body text-secondary">
+                    <p className="text-body-sm sm:text-body text-secondary max-w-prose">
                       {description}
                     </p>
                   </div>
@@ -348,7 +348,7 @@ export function ModuleBay({
                       transitionDelay: sectionsVisible ? staggerDelay(5) : "0ms",
                     }}
                   >
-                    <span className="text-mono-sm text-muted opacity-40 tracking-wider">
+                    <span className="text-mono-sm text-subtle tracking-wider">
                       SYSTEM FLOW
                     </span>
                     <ArchitectureFlow nodes={archFlow} className="mt-2" />
@@ -366,7 +366,7 @@ export function ModuleBay({
                       transitionDelay: sectionsVisible ? staggerDelay(6) : "0ms",
                     }}
                   >
-                    <span className="text-mono-sm text-muted opacity-40 tracking-wider">
+                    <span className="text-mono-sm text-subtle tracking-wider">
                       DECISIONS
                     </span>
                     <div className="decision-block mt-2">
@@ -392,8 +392,8 @@ export function ModuleBay({
                     transitionDelay: sectionsVisible ? staggerDelay(7) : "0ms",
                   }}
                 >
-                  <span className="text-mono-sm text-muted opacity-40 tracking-wider">
-                    COMPONENTS
+                    <span className="text-mono-sm text-subtle tracking-wider">
+                      COMPONENTS
                   </span>
                   <div className="flex flex-wrap gap-2 mt-2">
                     {components.map((c) => (
@@ -533,15 +533,15 @@ export function ModuleBay({
                     transitionDelay: sectionsVisible ? staggerDelay(2) : "0ms",
                   }}
                 >
-                  <span className="text-mono-sm text-muted opacity-40 tracking-wider">DETAILS</span>
+                    <span className="text-mono-sm text-subtle tracking-wider">DETAILS</span>
                   <div className="flex flex-col gap-0.5 mt-1">
-                    <span className="text-mono-sm text-muted opacity-35">
+                    <span className="text-mono-sm text-subtle">
                       Stack: {stack}
                     </span>
-                    <span className="text-mono-sm text-muted opacity-35">
+                    <span className="text-mono-sm text-subtle">
                       Year: {year}
                     </span>
-                    <span className="text-mono-sm text-muted opacity-35">
+                    <span className="text-mono-sm text-subtle">
                       Status: {status}
                     </span>
                   </div>

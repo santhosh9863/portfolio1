@@ -1,10 +1,9 @@
 @layer components {
-  /* — LAYER 3: Interactive buttons — */
-
   .btn-typro {
     position: relative;
     background-color: rgb(var(--typro-bg-rgb));
     box-shadow: var(--shadow-raised);
+    border: 1px solid rgba(255, 255, 255, 0.35);
     transition:
       all var(--motion-hover) var(--ease-out-soft),
       background-color var(--motion-press) var(--ease-press);
@@ -14,7 +13,7 @@
   }
 
   .btn-typro:focus-visible {
-    outline: 2px solid rgba(9, 132, 227, 0.5);
+    outline: 2px solid rgba(95, 107, 122, 0.35);
     outline-offset: 2px;
   }
 
@@ -24,7 +23,7 @@
   }
 
   .btn-typro:active {
-    background-color: rgb(var(--typro-bg-secondary-rgb));
+    background-color: rgb(var(--typro-bg-rgb));
     box-shadow: var(--shadow-pressed);
     transform: scale(0.985);
     transition-duration: var(--motion-press);
@@ -41,6 +40,7 @@
     position: relative;
     background-color: rgb(var(--typro-bg-rgb));
     box-shadow: var(--shadow-raised-sm);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     transition:
       all var(--motion-hover) var(--ease-out-soft),
       background-color var(--motion-press) var(--ease-press);
@@ -50,7 +50,7 @@
   }
 
   .btn-typro-sm:focus-visible {
-    outline: 2px solid rgba(9, 132, 227, 0.5);
+    outline: 2px solid rgba(95, 107, 122, 0.35);
     outline-offset: 2px;
   }
 
@@ -60,7 +60,7 @@
   }
 
   .btn-typro-sm:active {
-    background-color: rgb(var(--typro-bg-secondary-rgb));
+    background-color: rgb(var(--typro-bg-rgb));
     box-shadow: var(--shadow-pressed-sm);
     transform: scale(0.985);
     transition-duration: var(--motion-press);
@@ -73,12 +73,11 @@
     transform: none;
   }
 
-  /* — LAYER 2: Inset section well — */
-
   .well-typro {
-    background-color: rgb(var(--typro-bg-secondary-rgb));
+    background: linear-gradient(145deg, rgb(var(--typro-bg-secondary-rgb)), #e7e2db);
     box-shadow: var(--shadow-well);
-    border-radius: 12px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
     transition:
       box-shadow var(--motion-standard) var(--ease-release),
       transform var(--motion-standard) var(--ease-release);
@@ -89,15 +88,12 @@
   }
 
   .well-typro-pressed {
-    background-color: rgb(var(--typro-bg-secondary-rgb));
-    box-shadow:
-      inset 6px 6px 14px rgba(var(--typro-shadow-dark-rgb), 0.7),
-      inset -6px -6px 14px rgba(var(--typro-shadow-light-rgb), 0.95);
-    border-radius: 12px;
+    background-color: rgb(var(--typro-bg-rgb));
+    box-shadow: var(--shadow-pressed);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     transform: scale(0.99);
   }
-
-  /* — Machine reveal (expandable content) — */
 
   .machine-reveal {
     display: grid;
@@ -129,57 +125,27 @@
     filter: blur(0px);
   }
 
-  /* — Focus / inspection states — */
-
   .well--focused {
     box-shadow: var(--shadow-well-focused), var(--glow-ambient);
   }
 
   .well--inspection {
-    box-shadow:
-      inset 6px 6px 12px rgba(var(--typro-shadow-dark-rgb), 0.65),
-      inset -4px -5px 12px rgba(var(--typro-shadow-light-rgb), 0.93);
+    box-shadow: var(--shadow-pressed);
     transition: box-shadow var(--motion-slow) ease-out;
   }
-
-  /* — LAYER 3: System node cards — */
 
   .system-node {
     position: relative;
     background-color: rgb(var(--typro-bg-rgb));
     box-shadow: var(--shadow-raised-sm);
-    transition:
-      all var(--motion-hover) var(--ease-out-soft),
-      background-color var(--motion-press) var(--ease-press);
-    cursor: pointer;
-    user-select: none;
-  }
-
-  .system-node:focus-visible {
-    outline: 2px solid rgba(9, 132, 227, 0.5);
-    outline-offset: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all var(--motion-hover) var(--ease-out-soft);
   }
 
   .system-node:hover {
     box-shadow: var(--shadow-raised-sm-hover), var(--glow-hover);
     transform: translateY(-0.8px);
   }
-
-  .system-node:active {
-    background-color: rgb(var(--typro-bg-secondary-rgb));
-    box-shadow: var(--shadow-pressed-sm);
-    transform: scale(0.985);
-    transition-duration: var(--motion-press);
-    transition-timing-function: var(--ease-press);
-  }
-
-  .system-node--open {
-    background-color: rgb(var(--typro-bg-secondary-rgb));
-    box-shadow: var(--shadow-pressed-sm);
-    transform: scale(0.985);
-  }
-
-  /* — Depth toggle — */
 
   .depth-toggle {
     transition: all var(--motion-fast) ease-out;
@@ -191,11 +157,9 @@
   }
 
   .depth-toggle--inset {
-    background-color: rgb(var(--typro-bg-secondary-rgb));
+    background-color: rgb(var(--typro-bg-rgb));
     box-shadow: var(--shadow-pressed);
   }
-
-  /* — Sidebar accent indicator — */
 
   .sidebar-accent {
     position: absolute;
@@ -204,7 +168,7 @@
     width: 0;
     height: 16px;
     border-radius: 0 4px 4px 0;
-    background-color: rgb(9, 132, 227);
+    background-color: rgb(95, 107, 122);
     transform: translateY(-50%);
     transition: width var(--motion-standard) var(--ease-release);
   }

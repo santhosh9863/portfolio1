@@ -8,6 +8,18 @@
 @import "../styles/previews.css";
 
 @layer base {
+  html.lenis {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
   body {
     overflow-x: hidden;
   }
@@ -17,7 +29,8 @@
   --color-base: var(--typro-bg);
   --color-bg-secondary: var(--typro-bg-secondary);
   --color-foreground: var(--typro-text);
-  --color-muted: var(--typro-text-secondary);
+  --color-secondary: var(--typro-text-secondary);
+  --color-muted: var(--typro-text-muted);
   --color-subtle: var(--typro-text-muted);
   --color-accent: var(--typro-accent);
   --color-accent-secondary: var(--typro-accent-secondary);

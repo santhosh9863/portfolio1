@@ -5,24 +5,22 @@ import { cn } from "@/lib/utils";
 interface SubsystemChipProps {
   children: React.ReactNode;
   className?: string;
-  onClick?: () => void;
 }
 
 export function SubsystemChip({
   children,
   className,
-  onClick,
 }: SubsystemChipProps) {
   return (
-    <button
-      type="button"
-      onClick={onClick}
+    <div
       className={cn(
-        "subsystem-chip rounded-md px-2 py-1 text-mono-sm text-secondary",
+        "subsystem-chip rounded-md px-3 py-1.5",
         className,
       )}
     >
-      {children}
-    </button>
+      <span className="text-mono-xs font-semibold tracking-wide text-secondary">
+        {children}
+      </span>
+    </div>
   );
 }

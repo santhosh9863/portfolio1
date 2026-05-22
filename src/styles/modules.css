@@ -2,16 +2,10 @@
   /* === MODULE CAVITY (EXPANDED CONTENT WELL) === */
 
   .module-cavity {
-    background-color: rgb(var(--typro-bg-secondary-rgb));
-    background-image: radial-gradient(
-      ellipse at 50% 30%,
-      rgba(220, 228, 240, 0.3) 0%,
-      transparent 70%
-    );
-    box-shadow:
-      inset 4px 4px 10px rgba(var(--typro-shadow-dark-rgb), 0.7),
-      inset -5px -5px 12px rgba(var(--typro-shadow-light-rgb), 0.85);
-    border-radius: 10px;
+    background: linear-gradient(145deg, rgb(var(--typro-bg-secondary-rgb)), #e7e2db);
+    box-shadow: var(--shadow-cavity);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 6px 6px;
   }
 
@@ -19,6 +13,7 @@
 
   .module-expansion-grid {
     transition: grid-template-rows var(--motion-expand) var(--ease-mechanical);
+    will-change: grid-template-rows;
   }
 
   .module-trigger--depressed {
@@ -104,7 +99,7 @@
     font-size: 0.8125rem;
     letter-spacing: 0.02em;
     line-height: 1.5;
-    color: rgba(var(--typro-text-rgb), 0.55);
+    color: rgba(var(--typro-text-rgb), 0.75);
   }
 
   @media (min-width: 640px) {
@@ -136,12 +131,12 @@
     font-family: var(--font-geist-mono);
     font-size: 0.6875rem;
     letter-spacing: 0.06em;
-    color: rgba(var(--typro-text-rgb), 0.45);
+    color: rgba(var(--typro-text-rgb), 0.60);
   }
 
   .module-meta__value {
     font-size: 0.8125rem;
-    color: rgba(var(--typro-text-rgb), 0.7);
+    color: rgba(var(--typro-text-rgb), 0.8);
   }
 
   /* — Action group — */
@@ -156,7 +151,7 @@
     font-family: var(--font-geist-mono);
     font-size: 0.625rem;
     letter-spacing: 0.08em;
-    color: rgba(var(--typro-text-rgb), 0.25);
+    color: rgba(var(--typro-text-rgb), 0.45);
   }
 
   .module-actions__group {
@@ -200,13 +195,13 @@
     font-size: 0.4375rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(var(--typro-text-rgb), 0.12);
+    color: rgba(var(--typro-text-rgb), 0.22);
     pointer-events: none;
     transition: color var(--motion-expand) ease-out;
   }
 
   .display-monitor--online .display-monitor__screen-header {
-    color: rgba(var(--typro-text-rgb), 0.2);
+    color: rgba(var(--typro-text-rgb), 0.30);
   }
 
   /* — Activation glow enhancement — */
@@ -220,7 +215,6 @@
     opacity: 0;
     box-shadow: var(--glow-active);
     transition: opacity var(--motion-slow) ease-out;
-    will-change: opacity;
   }
 
   .display-monitor--powering .display-monitor__glow {
@@ -229,13 +223,7 @@
   }
 
   .display-monitor--online .display-monitor__glow {
-    opacity: 1;
-    animation: display-glow-breathe 8s ease-in-out infinite;
-  }
-
-  @keyframes display-glow-breathe {
-    0%, 100% { opacity: 0.75; }
-    50% { opacity: 1; }
+    opacity: 0.6;
   }
 
   /* — Status strip enhancement — */
@@ -245,7 +233,7 @@
     align-items: center;
     gap: 12px;
     padding: 4px 12px 4px;
-    border-top: 1px solid rgba(0, 0, 0, 0.055);
+    border-top: 1px solid rgba(0, 0, 0, 0.035);
     min-height: 22px;
   }
 
@@ -271,7 +259,7 @@
   }
 
   .display-monitor__status-value--active {
-    color: rgba(0, 184, 148, 0.45);
+    color: rgba(95, 107, 122, 0.5);
   }
 
   /* — Channel selectors — */
@@ -292,9 +280,8 @@
     padding: 3px 6px;
     border-radius: 4px;
     background-color: rgb(var(--typro-bg-rgb));
-    box-shadow:
-      1.5px 1.5px 3px rgba(var(--typro-shadow-dark-rgb), 0.35),
-      -1.5px -1.5px 3px rgba(var(--typro-shadow-light-rgb), 0.65);
+    box-shadow: var(--shadow-raised-sm);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     color: rgba(0, 0, 0, 0.25);
     transition: all var(--motion-hover) var(--ease-out-soft);
     user-select: none;
@@ -303,27 +290,26 @@
   }
 
   .display-channel:focus-visible {
-    outline: 2px solid rgba(9, 132, 227, 0.5);
+    outline: 2px solid rgba(95, 107, 122, 0.35);
     outline-offset: 1px;
   }
 
   .display-channel:hover {
-    box-shadow:
-      2px 2px 4px rgba(var(--typro-shadow-dark-rgb), 0.4),
-      -2px -2px 4px rgba(var(--typro-shadow-light-rgb), 0.7),
-      var(--glow-hover);
+    box-shadow: var(--shadow-raised-sm-hover), var(--glow-hover);
     color: rgba(0, 0, 0, 0.35);
   }
 
   .display-channel:active {
+    box-shadow: var(--shadow-pressed-sm);
     transform: scale(0.985);
     transition-duration: var(--motion-press);
     transition-timing-function: var(--ease-press);
   }
 
   .display-channel--active {
-    background-color: rgb(var(--typro-bg-secondary-rgb));
+    background-color: rgb(var(--typro-bg-rgb));
     box-shadow: var(--shadow-pressed-sm);
+    border-color: rgba(255, 255, 255, 0.3);
     color: rgba(0, 0, 0, 0.5);
   }
 
@@ -335,38 +321,33 @@
   /* === ACTIVE MODULE FOCUS SYSTEM === */
 
   .module-dimmed {
-    opacity: 0.55;
-    filter: grayscale(0.15);
+    opacity: 0.5;
     transition:
-      opacity var(--motion-dim) ease-in-out,
-      filter var(--motion-dim) ease-in-out;
+      opacity var(--motion-dim) ease-in-out;
+    will-change: opacity;
   }
 
   .module-dimmed .module-trigger--depressed,
   .module-dimmed .module-trigger--softened {
     box-shadow:
-      inset 2px 2px 4px rgba(var(--typro-shadow-dark-rgb), 0.4),
-      inset -2px -2px 4px rgba(var(--typro-shadow-light-rgb), 0.6);
+      inset 2px 2px 4px rgba(0, 0, 0, 0.04),
+      inset -2px -2px 4px rgba(255, 255, 255, 0.5);
   }
 
   /* === ENHANCED DISPLAY MONITOR (LAYER 4) === */
 
   .display-monitor {
     position: relative;
-    background-color: rgb(var(--typro-bg-rgb));
-    border-radius: 12px;
+    background: linear-gradient(145deg, rgb(var(--typro-bg-secondary-rgb)), #e7e2db);
+    border-radius: 16px;
     box-shadow: var(--shadow-monitor-frame);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     overflow: hidden;
   }
 
   .display-monitor__cavity {
     margin: 12px;
-    background-color: #b0bccf;
-    background-image: radial-gradient(
-      ellipse at 50% 40%,
-      rgba(200, 215, 235, 0.45) 0%,
-      transparent 70%
-    );
+    background-color: #e0dbd5;
     border-radius: 8px;
     box-shadow: var(--shadow-cavity-deep);
     min-height: 100px;
@@ -514,21 +495,14 @@
     min-height: 80px;
   }
 
-  /* === SUBSYSTEM CHIP (LAYER 3) === */
+  /* === SUBSYSTEM CHIP (ENGINEERED MODULE BLOCK) === */
 
   .subsystem-chip {
     position: relative;
     background-color: rgb(var(--typro-bg-rgb));
     box-shadow: var(--shadow-raised-sm);
-    transition:
-      all var(--motion-hover) var(--ease-out-soft),
-      background-color var(--motion-press) var(--ease-press);
-    user-select: none;
-  }
-
-  .subsystem-chip:focus-visible {
-    outline: 2px solid rgba(9, 132, 227, 0.5);
-    outline-offset: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    transition: all var(--motion-hover) var(--ease-out-soft);
   }
 
   .subsystem-chip:hover {
@@ -536,22 +510,13 @@
     transform: translateY(-0.8px);
   }
 
-  .subsystem-chip:active {
-    background-color: rgb(var(--typro-bg-secondary-rgb));
-    box-shadow: var(--shadow-pressed-sm);
-    transform: scale(0.985);
-    transition-duration: var(--motion-press);
-    transition-timing-function: var(--ease-press);
-  }
-
   /* === INTERNAL MODULE TABS (HARDWARE MODE SELECTORS) === */
 
-  .module-tab {
+.module-tab {
     position: relative;
     background-color: rgb(var(--typro-bg-rgb));
-    box-shadow:
-      2px 2px 4px rgba(var(--typro-shadow-dark-rgb), 0.45),
-      -2px -2px 4px rgba(var(--typro-shadow-light-rgb), 0.75);
+    box-shadow: var(--shadow-raised-sm);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     transition:
       all var(--motion-hover) var(--ease-out-soft),
       background-color var(--motion-press) var(--ease-press);
@@ -559,7 +524,36 @@
   }
 
   .module-tab:focus-visible {
-    outline: 2px solid rgba(9, 132, 227, 0.5);
+    outline: 2px solid rgba(95, 107, 122, 0.35);
+    outline-offset: 1px;
+  }
+
+  .module-tab:hover {
+    box-shadow: var(--shadow-raised-sm-hover), var(--glow-hover);
+    transform: translateY(-0.5px);
+  }
+
+  .module-tab:active {
+    box-shadow: var(--shadow-pressed-sm);
+    transform: scale(0.985);
+    transition-duration: var(--motion-press);
+    transition-timing-function: var(--ease-press);
+  }
+
+  .module-tab--active {
+    background-color: rgb(var(--typro-bg-rgb));
+    box-shadow: var(--shadow-pressed-sm);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: rgb(var(--typro-text-rgb));
+  }
+
+  .module-tab--active:hover {
+    box-shadow: var(--shadow-pressed-sm);
+    transform: none;
+  }
+
+  .module-tab:focus-visible {
+    outline: 2px solid rgba(95, 107, 122, 0.35);
     outline-offset: 1px;
   }
 
@@ -600,37 +594,37 @@
     display: flex;
     align-items: baseline;
     gap: 8px;
-    padding: 2px 0;
+    padding: 3px 0;
   }
 
   .decision-row__area {
     font-family: var(--font-geist-mono);
     font-size: 0.5625rem;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.10em;
     font-weight: 800;
     text-transform: uppercase;
-    color: rgba(var(--typro-text-rgb), 0.3);
+    color: rgba(var(--typro-text-rgb), 0.55);
     width: 5.5em;
     flex-shrink: 0;
   }
 
   .decision-row__arrow {
     font-size: 0.75rem;
-    color: rgba(var(--typro-text-rgb), 0.2);
+    color: rgba(var(--typro-text-rgb), 0.40);
     flex-shrink: 0;
   }
 
   .decision-row__text {
     font-size: 0.8125rem;
-    line-height: 1.5;
-    color: rgba(var(--typro-text-rgb), 0.55);
+    line-height: 1.55;
+    color: rgba(var(--typro-text-rgb), 0.75);
   }
 
   .decision-row__outcome {
     font-family: var(--font-geist-mono);
     font-size: 0.5rem;
-    letter-spacing: 0.04em;
-    color: rgba(var(--typro-text-rgb), 0.25);
+    letter-spacing: 0.06em;
+    color: rgba(var(--typro-text-rgb), 0.50);
     margin-left: auto;
     flex-shrink: 0;
   }
@@ -653,10 +647,9 @@
     max-width: 280px;
     padding: 8px 12px;
     background-color: rgb(var(--typro-bg-rgb));
-    border-radius: 6px;
-    box-shadow:
-      2px 2px 4px rgba(var(--typro-shadow-dark-rgb), 0.5),
-      -2px -2px 4px rgba(var(--typro-shadow-light-rgb), 0.75);
+    border-radius: 10px;
+    box-shadow: var(--shadow-raised-sm);
+    border: 1px solid rgba(255, 255, 255, 0.25);
   }
 
   .arch-node__info {
@@ -670,14 +663,14 @@
     font-size: 0.8125rem;
     font-weight: 600;
     letter-spacing: 0.01em;
-    color: rgba(var(--typro-text-rgb), 0.6);
+    color: rgba(var(--typro-text-rgb), 0.7);
   }
 
   .arch-node__role {
     font-family: var(--font-geist-mono);
     font-size: 0.5rem;
     letter-spacing: 0.04em;
-    color: rgba(var(--typro-text-rgb), 0.2);
+    color: rgba(var(--typro-text-rgb), 0.40);
   }
 
   .arch-node__led {
@@ -685,8 +678,8 @@
     height: 5px;
     border-radius: 50%;
     flex-shrink: 0;
-    background: rgba(0, 184, 148, 0.35);
-    box-shadow: 0 0 3px rgba(0, 184, 148, 0.15);
+    background: rgba(95, 107, 122, 0.35);
+    box-shadow: 0 0 3px rgba(95, 107, 122, 0.15);
   }
 
   .arch-connector {
@@ -722,7 +715,7 @@
     width: 2px;
     height: 2px;
     border-radius: 50%;
-    background: rgba(var(--typro-text-rgb), 0.12);
+    background: rgba(var(--typro-text-rgb), 0.20);
     animation: arch-flow-pulse 3s ease-in-out infinite;
   }
 
@@ -740,7 +733,7 @@
   .story-block {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 8px;
   }
 
   .story-row {
@@ -751,17 +744,18 @@
 
   .story-row__label {
     font-family: var(--font-geist-mono);
-    font-size: 0.5rem;
-    letter-spacing: 0.08em;
+    font-size: 0.5625rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(var(--typro-text-rgb), 0.2);
-    width: 4.5em;
+    font-weight: 700;
+    color: rgba(var(--typro-text-rgb), 0.55);
+    width: 5em;
     flex-shrink: 0;
   }
 
   .story-row__text {
     font-size: 0.8125rem;
-    line-height: 1.5;
-    color: rgba(var(--typro-text-rgb), 0.5);
+    line-height: 1.6;
+    color: rgba(var(--typro-text-rgb), 0.70);
   }
 }
