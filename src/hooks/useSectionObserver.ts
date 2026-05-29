@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export type SectionId =
   | "profile"
@@ -12,35 +12,42 @@ export type SectionId =
 
 export function useSectionObserver(): SectionId {
   const [activeSection, setActiveSection] = useState<SectionId>(null);
+  const rafRef = useRef<number>(0);
 
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>("[data-section]");
     if (!elements.length) return;
 
+    const root = document.documentElement;
+
     const observer = new IntersectionObserver(
       (entries) => {
-        let best: { id: SectionId; ratio: number } = { id: null, ratio: 0 };
-        for (const entry of entries) {
-          const ratio = entry.intersectionRatio;
-          if (ratio > best.ratio) {
-            best = {
-              id: (entry.target as HTMLElement).dataset
-                .section as SectionId,
-              ratio,
-            };
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = requestAnimationFrame(() => {
+          let best: { id: SectionId; ratio: number } = { id: null, ratio: 0 };
+          for (const entry of entries) {
+            const ratio = entry.intersectionRatio;
+            if (ratio > best.ratio) {
+              best = {
+                id: (entry.target as HTMLElement).dataset
+                  .section as SectionId,
+                ratio,
+              };
+            }
           }
-        }
-        setActiveSection(best.ratio > 0 ? best.id : null);
+          const id = best.ratio > 0 ? best.id : null;
+          root.dataset.activeSection = id || "";
+          setActiveSection(id);
+        });
       },
-      {
-        threshold: [
-          0, 0.3, 0.6, 0.9, 1,
-        ],
-      },
+      { threshold: [0, 0.5, 1] },
     );
 
     elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(rafRef.current);
+    };
   }, []);
 
   return activeSection;

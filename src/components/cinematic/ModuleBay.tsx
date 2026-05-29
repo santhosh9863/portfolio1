@@ -117,7 +117,7 @@ export function ModuleBay({
         onClose?.();
       }, 200);
     }
-  }, [clearTimers, schedule, name, onOpen, onClose]);
+  }, [clearTimers, schedule, onOpen, onClose]);
 
   const staggerDelay = (index: number) => `${80 + index * 80}ms`;
 

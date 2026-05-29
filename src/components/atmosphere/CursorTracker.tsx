@@ -1,19 +1,29 @@
 "use client";
 
-import { useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 export function CursorTracker() {
-  useEffect(() => {
-    const onMove = (e: MouseEvent) => {
-      const x = ((e.clientX / window.innerWidth) * 100).toFixed(1);
-      const y = ((e.clientY / window.innerHeight) * 100).toFixed(1);
-      document.documentElement.style.setProperty("--cursor-x", `${x}%`);
-      document.documentElement.style.setProperty("--cursor-y", `${y}%`);
-    };
+  const [pos, setPos] = useState({ x: 50, y: 50 });
 
-    window.addEventListener("mousemove", onMove, { passive: true });
-    return () => window.removeEventListener("mousemove", onMove);
+  const onMove = useCallback((e: MouseEvent) => {
+    setPos({
+      x: (e.clientX / window.innerWidth) * 100,
+      y: (e.clientY / window.innerHeight) * 100,
+    });
   }, []);
 
-  return null;
+  useEffect(() => {
+    window.addEventListener("mousemove", onMove, { passive: true });
+    return () => window.removeEventListener("mousemove", onMove);
+  }, [onMove]);
+
+  return (
+    <div
+      className="pointer-events-none fixed inset-0 z-0"
+      style={{
+        background: `radial-gradient(900px circle at ${pos.x}% ${pos.y}%, rgba(255,255,255,0.04) 0%, transparent 55%)`,
+      }}
+      aria-hidden="true"
+    />
+  );
 }

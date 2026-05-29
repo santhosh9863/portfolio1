@@ -23,6 +23,26 @@
   body {
     overflow-x: hidden;
   }
+
+  /* — Pause non-critical animations during scroll — */
+
+  html[data-scrolling] .led-indicator {
+    animation-duration: 10s !important;
+  }
+
+  html[data-scrolling] .colon-blink {
+    animation-duration: 2.5s !important;
+  }
+
+  html[data-scrolling] .arch-connector__pulse {
+    animation-play-state: paused !important;
+  }
+
+  html[data-scrolling] .display-monitor--online .display-monitor__screen {
+    animation: none;
+    filter: brightness(1);
+  }
+
 }
 
 @theme inline {

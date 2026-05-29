@@ -120,7 +120,7 @@ export default function Home() {
                 { label: "GitHub", href: "https://github.com/santhosh9863" },
                 { label: "LinkedIn", href: "https://linkedin.com/in/santhosh-krishna-698638372" },
                 { label: "Email", href: "mailto:santhoshkrishna.r67@gmail.com" },
-                { label: "Resume", href: "/Santhosh_Krishna_R_Resume.docx" },
+                { label: "Resume", href: "/santhosh_resume.html" },
               ].map((link) => (
                 <TactileButton
                   key={link.label}
@@ -402,7 +402,7 @@ export default function Home() {
                 { label: "GitHub", href: "https://github.com/santhosh9863" },
                 { label: "LinkedIn", href: "https://linkedin.com/in/santhosh-krishna-698638372" },
                 { label: "Email", href: "mailto:santhoshkrishna.r67@gmail.com" },
-                { label: "Resume", href: "/Santhosh_Krishna_R_Resume.docx" },
+                { label: "Resume", href: "/santhosh_resume.html" },
               ].map((link) => (
                 <TactileButton
                   key={link.label}

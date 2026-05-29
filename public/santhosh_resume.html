@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santhosh Krishna R - Resume</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+  @page { size: A4; margin: 0; }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #e8e8e8;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .resume {
+    width: 210mm;
+    min-height: 297mm;
+    background: #fff;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .header {
+    background: #2c3e50;
+    color: #fff;
+    padding: 32px 40px 28px;
+  }
+
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .header .title {
+    font-size: 14px;
+    font-weight: 400;
+    color: #95a5a6;
+    margin-top: 4px;
+    letter-spacing: 1px;
+  }
+
+  .header .contact-line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 24px;
+    margin-top: 14px;
+    font-size: 11px;
+    color: #bdc3c7;
+  }
+
+  .header .contact-line a {
+    color: #bdc3c7;
+    text-decoration: none;
+  }
+
+  .header .contact-line a:hover {
+    color: #fff;
+  }
+
+  .header .sep {
+    color: #5a7388;
+  }
+
+  .body {
+    padding: 28px 40px 36px;
+  }
+
+  .section {
+    margin-bottom: 22px;
+  }
+
+  .section:last-child {
+    margin-bottom: 0;
+  }
+
+  .section-heading {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #2c3e50;
+    border-bottom: 2px solid #2c3e50;
+    padding-bottom: 5px;
+    margin-bottom: 12px;
+  }
+
+  .summary-text {
+    font-size: 11px;
+    line-height: 1.65;
+    color: #333;
+  }
+
+  .skills-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .skills-row {
+    display: flex;
+    font-size: 10.5px;
+    line-height: 1.5;
+  }
+
+  .skills-cat {
+    font-weight: 600;
+    color: #2c3e50;
+    min-width: 150px;
+    flex-shrink: 0;
+  }
+
+  .skills-items {
+    color: #444;
+  }
+
+  .project {
+    margin-bottom: 16px;
+  }
+
+  .project:last-child {
+    margin-bottom: 0;
+  }
+
+  .project-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  .project-stack {
+    font-size: 10px;
+    color: #7f8c8d;
+    margin: 2px 0 5px;
+    font-weight: 500;
+  }
+
+  .project ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .project li {
+    font-size: 10.5px;
+    line-height: 1.55;
+    color: #444;
+    padding-left: 14px;
+    position: relative;
+    margin-bottom: 3px;
+  }
+
+  .project li::before {
+    content: "•";
+    position: absolute;
+    left: 4px;
+    color: #2c3e50;
+  }
+
+  .project-links {
+    font-size: 10px;
+    margin-top: 4px;
+  }
+
+  .project-links a {
+    color: #2980b9;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .project-links a:hover {
+    text-decoration: underline;
+  }
+
+  .edu-name {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  .edu-detail {
+    font-size: 10.5px;
+    color: #555;
+    margin-top: 2px;
+    line-height: 1.5;
+  }
+
+  .achievement-item {
+    font-size: 10.5px;
+    color: #444;
+    padding-left: 14px;
+    position: relative;
+    margin-bottom: 3px;
+    line-height: 1.55;
+  }
+
+  .achievement-item::before {
+    content: "•";
+    position: absolute;
+    left: 4px;
+    color: #2c3e50;
+  }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .resume { box-shadow: none; border-radius: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="resume">
+
+  <div class="header">
+    <h1>Santhosh Krishna R</h1>
+    <div class="title">Full Stack Application Developer</div>
+    <div class="contact-line">
+      <span>+91 95381 11909</span>
+      <span class="sep">|</span>
+      <span>santhoshkrishna.r67@gmail.com</span>
+      <span class="sep">|</span>
+      <span>Bengaluru, Karnataka, India</span>
+      <span class="sep">|</span>
+      <a href="https://github.com/santhosh9863" target="_blank">github.com/santhosh9863</a>
+      <span class="sep">|</span>
+      <a href="https://linkedin.com/in/santhosh-krishna-698638372" target="_blank">linkedin.com/in/santhosh-krishna-698638372</a>
+      <span class="sep">|</span>
+      <a href="https://portfolio-nine-ebon-19.vercel.app" target="_blank">portfolio</a>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <div class="section">
+      <div class="section-heading">Professional Summary</div>
+      <p class="summary-text">
+        BCA student with hands-on experience architecting cross-platform mobile applications using Flutter and building modern web applications with Next.js, React, and TypeScript. Experienced in designing scalable application architectures, integrating Firebase backends, and managing production deployments through GitHub Releases and Vercel. Focused on building real-world software systems, responsive interfaces, and modern frontend experiences.
+      </p>
+    </div>
+
+    <div class="section">
+      <div class="section-heading">Technical Skills</div>
+      <div class="skills-grid">
+        <div class="skills-row">
+          <span class="skills-cat">Languages:</span>
+          <span class="skills-items">Dart, JavaScript, TypeScript, SQL</span>
+        </div>
+        <div class="skills-row">
+          <span class="skills-cat">Frontend:</span>
+          <span class="skills-items">Flutter, React, Next.js, Tailwind CSS, HTML, CSS</span>
+        </div>
+        <div class="skills-row">
+          <span class="skills-cat">Backend &amp; Database:</span>
+          <span class="skills-items">Firebase (Auth, Firestore), Node.js, MySQL</span>
+        </div>
+        <div class="skills-row">
+          <span class="skills-cat">Tools &amp; Platforms:</span>
+          <span class="skills-items">Git, GitHub, Firebase Console, Vercel, VS Code</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-heading">Projects</div>
+
+      <div class="project">
+        <div class="project-name">PULSE - Attendance Intelligence Platform</div>
+        <div class="project-stack">Flutter · Dart · Firebase · GitHub</div>
+        <ul>
+          <li>Architected and developed a cross-platform attendance tracking application with real-time analytics, subject-wise insights, and attendance prediction systems.</li>
+          <li>Designed responsive Flutter frontend architecture with integrated Firebase authentication and Firestore backend.</li>
+          <li>Implemented scalable attendance analytics system and created APK deployment workflow using GitHub Releases.</li>
+        </ul>
+        <div class="project-links">
+          <a href="https://github.com/santhosh9863/safebunk" target="_blank">GitHub</a> · <a href="https://github.com/santhosh9863/safebunk/releases" target="_blank">APK Release</a>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-name">PULSE Official Website</div>
+        <div class="project-stack">Next.js · React · Tailwind CSS · Node.js</div>
+        <ul>
+          <li>Developed the official responsive web platform for the PULSE ecosystem using modern frontend architecture and mobile-first layouts.</li>
+          <li>Built responsive landing pages with scalable component structure and modern frontend UI/UX.</li>
+          <li>Implemented smooth interactions and animations for an engaging user experience.</li>
+        </ul>
+        <div class="project-links">
+          <a href="https://github.com/santhosh9863/Pulse-website" target="_blank">GitHub</a> · <a href="https://pulse-website-pi.vercel.app/" target="_blank">Live Website</a>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-name">Typro - Neuromorphic Typing SaaS Platform</div>
+        <div class="project-stack">Next.js · TypeScript · Tailwind CSS · Vercel</div>
+        <ul>
+          <li>Built a SaaS-style typing platform featuring neuromorphic UI design and responsive frontend architecture.</li>
+          <li>Designed custom neuromorphic UI components and optimized TypeScript codebase for maintainability.</li>
+          <li>Built responsive layouts and integrated Vercel deployment workflow for continuous delivery.</li>
+        </ul>
+        <div class="project-links">
+          <a href="https://github.com/santhosh9863/pro-type" target="_blank">GitHub</a> · <a href="https://typro-delta.vercel.app/" target="_blank">Live Website</a>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-name">Perfect Care Salon Website</div>
+        <div class="project-stack">Next.js · TypeScript · Tailwind CSS · Vercel</div>
+        <ul>
+          <li>Created a modern responsive salon website focused on frontend optimization and professional UI presentation.</li>
+          <li>Developed responsive layouts with dedicated service showcase sections and optimized frontend performance.</li>
+          <li>Managed end-to-end Vercel deployment for production availability.</li>
+        </ul>
+        <div class="project-links">
+          <a href="https://github.com/santhosh9863/prefect-care-salon" target="_blank">GitHub</a> · <a href="https://perfect-care-salon.vercel.app/" target="_blank">Live Website</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-heading">Education</div>
+      <div class="edu-name">Bachelor of Computer Applications (BCA)</div>
+      <div class="edu-detail">St. Francis College, Bengaluru · 2024 - 2027 · 4th Semester</div>
+    </div>
+
+    <div class="section">
+      <div class="section-heading">Achievements</div>
+      <div class="achievement-item">Secured 2nd Prize in Mind to Machine innovation event conducted at department level</div>
+    </div>
+
+    <div class="section">
+      <div class="section-heading">Languages</div>
+      <div class="summary-text">English, Kannada, Telugu, Tamil, Hindi</div>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>

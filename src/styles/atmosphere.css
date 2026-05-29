@@ -36,11 +36,6 @@
     background-color: var(--typro-bg);
     background-image:
       radial-gradient(
-        900px circle at var(--cursor-x, 50%) var(--cursor-y, 50%),
-        rgba(255, 255, 255, 0.04) 0%,
-        transparent 55%
-      ),
-      radial-gradient(
         140% 90% at 8% 6%,
         rgba(255, 255, 255, 0.015) 0%,
         transparent 70%
@@ -50,7 +45,7 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* — Subtle grain/noise texture overlay — */
+  /* — Subtle grain/noise texture overlay (CSS-only, no SVG filter) — */
 
   body::before {
     content: "";
@@ -58,10 +53,9 @@
     inset: 0;
     pointer-events: none;
     z-index: 0;
-    opacity: 0.02;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-    background-size: 256px 256px;
+    opacity: 0.025;
+    background-image: repeating-conic-gradient(rgba(0,0,0,0.004) 0% 25%, transparent 0% 50%);
+    background-size: 2px 2px;
   }
 
   /* — Ambient vignette — */

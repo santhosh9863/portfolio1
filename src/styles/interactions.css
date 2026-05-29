@@ -5,7 +5,8 @@
     box-shadow: var(--shadow-raised);
     border: 1px solid rgba(255, 255, 255, 0.35);
     transition:
-      all var(--motion-hover) var(--ease-out-soft),
+      transform var(--motion-hover) var(--ease-out-soft),
+      box-shadow var(--motion-hover) var(--ease-out-soft),
       background-color var(--motion-press) var(--ease-press);
     cursor: pointer;
     user-select: none;
@@ -42,7 +43,8 @@
     box-shadow: var(--shadow-raised-sm);
     border: 1px solid rgba(255, 255, 255, 0.3);
     transition:
-      all var(--motion-hover) var(--ease-out-soft),
+      transform var(--motion-hover) var(--ease-out-soft),
+      box-shadow var(--motion-hover) var(--ease-out-soft),
       background-color var(--motion-press) var(--ease-press);
     cursor: pointer;
     user-select: none;
@@ -139,7 +141,9 @@
     background-color: rgb(var(--typro-bg-rgb));
     box-shadow: var(--shadow-raised-sm);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: all var(--motion-hover) var(--ease-out-soft);
+    transition:
+      transform var(--motion-hover) var(--ease-out-soft),
+      box-shadow var(--motion-hover) var(--ease-out-soft);
   }
 
   .system-node:hover {
@@ -148,7 +152,10 @@
   }
 
   .depth-toggle {
-    transition: all var(--motion-fast) ease-out;
+    transition:
+      transform var(--motion-fast) ease-out,
+      box-shadow var(--motion-fast) ease-out,
+      background-color var(--motion-fast) ease-out;
   }
 
   .depth-toggle--raised {

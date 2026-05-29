@@ -15,12 +15,15 @@ const MONTHS = [
 const TZ = "IST";
 
 export function SystemClock({ className }: SystemClockProps) {
-  const [time, setTime] = useState(new Date());
+  const [time, setTime] = useState<Date | null>(null);
 
   useEffect(() => {
+    const id = setTimeout(() => setTime(new Date()), 0);
     const interval = setInterval(() => setTime(new Date()), 1000);
-    return () => clearInterval(interval);
+    return () => { clearTimeout(id); clearInterval(interval); };
   }, []);
+
+  if (!time) return null;
 
   const hh = time.getHours().toString().padStart(2, "0");
   const mm = time.getMinutes().toString().padStart(2, "0");

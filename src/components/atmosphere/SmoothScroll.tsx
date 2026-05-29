@@ -25,6 +25,16 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
 
     (window as unknown as Record<string, unknown>).__lenis = lenis;
 
+    const root = document.documentElement;
+    let scrollTimer: ReturnType<typeof setTimeout>;
+    lenis.on("scroll", () => {
+      root.dataset.scrolling = "true";
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => {
+        delete root.dataset.scrolling;
+      }, 200);
+    });
+
     let rafId: number;
 
     const raf = (time: number) => {
@@ -40,6 +50,7 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
     return () => {
       cancelAnimationFrame(rafId);
       lenis.destroy();
+      clearTimeout(scrollTimer);
     };
   }, []);
 

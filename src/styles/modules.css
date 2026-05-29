@@ -283,7 +283,11 @@
     box-shadow: var(--shadow-raised-sm);
     border: 1px solid rgba(255, 255, 255, 0.25);
     color: rgba(0, 0, 0, 0.25);
-    transition: all var(--motion-hover) var(--ease-out-soft);
+    transition:
+      transform var(--motion-hover) var(--ease-out-soft),
+      box-shadow var(--motion-hover) var(--ease-out-soft),
+      color var(--motion-hover) var(--ease-out-soft),
+      background-color var(--motion-hover) var(--ease-out-soft);
     user-select: none;
     cursor: pointer;
     text-align: center;
@@ -363,7 +367,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all var(--motion-standard) ease-out;
+    transition:
+      opacity var(--motion-standard) ease-out,
+      filter var(--motion-standard) ease-out;
   }
 
   /* — Activation states — */
@@ -502,7 +508,9 @@
     background-color: rgb(var(--typro-bg-rgb));
     box-shadow: var(--shadow-raised-sm);
     border: 1px solid rgba(255, 255, 255, 0.25);
-    transition: all var(--motion-hover) var(--ease-out-soft);
+    transition:
+      transform var(--motion-hover) var(--ease-out-soft),
+      box-shadow var(--motion-hover) var(--ease-out-soft);
   }
 
   .subsystem-chip:hover {
@@ -518,7 +526,8 @@
     box-shadow: var(--shadow-raised-sm);
     border: 1px solid rgba(255, 255, 255, 0.25);
     transition:
-      all var(--motion-hover) var(--ease-out-soft),
+      transform var(--motion-hover) var(--ease-out-soft),
+      box-shadow var(--motion-hover) var(--ease-out-soft),
       background-color var(--motion-press) var(--ease-press);
     user-select: none;
   }
