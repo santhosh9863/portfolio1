@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 
 export type SectionId =
   | "profile"
+  | "client"
   | "modules"
   | "matrix"
   | "history"

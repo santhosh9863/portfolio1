@@ -1,61 +1,11 @@
-@keyframes led-pulse {
-  0%, 100% { opacity: 0.7; }
-  50% { opacity: 1; }
-}
-
-@keyframes display-screen-breathe {
-  0%, 100% { filter: brightness(1); }
-  50% { filter: brightness(0.995); }
-}
-
-@keyframes colon-blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.25; }
-}
-
 /* === OPERATIONAL INDICATORS === */
-
-.led-indicator {
-  animation:
-    led-pulse var(--led-speed, 4s) ease-in-out infinite,
-    led-micro 9s ease-in-out infinite;
-}
-
-@keyframes led-micro {
-  0%, 85%, 100% { transform: scale(1); filter: brightness(1); }
-  88% { transform: scale(0.95); filter: brightness(0.85); }
-  91% { transform: scale(1.02); filter: brightness(1.05); }
-}
-
-.colon-blink {
-  animation: colon-blink 1s step-end infinite;
-}
 
 @layer base {
   body {
     background-color: var(--typro-bg);
-    background-image:
-      radial-gradient(
-        140% 90% at 8% 6%,
-        rgba(255, 255, 255, 0.015) 0%,
-        transparent 70%
-      );
     color: var(--typro-text);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-
-  /* — Subtle grain/noise texture overlay (CSS-only, no SVG filter) — */
-
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.025;
-    background-image: repeating-conic-gradient(rgba(0,0,0,0.004) 0% 25%, transparent 0% 50%);
-    background-size: 2px 2px;
   }
 
   /* — Ambient vignette — */

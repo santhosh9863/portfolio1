@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { SmoothScroll } from "@/components/atmosphere/SmoothScroll";
-import { CursorTracker } from "@/components/atmosphere/CursorTracker";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -39,8 +37,7 @@ export default function RootLayout({
       className={`${inter.variable} ${geistMono.variable}`}
     >
       <body>
-        <CursorTracker />
-        <SmoothScroll>{children}</SmoothScroll>
+        {children}
       </body>
     </html>
   );

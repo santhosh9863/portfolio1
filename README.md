@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Santhosh Krishna R — Portfolio
+
+A cinematic, neumorphic single-page portfolio built with Next.js and TypeScript. The site presents professional work through an editorial, tactile OS-style interface — client work, projects, technology, and contact — all in one scroll.
+
+## Features
+
+- **Client Work** — production work delivered for real clients (Raahi Global client application)
+- **Projects** — expandable project modules with engineering details: story, architecture flow, decisions, components, and live previews
+- **Technology** — interactive technology matrix with highlighted core skills
+- **Connect** — direct links to GitHub, LinkedIn, email, and resume
+- **Neumorphic design system** — CSS-driven shadow engine, warm ivory palette, mechanical interaction physics
+- **Fully responsive** — mobile-first layout with no horizontal overflow across breakpoints
+- **Accessible** — semantic sections, aria labels, keyboard-focusable controls, reduced-motion support
+
+## Tech Stack
+
+- **Framework** — Next.js (App Router), React, TypeScript
+- **Styling** — Tailwind CSS with a custom CSS shadow/variable design system
+- **Typography** — Inter + Geist Mono via `next/font`
+- **Performance** — static generation, no heavy client animations, native scrolling
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command          | Description                      |
+| ---------------- | -------------------------------- |
+| `npm run dev`    | Start the development server     |
+| `npm run build`  | Create an optimized production build |
+| `npm run start`  | Serve the production build       |
+| `npm run lint`   | Run ESLint checks                |
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+  app/          # Page, layout, global styles
+  components/   # UI components (surfaces, controls, cinematic, previews)
+  hooks/        # Section scroll observer
+  styles/       # Design system stylesheets (typography, materials, modules)
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contact
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **GitHub** — [santhosh9863](https://github.com/santhosh9863)
+- **LinkedIn** — [santhosh-krishna](https://linkedin.com/in/santhosh-krishna-698638372)
+- **Email** — santhoshkrishna.r67@gmail.com

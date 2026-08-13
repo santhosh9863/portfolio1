@@ -17,10 +17,6 @@ import {
   pulseChannels,
   PulseWebPreview,
   pulseWebChannels,
-  TyproPreview,
-  typroChannels,
-  PerfectCarePreview,
-  perfectCareChannels,
 } from "@/components/previews/ProductPreviews";
 
 const primaryTech = [
@@ -38,10 +34,15 @@ const secondaryTech = [
   { title: "Vercel", subtitle: "Edge deployment platform", usage: "→ Production web hosting" },
 ];
 
-const techNodes = [...primaryTech, ...secondaryTech];
+const techNodes: { title: string; subtitle: string; usage?: string; featured?: boolean }[] = [
+  { title: "Python", subtitle: "General-purpose programming language", featured: true },
+  ...primaryTech,
+  ...secondaryTech,
+];
 
 const sectionLabels: Record<string, string> = {
   profile: "About",
+  client: "Client Work",
   modules: "Projects",
   matrix: "Technology",
   communication: "Connect",
@@ -70,12 +71,7 @@ export default function Home() {
   const scrollToSection = (id: string) => {
     const el = document.querySelector(`[data-section="${id}"]`);
     if (el) {
-      const lenis = (window as unknown as Record<string, unknown>).__lenis as { scrollTo: (el: Element) => void } | undefined;
-      if (lenis) {
-        lenis.scrollTo(el);
-      } else {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
+      el.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -163,6 +159,55 @@ export default function Home() {
                 <span className="text-body-sm sm:text-body text-foreground">English / Kannada / Telugu / Tamil / Hindi</span>
               </div>
             </div>
+          </section>
+
+          <hr className="my-8 sm:my-10 border-t border-border" />
+
+          {/* CLIENT WORK */}
+          <section aria-label="Client Work">
+            <div className="mb-5 sm:mb-6" data-section="client">
+              <span className="text-label text-foreground">
+                Client Work
+              </span>
+            </div>
+
+            <RaisedPanel className="px-4 sm:px-6 py-5 sm:py-6">
+              <div className="flex flex-col gap-4 sm:gap-5">
+                <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
+                  <div className="module-identity min-w-0">
+                    <span className="module-identity__name">
+                      Raahi Global — Client Application
+                    </span>
+                    <span className="module-identity__blurb">
+                      German learning and placement platform
+                    </span>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 text-mono-xs text-correct">
+                    <span className="led-indicator inline-block h-1.5 w-1.5 rounded-full bg-[#00b894]" />
+                    Delivered / Production
+                  </span>
+                </div>
+
+                <p className="text-body-sm sm:text-body text-secondary max-w-2xl leading-relaxed">
+                  Cross-platform mobile application and responsive admin dashboard developed for Raahi Global, a German learning and placement platform.
+                </p>
+
+                <div className="grid grid-cols-[7.5em_1fr] gap-x-4 gap-y-3 sm:gap-y-3.5">
+                  <span className="text-mono-xs text-muted uppercase tracking-wider">Role</span>
+                  <span className="text-body-sm sm:text-body text-foreground">Full-Stack / Flutter Developer</span>
+                  <span className="text-mono-xs text-muted uppercase tracking-wider">Platform</span>
+                  <span className="text-body-sm sm:text-body text-foreground">Flutter · Firebase · Web Admin</span>
+                  <span className="text-mono-xs text-muted uppercase tracking-wider">Work</span>
+                  <span className="text-body-sm sm:text-body text-foreground">Mobile App · Admin Dashboard · Authentication · Notifications · Meetings</span>
+                  <span className="text-mono-xs text-muted uppercase tracking-wider">Status</span>
+                  <span className="text-body-sm sm:text-body text-foreground">Delivered / Production</span>
+                </div>
+
+                <p className="text-body-sm sm:text-body text-secondary max-w-2xl leading-relaxed">
+                  Designed and developed the application experience, Firebase-powered backend integration, authentication flows, notifications, and responsive administration dashboard for the client.
+                </p>
+              </div>
+            </RaisedPanel>
           </section>
 
           <hr className="my-8 sm:my-10 border-t border-border" />
@@ -268,95 +313,27 @@ export default function Home() {
             onClose={handleModuleClose}
           />
 
-          <ModuleBay
-            name="Typro UI"
-            subtitle="Neumorphic design system"
-            description="A neumorphic component library built with Next.js and TypeScript — CSS-driven shadow system, mechanical interaction physics, and industrial design language. Used to build this portfolio."
-            status="Live"
-            stack="Next.js / TypeScript / CSS / Vercel"
-            year="2026"
-            components={[
-              "Shadow Engine",
-              "Motion System",
-              "Surface System",
-              "Layout Primitives",
-              "Interaction Physics",
-              "Component API",
-            ]}
-            links={[
-              { label: "GitHub", href: "https://github.com/santhosh9863/pro-type" },
-              { label: "Live", href: "https://typro-delta.vercel.app" },
-            ]}
-            isDimmed={activeModule !== null && activeModule !== "Typro UI"}
-            previewContent={<TyproPreview />}
-            previewChannels={typroChannels}
-            decisions={[
-              { area: "Neumorphism", text: "CSS shadow-based depth instead of color-coded UI", outcome: "Tactile interactions with monochrome palette" },
-              { area: "Motion System", text: "Mechanical timing (160ms hover, 40ms press)", outcome: "Interactions feel weighted, not animated" },
-              { area: "TypeScript", text: "Strict interfaces for shadow configuration", outcome: "Type-safe CSS custom property generation" },
-              { area: "Architecture", text: "Single-source shadow variables in :root", outcome: "50+ components share consistent depth" },
-            ]}
-            archFlow={[
-              { name: "Next.js App", role: "component host + documentation" },
-              { name: "CSS Shadow Engine", role: ":root variables for unified depth" },
-              { name: "Motion Controller", role: "CSS custom property timing system" },
-              { name: "Component Library", role: "50+ neumorphic primitives" },
-              { name: "Vercel Deploy", role: "edge-delivered static site" },
-            ]}
-            story={{
-              purpose: "A reusable neumorphic UI system that emphasizes tactile depth over flat design",
-              problem: "Most component libraries rely on color for hierarchy, making them feel visually noisy",
-              approach: "CSS custom property shadow system with mechanical motion timing, all controlled via TypeScript interfaces",
-              journey: "Started with a single neumorphic button, expanded to a shadow variable architecture, then built 50+ primitives with consistent mechanical feel",
-              result: "A design system where surfaces feel sculpted, interactions feel weighted, and the monochrome palette keeps the focus on content",
-            }}
-            onOpen={() => handleModuleOpen("Typro UI")}
-            onClose={handleModuleClose}
-          />
+          </div>
 
-          <ModuleBay
-            name="Perfect Care"
-            subtitle="Professional service platform"
-            description="A clean, responsive frontend for a professional services business — service presentation cards, optimized static delivery, and cross-device layout built with Next.js and Tailwind CSS."
-            status="Live"
-            stack="Next.js / Tailwind CSS / Vercel"
-            year="2025"
-            components={[
-              "Service Cards",
-              "Responsive Layout",
-              "Hero System",
-              "Contact Block",
-              "Deploy Pipeline",
-            ]}
-            links={[
-              { label: "GitHub", href: "https://github.com/santhosh9863/prefect-care-salon" },
-              { label: "Live", href: "https://perfect-care-salon.vercel.app" },
-            ]}
-            isDimmed={activeModule !== null && activeModule !== "Perfect Care"}
-            previewContent={<PerfectCarePreview />}
-            previewChannels={perfectCareChannels}
-            decisions={[
-              { area: "Next.js", text: "Static generation for fast service page delivery", outcome: "Instant content rendering" },
-              { area: "Tailwind", text: "Responsive utility classes for layout", outcome: "Consistent cross-device presentation" },
-              { area: "Architecture", text: "Component composition for service cards", outcome: "Reusable card system across pages" },
-            ]}
-            archFlow={[
-              { name: "Next.js Frontend", role: "static page generation" },
-              { name: "Tailwind Layout", role: "responsive grid system" },
-              { name: "Card Components", role: "reusable service presentation" },
-              { name: "Vercel Deploy", role: "edge delivery" },
-            ]}
-            story={{
-              purpose: "Professional frontend for a service business needing online presence",
-              problem: "Small businesses need a clean, fast website but often get bloated templates",
-              approach: "Next.js static generation with Tailwind CSS for a lightweight, responsive service presentation site",
-              journey: "Structured the page layout for services, built reusable card components, and deployed via Vercel's static pipeline",
-              result: "A fast, clean business frontend that presents services clearly across all device sizes",
-            }}
-            onOpen={() => handleModuleOpen("Perfect Care")}
-            onClose={handleModuleClose}
-          />
-
+          <div className="flex flex-col gap-4 mt-6 sm:mt-8">
+            <p className="text-body-sm sm:text-body text-secondary max-w-2xl leading-relaxed">
+              Beyond these two, I&apos;ve built several websites with HTML and Next.js, along with Flutter mobile applications backed by Firebase. I&apos;ve also developed production ready applications for real clients.
+            </p>
+            <p className="text-body-sm sm:text-body text-secondary max-w-2xl leading-relaxed">
+              For more of my work, visit my GitHub.
+            </p>
+            <div>
+              <TactileButton
+                variant="sm"
+                as="a"
+                href="https://github.com/santhosh9863"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-lg px-4 py-2 text-mono-sm"
+              >
+                [GitHub]
+              </TactileButton>
+            </div>
           </div>
 
           </section>
@@ -378,8 +355,17 @@ export default function Home() {
                   title={node.title}
                   subtitle={node.subtitle}
                   usage={node.usage}
+                  featured={node.featured}
                 />
               ))}
+            </div>
+
+            <div className="surface-cavity rounded-lg mt-4 px-4 py-2.5 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+              <span className="text-mono-xs text-muted uppercase tracking-wider">Core</span>
+              <span className="text-mono-sm text-secondary">HTML · CSS · Java</span>
+              <span className="text-mono-xs text-correct font-black">3+ YEARS</span>
+              <span className="text-mono-xs text-muted">·</span>
+              <span className="text-mono-sm text-subtle">Technologies listed above are additional knowledge</span>
             </div>
           </section>
 

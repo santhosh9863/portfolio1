@@ -32,7 +32,7 @@ export function SystemClock({ className }: SystemClockProps) {
   return (
     <div className={cn("flex flex-col items-end leading-none", className)}>
       <span className="text-mono-sm text-muted tracking-wider">
-        {hh}<span className="colon-blink">:</span>{mm}<span className="colon-blink">:</span>{ss}
+        {hh}:{mm}:{ss}
       </span>
       <span className="text-mono-sm text-muted opacity-40 mt-0.5">
         {MONTHS[time.getMonth()]} {time.getDate().toString().padStart(2, "0")} {time.getFullYear()}

@@ -151,6 +151,16 @@
     transform: translateY(-0.8px);
   }
 
+  .system-node--featured {
+    background-color: rgb(var(--typro-bg-rgb));
+    box-shadow: var(--shadow-raised), var(--glow-active);
+    border: 1px solid rgba(95, 107, 122, 0.3);
+  }
+
+  .system-node--featured:hover {
+    box-shadow: var(--shadow-raised-hover), var(--glow-active-strong);
+  }
+
   .depth-toggle {
     transition:
       transform var(--motion-fast) ease-out,

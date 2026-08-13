@@ -133,48 +133,6 @@ export function PulsePreview() {
 
 /* ── PULSE WEB — Cross-platform Dashboard ── */
 
-function PulseWebMain() {
-  return (
-    <div className="preview-container">
-      <div className="preview-header">
-        <span className="preview-title">Web Dashboard</span>
-        <span className="preview-status">● LIVE</span>
-      </div>
-      <div className="preview-grid">
-        <div>
-          <span className="preview-stat__label">Visits</span>
-          <div className="preview-stat__value">1,247</div>
-        </div>
-        <div>
-          <span className="preview-stat__label">Sessions</span>
-          <div className="preview-stat__value">843</div>
-        </div>
-        <div>
-          <span className="preview-stat__label">Duration</span>
-          <div className="preview-stat__value">4m32s</div>
-        </div>
-        <div>
-          <span className="preview-stat__label">Bounce</span>
-          <div className="preview-stat__value preview-stat__value--accent">32%</div>
-        </div>
-      </div>
-      <div className="preview-divider" />
-      <div className="preview-stat">
-        <span className="preview-stat__label">CDN Cache</span>
-        <span className="preview-stat__value preview-stat__value--correct">PRIMED</span>
-      </div>
-      <div className="preview-bar">
-        <div className="preview-bar__fill--correct" style={{ width: "92%" }} />
-      </div>
-      <div className="preview-footer">
-        <span className="preview-footer__label">Next.js</span>
-        <span className="preview-footer__dot" />
-        <span className="preview-footer__label">Vercel Edge</span>
-      </div>
-    </div>
-  );
-}
-
 function PulseWebAnalytics() {
   return (
     <div className="preview-container">
@@ -213,12 +171,11 @@ function PulseWebAnalytics() {
 }
 
 export const pulseWebChannels: DisplayChannelDef[] = [
-  { id: "dashboard", label: "DASHBOARD", content: <PulseWebMain /> },
   { id: "analytics", label: "ANALYTICS", content: <PulseWebAnalytics /> },
 ];
 
 export function PulseWebPreview() {
-  return <PulseWebMain />;
+  return <PulseWebAnalytics />;
 }
 
 /* ── TYPRO UI — Neumorphic Component System ── */

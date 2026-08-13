@@ -6,6 +6,7 @@ interface SystemNodeProps {
   title: string;
   subtitle: string;
   usage?: string;
+  featured?: boolean;
   className?: string;
 }
 
@@ -13,15 +14,20 @@ export function SystemNode({
   title,
   subtitle,
   usage,
+  featured,
   className,
 }: SystemNodeProps) {
   return (
     <div
       className={cn(
         "rounded-lg px-3 py-3 flex flex-col items-center justify-center gap-1 system-node",
+        featured && "system-node--featured",
         className,
       )}
     >
+      {featured && (
+        <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#00b894]" />
+      )}
       <span className="block text-mono-sm font-black text-foreground leading-snug break-words">
         {title}
       </span>

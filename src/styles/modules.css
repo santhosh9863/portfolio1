@@ -382,9 +382,7 @@
   .display-monitor--online .display-monitor__screen {
     opacity: 1;
     filter: brightness(1);
-    animation:
-      monitor-settle 350ms ease-out 1,
-      display-screen-breathe 30s ease-in-out infinite;
+    animation: monitor-settle 350ms ease-out 1;
   }
 
   @keyframes monitor-settle {
@@ -725,12 +723,6 @@
     height: 2px;
     border-radius: 50%;
     background: rgba(var(--typro-text-rgb), 0.20);
-    animation: arch-flow-pulse 3s ease-in-out infinite;
-  }
-
-  @keyframes arch-flow-pulse {
-    0%, 100% { opacity: 0.1; transform: translateY(0); }
-    50% { opacity: 0.4; transform: translateY(18px); }
   }
 
   .arch-flow--mobile .arch-node {
