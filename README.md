@@ -1,23 +1,27 @@
-# Santhosh Krishna R — Portfolio
+# Santhosh OS — Portfolio
 
-A cinematic, neumorphic single-page portfolio built with Next.js and TypeScript. The site presents professional work through an editorial, tactile OS-style interface — client work, projects, technology, and contact — all in one scroll.
+A single-page, neumorphic OS-style portfolio built with Next.js and TypeScript. The site presents professional work through a tactile, mechanical interface — system profile, engineering modules, technology matrix, system history terminal, and communication controls — all rendered as a working operating-system aesthetic.
 
 ## Features
 
-- **Client Work** — production work delivered for real clients (Raahi Global client application)
-- **Projects** — expandable project modules with engineering details: story, architecture flow, decisions, components, and live previews
-- **Technology** — interactive technology matrix with highlighted core skills
-- **Connect** — direct links to GitHub, LinkedIn, email, and resume
-- **Neumorphic design system** — CSS-driven shadow engine, warm ivory palette, mechanical interaction physics
+- **System Profile** — personal profile presented as a workstation identity card
+- **Engineering Modules** — expandable module bays (Pulse System, Core Engine) with 5-phase mechanical expansion, internal tab navigation, and live display monitors
+- **DisplayMonitor** — 6-layer industrial monitor with multi-channel source selectors, power-on sequences, and terminal-synchronized pulse feedback
+- **Technology Matrix** — tactile subsystem chips with utilization reveal
+- **System History** — 7-channel terminal log stream with prompt and blinking cursor
+- **Communication Controls** — tactile buttons with transmit/link-established state machine
+- **Neumorphic design system** — CSS-driven shadow engine (raised/inset materials), enforced 0-8-16-24-40px spacing scale
+- **Environmental atmosphere** — section-aware depth shifts, hover attention response, idle detection that slows ambient motion
 - **Fully responsive** — mobile-first layout with no horizontal overflow across breakpoints
 - **Accessible** — semantic sections, aria labels, keyboard-focusable controls, reduced-motion support
 
 ## Tech Stack
 
-- **Framework** — Next.js (App Router), React, TypeScript
-- **Styling** — Tailwind CSS with a custom CSS shadow/variable design system
+- **Framework** — Next.js (App Router), React 19, TypeScript
+- **Styling** — Tailwind CSS with a custom CSS variable design system (materials, shadows, motion, spacing)
 - **Typography** — Inter + Geist Mono via `next/font`
-- **Performance** — static generation, no heavy client animations, native scrolling
+- **Smooth scrolling** — Lenis with mechanical easing
+- **Performance** — static generation, no heavy client animations
 
 ## Getting Started
 
@@ -30,21 +34,22 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 
 ### Scripts
 
-| Command          | Description                      |
-| ---------------- | -------------------------------- |
-| `npm run dev`    | Start the development server     |
+| Command          | Description                          |
+| ---------------- | ------------------------------------ |
+| `npm run dev`    | Start the development server         |
 | `npm run build`  | Create an optimized production build |
-| `npm run start`  | Serve the production build       |
-| `npm run lint`   | Run ESLint checks                |
+| `npm run start`  | Serve the production build           |
+| `npm run lint`   | Run ESLint checks                    |
 
 ## Project Structure
 
 ```
 src/
   app/          # Page, layout, global styles
-  components/   # UI components (surfaces, controls, cinematic, previews)
-  hooks/        # Section scroll observer
-  styles/       # Design system stylesheets (typography, materials, modules)
+  components/   # UI components (surfaces, controls, cinematic, atmosphere)
+  hooks/        # Live metrics, section observer
+  styles/       # Design system stylesheets (materials, modules, interactions)
+  systems/      # Design tokens (shadows, spacing, motion, typography)
 ```
 
 ## Contact
