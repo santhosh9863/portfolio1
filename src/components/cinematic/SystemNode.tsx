@@ -25,9 +25,6 @@ export function SystemNode({
         className,
       )}
     >
-      {featured && (
-        <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#00b894]" />
-      )}
       <span className="block text-mono-sm font-black text-foreground leading-snug break-words">
         {title}
       </span>
