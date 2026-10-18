@@ -176,10 +176,10 @@ export default function Home() {
                 <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
                   <div className="module-identity min-w-0">
                     <span className="module-identity__name">
-                      Raahi Global — Client Application
+                      Raahi Global — Client Project
                     </span>
                     <span className="module-identity__blurb">
-                      German learning and placement platform
+                      German Language Learning Platform
                     </span>
                   </div>
                   <span className="inline-flex items-center gap-1.5 text-mono-xs text-correct">
@@ -189,7 +189,7 @@ export default function Home() {
                 </div>
 
                 <p className="text-body-sm sm:text-body text-secondary max-w-2xl leading-relaxed">
-                  Cross-platform mobile application and responsive admin dashboard developed for Raahi Global, a German learning and placement platform.
+                  Cross-platform mobile application and responsive admin dashboard developed for Raahi Global, a German language learning platform.
                 </p>
 
                 <div className="grid grid-cols-[7.5em_1fr] gap-x-4 gap-y-3 sm:gap-y-3.5">
@@ -206,6 +206,29 @@ export default function Home() {
                 <p className="text-body-sm sm:text-body text-secondary max-w-2xl leading-relaxed">
                   Designed and developed the application experience, Firebase-powered backend integration, authentication flows, notifications, and responsive administration dashboard for the client.
                 </p>
+
+                <div className="flex flex-wrap gap-2">
+                  <TactileButton
+                    variant="sm"
+                    as="a"
+                    href="https://github.com/santhosh9863/raahi-german-app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-lg px-4 py-2 text-mono-sm"
+                  >
+                    [GitHub]
+                  </TactileButton>
+                  <TactileButton
+                    variant="sm"
+                    as="a"
+                    href="https://play.google.com/store/apps/details?id=com.raahiglobal.raahi_global"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-lg px-4 py-2 text-mono-sm"
+                  >
+                    [Google Play]
+                  </TactileButton>
+                </div>
               </div>
             </RaisedPanel>
           </section>

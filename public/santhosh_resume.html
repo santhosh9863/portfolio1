@@ -31,30 +31,30 @@
   .header {
     background: #2c3e50;
     color: #fff;
-    padding: 32px 40px 28px;
+    padding: 16px 32px 12px;
   }
 
   .header h1 {
-    font-size: 28px;
+    font-size: 22px;
     font-weight: 700;
     letter-spacing: 1.5px;
     text-transform: uppercase;
   }
 
   .header .title {
-    font-size: 14px;
+    font-size: 11px;
     font-weight: 400;
     color: #95a5a6;
-    margin-top: 4px;
+    margin-top: 3px;
     letter-spacing: 1px;
   }
 
   .header .contact-line {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px 24px;
-    margin-top: 14px;
-    font-size: 11px;
+    gap: 4px 18px;
+    margin-top: 8px;
+    font-size: 9.5px;
     color: #bdc3c7;
   }
 
@@ -72,11 +72,11 @@
   }
 
   .body {
-    padding: 28px 40px 36px;
+    padding: 16px 32px 18px;
   }
 
   .section {
-    margin-bottom: 22px;
+    margin-bottom: 12px;
   }
 
   .section:last-child {
@@ -84,38 +84,38 @@
   }
 
   .section-heading {
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.2px;
     color: #2c3e50;
-    border-bottom: 2px solid #2c3e50;
-    padding-bottom: 5px;
-    margin-bottom: 12px;
+    border-bottom: 1.5px solid #2c3e50;
+    padding-bottom: 4px;
+    margin-bottom: 7px;
   }
 
   .summary-text {
-    font-size: 11px;
-    line-height: 1.65;
+    font-size: 9.5px;
+    line-height: 1.45;
     color: #333;
   }
 
   .skills-grid {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 4px;
   }
 
   .skills-row {
     display: flex;
-    font-size: 10.5px;
-    line-height: 1.5;
+    font-size: 9.5px;
+    line-height: 1.45;
   }
 
   .skills-cat {
     font-weight: 600;
     color: #2c3e50;
-    min-width: 150px;
+    min-width: 110px;
     flex-shrink: 0;
   }
 
@@ -124,7 +124,7 @@
   }
 
   .project {
-    margin-bottom: 16px;
+    margin-bottom: 10px;
   }
 
   .project:last-child {
@@ -132,15 +132,15 @@
   }
 
   .project-name {
-    font-size: 12px;
+    font-size: 10.5px;
     font-weight: 600;
     color: #2c3e50;
   }
 
   .project-stack {
-    font-size: 10px;
+    font-size: 9px;
     color: #7f8c8d;
-    margin: 2px 0 5px;
+    margin: 1px 0 3px;
     font-weight: 500;
   }
 
@@ -151,10 +151,10 @@
   }
 
   .project li {
-    font-size: 10.5px;
-    line-height: 1.55;
+    font-size: 9.5px;
+    line-height: 1.45;
     color: #444;
-    padding-left: 14px;
+    padding-left: 12px;
     position: relative;
     margin-bottom: 3px;
   }
@@ -162,13 +162,13 @@
   .project li::before {
     content: "•";
     position: absolute;
-    left: 4px;
+    left: 3px;
     color: #2c3e50;
   }
 
   .project-links {
-    font-size: 10px;
-    margin-top: 4px;
+    font-size: 9px;
+    margin-top: 2px;
   }
 
   .project-links a {
@@ -181,38 +181,56 @@
     text-decoration: underline;
   }
 
+  .client-block {
+    background: #f5f8fa;
+    border-left: 3px solid #2c3e50;
+    border-radius: 0 3px 3px 0;
+    padding: 7px 10px 8px;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .client-platform {
+    font-weight: 500;
+    color: #7f8c8d;
+  }
+
   .edu-name {
-    font-size: 11.5px;
+    font-size: 10.5px;
     font-weight: 600;
     color: #2c3e50;
   }
 
   .edu-detail {
-    font-size: 10.5px;
+    font-size: 9.5px;
     color: #555;
-    margin-top: 2px;
-    line-height: 1.5;
+    margin-top: 1px;
+    line-height: 1.45;
   }
 
   .achievement-item {
-    font-size: 10.5px;
+    font-size: 9.5px;
     color: #444;
-    padding-left: 14px;
+    padding-left: 12px;
     position: relative;
     margin-bottom: 3px;
-    line-height: 1.55;
+    line-height: 1.45;
   }
 
   .achievement-item::before {
     content: "•";
     position: absolute;
-    left: 4px;
+    left: 3px;
     color: #2c3e50;
+  }
+
+  @media screen and (max-width: 840px) {
+    body { padding: 16px 8px; }
   }
 
   @media print {
     body { background: #fff; padding: 0; }
-    .resume { box-shadow: none; border-radius: 0; }
+    .resume { box-shadow: none; border-radius: 0; min-height: 0; overflow: visible; zoom: 1 !important; }
   }
 </style>
 </head>
@@ -242,7 +260,7 @@
     <div class="section">
       <div class="section-heading">Professional Summary</div>
       <p class="summary-text">
-        BCA student with hands-on experience architecting cross-platform mobile applications using Flutter and building modern web applications with Next.js, React, and TypeScript. Experienced in designing scalable application architectures, integrating Firebase backends, and managing production deployments through GitHub Releases and Vercel. Focused on building real-world software systems, responsive interfaces, and modern frontend experiences.
+        BCA student experienced in building cross-platform mobile apps with Flutter and modern web applications with Next.js, React, and TypeScript. Skilled in Firebase integration, scalable architecture design, and production deployments via GitHub Releases and Vercel. Focused on crafting real-world software with responsive, modern UIs.
       </p>
     </div>
 
@@ -269,15 +287,34 @@
     </div>
 
     <div class="section">
+      <div class="section-heading">Client Project Experience</div>
+      <div class="project client-block">
+        <div class="project-name">Raahi Global — Client Project <span class="client-platform">| German Language Learning Platform</span></div>
+        <div class="project-stack">Flutter · Dart · Firebase Authentication · Cloud Firestore · Firebase Cloud Messaging · Riverpod · GoRouter</div>
+        <ul>
+          <li>Developed a cross-platform Flutter application for a German language learning and student support platform.</li>
+          <li>Implemented student onboarding, profile completion, course enrollment, and structured A1–B2 learning content.</li>
+          <li>Integrated Firebase Authentication and Cloud Firestore for secure authentication and application data management.</li>
+          <li>Built role-based interfaces and an admin dashboard for managing platform content and student workflows.</li>
+          <li>Integrated Firebase Cloud Messaging for push notifications and GoRouter for in-app navigation.</li>
+          <li>Prepared versioned release builds and supported the testing and Google Play deployment workflow.</li>
+        </ul>
+        <div class="project-links">
+          <a href="https://github.com/santhosh9863/raahi-german-app" target="_blank">GitHub</a> | <a href="https://play.google.com/store/apps/details?id=com.raahiglobal.raahi_global" target="_blank">Google Play Store</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
       <div class="section-heading">Projects</div>
 
       <div class="project">
         <div class="project-name">PULSE - Attendance Intelligence Platform</div>
         <div class="project-stack">Flutter · Dart · Firebase · GitHub</div>
         <ul>
-          <li>Architected and developed a cross-platform attendance tracking application with real-time analytics, subject-wise insights, and attendance prediction systems.</li>
-          <li>Designed responsive Flutter frontend architecture with integrated Firebase authentication and Firestore backend.</li>
-          <li>Implemented scalable attendance analytics system and created APK deployment workflow using GitHub Releases.</li>
+          <li>Built cross-platform attendance tracking app with real-time analytics, subject-wise insights, and attendance prediction.</li>
+          <li>Designed responsive Flutter frontend with Firebase Auth and Firestore backend integration.</li>
+          <li>Built scalable analytics system and automated APK deployment via GitHub Releases.</li>
         </ul>
         <div class="project-links">
           <a href="https://github.com/santhosh9863/safebunk" target="_blank">GitHub</a> · <a href="https://github.com/santhosh9863/safebunk/releases" target="_blank">APK Release</a>
@@ -288,9 +325,9 @@
         <div class="project-name">PULSE Official Website</div>
         <div class="project-stack">Next.js · React · Tailwind CSS · Node.js</div>
         <ul>
-          <li>Developed the official responsive web platform for the PULSE ecosystem using modern frontend architecture and mobile-first layouts.</li>
-          <li>Built responsive landing pages with scalable component structure and modern frontend UI/UX.</li>
-          <li>Implemented smooth interactions and animations for an engaging user experience.</li>
+          <li>Built official responsive web platform for the PULSE ecosystem with mobile-first layouts.</li>
+          <li>Created scalable landing pages with modular component architecture and clean UI/UX.</li>
+          <li>Added smooth animations and interactions for an engaging experience.</li>
         </ul>
         <div class="project-links">
           <a href="https://github.com/santhosh9863/Pulse-website" target="_blank">GitHub</a> · <a href="https://pulse-website-pi.vercel.app/" target="_blank">Live Website</a>
@@ -301,25 +338,12 @@
         <div class="project-name">Typro - Neuromorphic Typing SaaS Platform</div>
         <div class="project-stack">Next.js · TypeScript · Tailwind CSS · Vercel</div>
         <ul>
-          <li>Built a SaaS-style typing platform featuring neuromorphic UI design and responsive frontend architecture.</li>
-          <li>Designed custom neuromorphic UI components and optimized TypeScript codebase for maintainability.</li>
-          <li>Built responsive layouts and integrated Vercel deployment workflow for continuous delivery.</li>
+          <li>Developed a SaaS-style typing platform with neuromorphic UI and responsive frontend.</li>
+          <li>Designed custom neuromorphic components and optimized TypeScript codebase for maintainability.</li>
+          <li>Built responsive layouts with Vercel-powered CI/CD for continuous delivery.</li>
         </ul>
         <div class="project-links">
           <a href="https://github.com/santhosh9863/pro-type" target="_blank">GitHub</a> · <a href="https://typro-delta.vercel.app/" target="_blank">Live Website</a>
-        </div>
-      </div>
-
-      <div class="project">
-        <div class="project-name">Perfect Care Salon Website</div>
-        <div class="project-stack">Next.js · TypeScript · Tailwind CSS · Vercel</div>
-        <ul>
-          <li>Created a modern responsive salon website focused on frontend optimization and professional UI presentation.</li>
-          <li>Developed responsive layouts with dedicated service showcase sections and optimized frontend performance.</li>
-          <li>Managed end-to-end Vercel deployment for production availability.</li>
-        </ul>
-        <div class="project-links">
-          <a href="https://github.com/santhosh9863/prefect-care-salon" target="_blank">GitHub</a> · <a href="https://perfect-care-salon.vercel.app/" target="_blank">Live Website</a>
         </div>
       </div>
     </div>
@@ -343,5 +367,24 @@
   </div>
 
 </div>
+<script>
+  // Fit the fixed-width A4 page to small screens by scaling it down.
+  // Print output is unaffected (print CSS forces zoom back to 1).
+  (function () {
+    var resume = document.querySelector('.resume');
+    if (!resume) return;
+
+    function fit() {
+      resume.style.zoom = 1;
+      var natural = resume.offsetWidth;
+      var available = document.documentElement.clientWidth - 16;
+      var scale = Math.min(1, available / natural);
+      if (scale < 1) resume.style.zoom = Math.round(scale * 1000) / 1000;
+    }
+
+    window.addEventListener('resize', fit);
+    fit();
+  })();
+</script>
 </body>
 </html>
